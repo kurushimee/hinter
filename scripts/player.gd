@@ -1,21 +1,23 @@
 extends CharacterBody3D
 
+# Movement constants
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const JUMP_VELOCITY = 4.5
 const GROUND_FRICTION = 7.0
 const AIR_FRICTION = 3.0
 const SENSITIVITY = 0.003
-var speed: float
 
-# Head bob
+# Head bob constants
 const BOB_FREQUENCY = 2.0
 const BOB_AMPLITUDE = 0.08
-var t_bob := 0.0
 
-# FOV
+# FOV constants
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
+
+var speed: float
+var t_bob := 0.0
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
