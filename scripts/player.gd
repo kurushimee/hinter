@@ -1,9 +1,7 @@
 extends CharacterBody3D
 
 # Movement constants
-const WALK_SPEED = 5.0
-const SPRINT_SPEED = 8.0
-const JUMP_VELOCITY = 4.5
+const SPEED = 5.0
 const GROUND_FRICTION = 7.0
 const AIR_FRICTION = 3.0
 const SENSITIVITY = 0.003
@@ -12,11 +10,6 @@ const SENSITIVITY = 0.003
 const BOB_FREQUENCY = 2.0
 const BOB_AMPLITUDE = 0.08
 
-# FOV constants
-const BASE_FOV = 75.0
-const FOV_CHANGE = 1.5
-
-var speed: float
 var t_bob := 0.0
 
 @onready var head: Node3D = $Head
@@ -39,38 +32,23 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Handle sprint.
-	if Input.is_action_pressed("sprint"):
-		speed = SPRINT_SPEED
-	else:
-		speed = WALK_SPEED
-
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if is_on_floor():
 		if direction:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
 		else:
-			velocity.x = lerp(velocity.x, direction.x * speed, delta * GROUND_FRICTION)
-			velocity.z = lerp(velocity.z, direction.z * speed, delta * GROUND_FRICTION)
+			velocity.x = lerp(velocity.x, direction.x * SPEED, delta * GROUND_FRICTION)
+			velocity.z = lerp(velocity.z, direction.z * SPEED, delta * GROUND_FRICTION)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * speed, delta * AIR_FRICTION)
-		velocity.z = lerp(velocity.z, direction.z * speed, delta * AIR_FRICTION)
+		velocity.x = lerp(velocity.x, direction.x * SPEED, delta * AIR_FRICTION)
+		velocity.z = lerp(velocity.z, direction.z * SPEED, delta * AIR_FRICTION)
 
 	# Head bob
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	camera.transform.origin = bob_offset(t_bob)
-
-	# FOV
-	var velocity_clamped: float = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
-	var target_fov := BASE_FOV + FOV_CHANGE * velocity_clamped
-	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
 
 	move_and_slide()
 
