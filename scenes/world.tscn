@@ -15,29 +15,26 @@ sky = SubResource("Sky_x5v6s")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bwab"]
-albedo_color = Color(0.731194, 0.615601, 0.343651, 1)
-
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3b631"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lrit0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bwab"]
+albedo_color = Color(0.731194, 0.615601, 0.343651, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_occeq"]
 albedo_color = Color(0.210108, 0.101755, 0.013185, 1)
 
 [node name="World" type="Node3D"]
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+[node name="Lighting" type="Node" parent="."]
+
+[node name="Sun" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
 environment = SubResource("Environment_m7bmb")
-
-[node name="Ground" type="CSGBox3D" parent="."]
-use_collision = true
-size = Vector3(100, 0.001, 100)
-material = SubResource("StandardMaterial3D_4bwab")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 script = ExtResource("1_6ff38")
@@ -55,7 +52,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Objects" type="Node" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="Objects"]
+use_collision = true
+size = Vector3(100, 0.001, 100)
+material = SubResource("StandardMaterial3D_4bwab")
+
+[node name="Box" type="CSGBox3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -9.5)
 size = Vector3(7, 2, 6)
 material = SubResource("StandardMaterial3D_occeq")
