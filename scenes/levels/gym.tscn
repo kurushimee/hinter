@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5mc2je5fi4p1"]
+[gd_scene load_steps=9 format=3 uid="uid://c5mc2je5fi4p1"]
 
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="1_rvrmw"]
+[ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="1_x3gm1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6hwok"]
 sky_top_color = Color(0.317647, 0.498039, 0.67451, 1)
@@ -19,6 +20,11 @@ ssil_enabled = true
 sdfgi_enabled = true
 glow_enabled = true
 
+[sub_resource type="Gradient" id="Gradient_a3idl"]
+offsets = PackedFloat32Array(0, 0.256966, 0.786378, 1)
+colors = PackedColorArray(1, 0.624301, 0.431625, 1, 0.317647, 0.498039, 0.67451, 1, 0.317647, 0.498039, 0.67451, 1, 0.999754, 0.578495, 0.310173, 1)
+metadata/_snap_count = 11
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bwab"]
 albedo_color = Color(0.843137, 0.686275, 0.603922, 1)
 
@@ -31,13 +37,18 @@ transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761
 [node name="Lighting" type="Node" parent="."]
 
 [node name="Sun" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.608761, 0.793353, 0, -0.793353, 0.608761, 0, 0, 0)
 light_color = Color(0.956863, 0.898039, 0.764706, 1)
 light_energy = 0.69
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" node_paths=PackedStringArray("sun")]
 environment = SubResource("Environment_m7bmb")
+script = ExtResource("1_x3gm1")
+sun = NodePath("../Sun")
+all_day_sky_color = SubResource("Gradient_a3idl")
+sky_material = SubResource("ProceduralSkyMaterial_6hwok")
+day_length_minutes = 1
 
 [node name="Player" parent="." instance=ExtResource("1_rvrmw")]
 
