@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5mc2je5fi4p1"]
+[gd_scene load_steps=12 format=3 uid="uid://c5mc2je5fi4p1"]
 
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="1_rvrmw"]
 [ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="1_x3gm1"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/button.gd" id="3_2symt"]
+[ext_resource type="AudioStream" uid="uid://bxpufn62gfs5i" path="res://audio/sfx/button.wav" id="4_xp82r"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6hwok"]
 sky_top_color = Color(0.317647, 0.498039, 0.67451, 1)
@@ -28,6 +30,8 @@ metadata/_snap_count = 11
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4bwab"]
 albedo_color = Color(0.843137, 0.686275, 0.603922, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_0y1y8"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_occeq"]
 albedo_color = Color(0.380392, 0.215686, 0.352941, 1)
 
@@ -36,8 +40,10 @@ transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761
 
 [node name="Lighting" type="Node" parent="."]
 
-[node name="Sun" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(1, 0, 0, 0, 0.608761, 0.793353, 0, -0.793353, 0.608761, 0, 0, 0)
+[node name="SunPivot" type="Node3D" parent="Lighting"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Sun" type="DirectionalLight3D" parent="Lighting/SunPivot"]
 light_color = Color(0.956863, 0.898039, 0.764706, 1)
 light_energy = 0.69
 shadow_enabled = true
@@ -45,7 +51,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" node_paths=PackedStringArray("sun")]
 environment = SubResource("Environment_m7bmb")
 script = ExtResource("1_x3gm1")
-sun = NodePath("../Sun")
+sun = NodePath("../SunPivot/Sun")
 all_day_sky_color = SubResource("Gradient_a3idl")
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 day_length_minutes = 1
@@ -59,8 +65,25 @@ use_collision = true
 size = Vector3(100, 0.001, 100)
 material = SubResource("StandardMaterial3D_4bwab")
 
+[node name="Button" type="StaticBody3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8881, -6.76215)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_2symt")
+prompt_message = "Press"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Objects/Button"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Button"]
+shape = SubResource("BoxShape3D_0y1y8")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Objects/Button"]
+stream = ExtResource("4_xp82r")
+
 [node name="Wall" type="CSGBox3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.465881, 2, -7.19824)
 use_collision = true
 size = Vector3(12.0682, 4, 1.39648)
 material = SubResource("StandardMaterial3D_occeq")
+
+[connection signal="interacted" from="Objects/Button" to="Objects/Button" method="_on_interacted"]

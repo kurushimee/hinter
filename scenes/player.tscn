@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnt2oeiddrab4"]
+[gd_scene load_steps=5 format=3 uid="uid://bnt2oeiddrab4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_0fxja"]
+[ext_resource type="Script" path="res://scripts/interaction/interact_ray.gd" id="2_3fdb3"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_3b631"]
 
@@ -22,3 +23,24 @@ shape = SubResource("CapsuleShape3D_lrit0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="InteractRay" type="RayCast3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -4)
+collision_mask = 2
+script = ExtResource("2_3fdb3")
+
+[node name="Prompt" type="Label" parent="Head/Camera3D/InteractRay"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 26.0
+offset_bottom = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "Interact
+[LMB]"
+horizontal_alignment = 1
