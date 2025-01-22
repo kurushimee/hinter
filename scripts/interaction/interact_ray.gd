@@ -1,6 +1,6 @@
 extends RayCast3D
 
-@onready var prompt = $Prompt
+@onready var prompt = $prompt
 
 
 func _process(_delta: float) -> void:
@@ -11,6 +11,6 @@ func _process(_delta: float) -> void:
 	if collider is not Interactable: return
 
 	prompt.text = collider.name + "\n[LMB] " + collider.prompt_message
-	
+
 	if Input.is_action_just_pressed("interact"):
 		collider.interact(owner)

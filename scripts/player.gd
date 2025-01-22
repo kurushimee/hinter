@@ -6,8 +6,8 @@ const GROUND_CONTROL = 10.0
 const AIR_CONTROL = 3.0
 const SENSITIVITY = 0.003
 
-@onready var head: Node3D = $Head
-@onready var camera: Camera3D = $Head/Camera3D
+@onready var head: Node3D = $head
+@onready var camera: Camera3D = $head/Camera3D
 
 
 func _ready() -> void:

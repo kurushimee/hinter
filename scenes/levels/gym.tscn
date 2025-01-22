@@ -44,57 +44,57 @@ uv1_world_triplanar = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_0y1y8"]
 size = Vector3(0.48584, 0.511719, 0.21759)
 
-[node name="Gym" type="Node3D"]
+[node name="gym" type="Node3D"]
 transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 0, 0, 0)
 
-[node name="Lighting" type="Node" parent="."]
+[node name="lighting" type="Node" parent="."]
 
-[node name="SunPivot" type="Node3D" parent="Lighting"]
+[node name="sun_pivot" type="Node3D" parent="lighting"]
 transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Sun" type="DirectionalLight3D" parent="Lighting/SunPivot"]
+[node name="sun" type="DirectionalLight3D" parent="lighting/sun_pivot"]
 light_color = Color(0.956863, 0.898039, 0.764706, 1)
 light_energy = 0.69
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting" node_paths=PackedStringArray("sun")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="lighting" node_paths=PackedStringArray("sun")]
 environment = SubResource("Environment_m7bmb")
 script = ExtResource("1_x3gm1")
-sun = NodePath("../SunPivot/Sun")
+sun = NodePath("../sun_pivot/sun")
 all_day_sky_color = SubResource("Gradient_a3idl")
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 day_length_minutes = 1
 
-[node name="Player" parent="." instance=ExtResource("1_rvrmw")]
+[node name="player" parent="." instance=ExtResource("1_rvrmw")]
 
-[node name="Objects" type="Node" parent="."]
+[node name="objects" type="Node" parent="."]
 
-[node name="Ground" type="CSGBox3D" parent="Objects"]
+[node name="ground" type="CSGBox3D" parent="objects"]
 material_override = SubResource("StandardMaterial3D_mtdb5")
 use_collision = true
 size = Vector3(1000, 0.001, 1000)
 
-[node name="Wall" type="CSGBox3D" parent="Objects"]
+[node name="wall" type="CSGBox3D" parent="objects"]
 transform = Transform3D(0.977984, 0, 0.20868, 0, 1, 0, -0.20868, 0, 0.977984, -8.4386, 2, -9.3478)
 material_override = SubResource("StandardMaterial3D_8ctfj")
 use_collision = true
 size = Vector3(12.0682, 4, 5.39355)
 
-[node name="Button" type="StaticBody3D" parent="Objects/Wall"]
+[node name="button" type="StaticBody3D" parent="objects/wall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42946, -0.1119, 2.81056)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("3_2symt")
 prompt_message = "Press"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Objects/Wall/Button"]
+[node name="CSGBox3D" type="CSGBox3D" parent="objects/wall/button"]
 material_override = SubResource("StandardMaterial3D_c56pq")
 size = Vector3(0.499512, 0.518433, 0.193604)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Wall/Button"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="objects/wall/button"]
 shape = SubResource("BoxShape3D_0y1y8")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Objects/Wall/Button"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="objects/wall/button"]
 stream = ExtResource("4_xp82r")
 
-[connection signal="interacted" from="Objects/Wall/Button" to="Objects/Wall/Button" method="_on_interacted"]
+[connection signal="interacted" from="objects/wall/button" to="objects/wall/button" method="_on_interacted"]

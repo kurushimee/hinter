@@ -1,6 +1,6 @@
 extends WorldEnvironment
 
-@export var sun: Node3D
+@export var sun: DirectionalLight3D
 
 @export var all_day_sky_color: Gradient
 @export var sky_material: ProceduralSkyMaterial
@@ -19,6 +19,6 @@ func _process(delta: float) -> void:
 
 	var day_progress: float = day_time / day_length_seconds
 	sky_material.sky_top_color = all_day_sky_color.sample(day_progress)
-	
+
 	# Makes the sun go from horizon to horizon
 	sun.rotation_degrees.x = -180 * day_progress
