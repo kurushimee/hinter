@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5mc2je5fi4p1"]
+[gd_scene load_steps=15 format=3 uid="uid://c5mc2je5fi4p1"]
 
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="1_rvrmw"]
 [ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="1_x3gm1"]
@@ -22,11 +22,6 @@ background_mode = 2
 sky = SubResource("Sky_x5v6s")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="Gradient" id="Gradient_a3idl"]
-offsets = PackedFloat32Array(0, 0.256966, 0.786378, 1)
-colors = PackedColorArray(1, 0.624301, 0.431625, 1, 0.317647, 0.498039, 0.67451, 1, 0.317647, 0.498039, 0.67451, 1, 0.999754, 0.578495, 0.310173, 1)
-metadata/_snap_count = 11
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtdb5"]
 albedo_texture = ExtResource("3_2r61g")
@@ -61,7 +56,6 @@ shadow_enabled = true
 environment = SubResource("Environment_m7bmb")
 script = ExtResource("1_x3gm1")
 sun = NodePath("../sun_pivot/sun")
-all_day_sky_color = SubResource("Gradient_a3idl")
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 day_length_minutes = 1
 

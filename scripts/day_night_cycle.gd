@@ -2,12 +2,13 @@ extends WorldEnvironment
 
 @export var sun: DirectionalLight3D
 
-@export var all_day_sky_color: Gradient
+@export var sky_tint_from_time: Gradient # The color of the sky throughout the day.
 @export var sky_material: ProceduralSkyMaterial
-@export var day_length_minutes := 10
 
-var day_length_seconds: int
-var day_time := 0.0
+@export var day_length_minutes := 10 # Total amount of minutes in a day.
+
+var day_length_seconds: int # Total amount of seconds in a day.
+var day_time := 0.0 # Time passed in seconds.
 
 
 func _ready() -> void:
@@ -17,8 +18,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	day_time += delta
 
+	# A value between 0 and 1.
 	var day_progress: float = day_time / day_length_seconds
-	sky_material.sky_top_color = all_day_sky_color.sample(day_progress)
 
-	# Makes the sun go from horizon to horizon
+	# Change sky color depending on the time of day.
+	sky_material.sky_top_color = sky_tint_from_time.sample(day_progress)
+	# Set the sun's position to reflect the current time.
 	sun.rotation_degrees.x = -180 * day_progress

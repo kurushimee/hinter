@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-# Movement constants
+# Movement constants.
 const SPEED = 3.0
 const GROUND_CONTROL = 10.0
 const AIR_CONTROL = 3.0
