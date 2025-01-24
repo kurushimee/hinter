@@ -1,5 +1,7 @@
 extends WorldEnvironment
 
+signal day_end
+
 @export var sun: DirectionalLight3D
 
 @export var sky_tint_from_time: Gradient # The color of the sky throughout the day.
@@ -20,8 +22,14 @@ func _process(delta: float) -> void:
 
 	# A value between 0 and 1.
 	var day_progress: float = day_time / day_length_seconds
+	if day_progress >= 1.0:
+		day_end.emit()
 
 	# Change sky color depending on the time of day.
 	sky_material.sky_top_color = sky_tint_from_time.sample(day_progress)
 	# Set the sun's position to reflect the current time.
-	sun.rotation_degrees.x = -180 * day_progress
+	sun.rotation_degrees.x = clampf(-180 * day_progress, -180 + 0.1, 0 - 0.1)
+
+
+func _on_game_manager_day_skip() -> void:
+	day_time = 0.0

@@ -1,8 +1,10 @@
-extends interactable
-
-signal task_done
+extends task
 
 
-func _on_interacted(_body: Node) -> void:
-	task_done.emit()
+func _ready() -> void:
+	is_active = true
+
+
+func _on_begin() -> void:
 	$AudioStreamPlayer3D.play()
+	task_done.emit()

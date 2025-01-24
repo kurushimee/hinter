@@ -1,11 +1,15 @@
 extends Node
 
 signal energy_changed(new_energy: int)
+signal day_skip
 
 @export var player: Node3D
 
 @export var available_energy := 5
 var current_energy: int
+
+# Whether the screen is currently fading.
+var transitioning := false
 
 
 func _ready() -> void:
@@ -17,8 +21,8 @@ func _on_task_done() -> void:
 
 
 func _on_sleeping() -> void:
-	%screen_fade.fade_in()
-	%screen_fade.screen_black.connect(skip_day)
+	if transitioning: return
+	sleep()
 
 
 func set_energy(new_energy: int) -> void:
@@ -32,9 +36,17 @@ func restore_energy() -> void:
 	set_energy(available_energy)
 
 
+func sleep() -> void:
+	transitioning = true
+	%screen_fade.fade_in()
+	%screen_fade.screen_black.connect(skip_day)
+
+
 func skip_day() -> void:
 	%screen_fade.screen_black.disconnect(skip_day)
+	transitioning = false
+
 	restore_energy()
-	player.position = Vector3.ZERO
+	day_skip.emit()
 
 	%screen_fade.fade_out()

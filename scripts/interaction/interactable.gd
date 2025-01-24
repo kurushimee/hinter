@@ -1,10 +1,13 @@
 class_name interactable
 extends CollisionObject3D
 
-signal interacted(body: Node)
+signal interacted
 
+@export var prompt_name := ""
 @export var prompt_message := "Interact"
 
+var is_active := true
 
-func interact(body: Node) -> void:
-	interacted.emit(body)
+
+func interact() -> void:
+	interacted.emit()

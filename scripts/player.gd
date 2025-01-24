@@ -15,6 +15,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if %game_manager.transitioning: return
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
@@ -29,6 +30,8 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if %game_manager.transitioning:
+		direction = Vector3.ZERO
 	if is_on_floor():
 		if direction:
 			velocity.x = direction.x * SPEED

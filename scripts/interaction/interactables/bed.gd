@@ -3,5 +3,5 @@ extends interactable
 signal sleeping
 
 
-func _on_interacted(_body: Node) -> void:
+func _on_interacted() -> void:
 	sleeping.emit()

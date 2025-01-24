@@ -10,9 +10,10 @@ func _process(_delta: float) -> void:
 	# Return if looking at non-interactable.
 	var collider := get_collider()
 	if collider is not interactable: return
+	if not collider.is_active: return
 
 	# Show the button prompt.
-	prompt.text = collider.name + "\n[LMB] " + collider.prompt_message
+	prompt.text = collider.prompt_name + "\n[LMB] " + collider.prompt_message
 
 	if Input.is_action_just_pressed("interact"):
-		collider.interact(owner)
+		collider.interact()

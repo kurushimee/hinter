@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c5mc2je5fi4p1"]
+[gd_scene load_steps=32 format=3 uid="uid://c5mc2je5fi4p1"]
 
 [ext_resource type="Script" path="res://scripts/ui/energy_label.gd" id="1_nh784"]
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="1_rvrmw"]
@@ -6,12 +6,15 @@
 [ext_resource type="Script" path="res://scripts/ui/screen_fade.gd" id="2_ba2cx"]
 [ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="2_ljutj"]
 [ext_resource type="Texture2D" uid="uid://cvcgy5kfngise" path="res://assets/textures/prototype/Light/texture_04.png" id="3_2r61g"]
+[ext_resource type="Script" path="res://scripts/managers/task_manager.gd" id="4_lyref"]
 [ext_resource type="Texture2D" uid="uid://cu0vrc26sa0yg" path="res://assets/textures/prototype/Orange/texture_09.png" id="4_npiqo"]
 [ext_resource type="AudioStream" uid="uid://bxpufn62gfs5i" path="res://assets/audio/sfx/button.wav" id="4_xp82r"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/tasks/maintenance/sample_maintenance_task.gd" id="5_5jo62"]
 [ext_resource type="Texture2D" uid="uid://fb1sktpwvkpb" path="res://assets/textures/prototype/Red/texture_09.png" id="6_1u2r4"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/task_button.gd" id="7_tkxwt"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/bed.gd" id="10_iat4y"]
 [ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="10_qxued"]
+[ext_resource type="Texture2D" uid="uid://cqqnqvfrb842m" path="res://assets/textures/prototype/Purple/texture_09.png" id="13_cee7p"]
 
 [sub_resource type="Animation" id="Animation_x4ld4"]
 length = 0.001
@@ -78,6 +81,13 @@ _data = {
 "screen_fade_in": SubResource("Animation_ulvqh"),
 "screen_fade_out": SubResource("Animation_peo5f")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pi0er"]
+albedo_texture = ExtResource("13_cee7p")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fskdc"]
+size = Vector3(0.478577, 1.56445, 0.512085)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6hwok"]
 sky_top_color = Color(0.317647, 0.498039, 0.67451, 1)
@@ -155,12 +165,34 @@ libraries = {
 unique_name_in_owner = true
 player = NodePath("../player")
 
+[node name="task_manager" type="Node" parent="." node_paths=PackedStringArray("maintenance_tasks")]
+script = ExtResource("4_lyref")
+maintenance_tasks = [NodePath("sample_maintenance_task")]
+
+[node name="sample_maintenance_task" type="StaticBody3D" parent="task_manager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.00076, 0, 0)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_5jo62")
+prompt_name = "Sample Maintenance Task"
+prompt_message = "Complete"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="task_manager/sample_maintenance_task"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = SubResource("StandardMaterial3D_pi0er")
+size = Vector3(0.314453, 1, 0.301636)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="task_manager/sample_maintenance_task"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00302124, 0.282227, 0.0109253)
+shape = SubResource("BoxShape3D_fskdc")
+
 [node name="lighting" type="Node" parent="."]
 
 [node name="sun_pivot" type="Node3D" parent="lighting"]
 transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="sun" type="DirectionalLight3D" parent="lighting/sun_pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 light_color = Color(0.956863, 0.898039, 0.764706, 1)
 light_energy = 0.69
 shadow_enabled = true
@@ -193,6 +225,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.42946, -0.1119, 2.81056)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("7_tkxwt")
+prompt_name = "Task Button"
+prompt_message = "Press"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="objects/wall/task_button"]
 material_override = SubResource("StandardMaterial3D_c56pq")
@@ -203,12 +237,14 @@ shape = SubResource("BoxShape3D_0y1y8")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="objects/wall/task_button"]
 stream = ExtResource("4_xp82r")
+bus = &"SFX"
 
 [node name="bed" type="StaticBody3D" parent="objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54893, 0.297662, -7.03122)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("10_iat4y")
+prompt_name = "Bed"
 prompt_message = "Sleep"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="objects/bed"]
@@ -219,7 +255,13 @@ size = Vector3(3.55957, 0.63855, 1.8623)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 0.0798645, -0.127365)
 shape = SubResource("BoxShape3D_dc5vb")
 
+[connection signal="day_skip" from="game_manager" to="lighting/WorldEnvironment" method="_on_game_manager_day_skip"]
+[connection signal="day_skip" from="game_manager" to="task_manager" method="reset"]
 [connection signal="energy_changed" from="game_manager" to="ui/energy_label" method="_on_game_manager_energy_changed"]
+[connection signal="begin" from="task_manager/sample_maintenance_task" to="task_manager/sample_maintenance_task" method="_on_begin"]
+[connection signal="task_done" from="task_manager/sample_maintenance_task" to="game_manager" method="_on_task_done"]
+[connection signal="day_end" from="lighting/WorldEnvironment" to="game_manager" method="_on_sleeping"]
+[connection signal="begin" from="objects/wall/task_button" to="objects/wall/task_button" method="_on_begin"]
 [connection signal="interacted" from="objects/wall/task_button" to="objects/wall/task_button" method="_on_interacted"]
 [connection signal="task_done" from="objects/wall/task_button" to="game_manager" method="_on_task_done"]
 [connection signal="interacted" from="objects/bed" to="objects/bed" method="_on_interacted"]
