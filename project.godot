@@ -21,10 +21,6 @@ window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
-[editor]
-
-naming/node_name_casing=2
-
 [input]
 
 move_left={
