@@ -4,15 +4,16 @@ extends RayCast3D
 
 
 func _process(_delta: float) -> void:
-	prompt.text = "" # Hide the button prompt.
-	if not is_colliding(): return # Return if nothing in sight.
+	prompt.text = "" # Hide button prompt.
+	if not is_colliding(): return # Check if looking at anything.
 
-	# Return if looking at non-interactable.
 	var collider := get_collider()
+	# Don't interact with non-interactable.
 	if collider is not interactable: return
+	# Don't interact with inactive interactables.
 	if not collider.is_active: return
 
-	# Show the button prompt.
+	# Show button prompt.
 	prompt.text = collider.prompt_name + "\n[LMB] " + collider.prompt_message
 
 	if Input.is_action_just_pressed("interact"):

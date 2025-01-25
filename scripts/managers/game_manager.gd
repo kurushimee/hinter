@@ -8,7 +8,7 @@ signal day_skip
 @export var available_energy := 5
 var current_energy: int
 
-# Whether the screen is currently fading.
+# Whether the screen is currently fading to black.
 var transitioning := false
 
 
@@ -25,6 +25,7 @@ func _on_sleeping() -> void:
 	sleep()
 
 
+# Changes the absolute value of current energy.
 func set_energy(new_energy: int) -> void:
 	if new_energy < 0: return
 
@@ -32,16 +33,19 @@ func set_energy(new_energy: int) -> void:
 	energy_changed.emit(new_energy)
 
 
+# Sets current energy to maximum value.
 func restore_energy() -> void:
 	set_energy(available_energy)
 
 
+# Initiates transition to sleep.
 func sleep() -> void:
 	transitioning = true
 	%screen_fade.fade_in()
 	%screen_fade.screen_black.connect(skip_day)
 
 
+# Resets daily values for the next morning.
 func skip_day() -> void:
 	%screen_fade.screen_black.disconnect(skip_day)
 	transitioning = false

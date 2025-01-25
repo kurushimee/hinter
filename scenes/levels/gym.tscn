@@ -255,8 +255,8 @@ size = Vector3(3.55957, 0.63855, 1.8623)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 0.0798645, -0.127365)
 shape = SubResource("BoxShape3D_dc5vb")
 
-[connection signal="day_skip" from="game_manager" to="lighting/WorldEnvironment" method="_on_game_manager_day_skip"]
 [connection signal="day_skip" from="game_manager" to="task_manager" method="reset"]
+[connection signal="day_skip" from="game_manager" to="lighting/WorldEnvironment" method="_on_game_manager_day_skip"]
 [connection signal="energy_changed" from="game_manager" to="ui/energy_label" method="_on_game_manager_energy_changed"]
 [connection signal="begin" from="task_manager/sample_maintenance_task" to="task_manager/sample_maintenance_task" method="_on_begin"]
 [connection signal="task_done" from="task_manager/sample_maintenance_task" to="game_manager" method="_on_task_done"]
