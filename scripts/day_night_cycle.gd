@@ -4,13 +4,13 @@ signal day_end
 
 @export var sun: DirectionalLight3D
 
-@export var sky_tint_from_time: Gradient # Color of the sky throughout the day.
+@export var sky_tint_from_time: Gradient  # Color of the sky throughout the day.
 @export var sky_material: ProceduralSkyMaterial
 
-@export var day_length_minutes := 10 # Total amount of minutes in a day.
+@export var day_length_minutes := 10  # Total amount of minutes in a day.
 
-var day_length_seconds: int # Total amount of seconds in a day.
-var day_time := 0.0 # Time passed in seconds.
+var day_length_seconds: int  # Total amount of seconds in a day.
+var day_time := 0.0  # Time passed in seconds.
 
 
 func _ready() -> void:
