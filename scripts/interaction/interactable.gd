@@ -3,10 +3,12 @@ extends CollisionObject3D
 
 signal interacted
 
-@export var prompt_name := ""
+enum INTERACTION_TYPE { PRESS, HOLD }
+
 @export var prompt_message := "Interact"
 
 var is_active := true
+var interaction_type := INTERACTION_TYPE.PRESS
 
 
 func interact() -> void:
