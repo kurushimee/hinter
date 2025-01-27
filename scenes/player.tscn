@@ -22,18 +22,47 @@ target_position = Vector3(0, 0, -4)
 collision_mask = 2
 script = ExtResource("2_3fdb3")
 
-[node name="prompt" type="Label" parent="head/Camera3D/interact_ray"]
-anchors_preset = 14
+[node name="hold_timer" type="Timer" parent="head/Camera3D/interact_ray"]
+wait_time = 0.5
+one_shot = true
+
+[node name="prompt_bg" type="ColorRect" parent="head/Camera3D/interact_ray"]
+custom_minimum_size = Vector2(200, 50)
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 26.0
-offset_bottom = 119.0
+offset_left = -100.0
+offset_top = 76.0
+offset_right = 100.0
+offset_bottom = 126.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="prompt" type="Label" parent="head/Camera3D/interact_ray/prompt_bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 24
-text = "Interact
-[LMB]"
+text = "[LMB] Interact"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="prompt_progress" type="ProgressBar" parent="head/Camera3D/interact_ray/prompt_bg"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 1.0
+show_percentage = false
