@@ -15,11 +15,15 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if %game_manager.transitioning: return
+	if %game_manager.transitioning:
+		return
+
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, -PI / 2, PI / 2)
+	elif event.is_action_pressed("menu"):
+		get_tree().quit()
 
 
 func _physics_process(delta: float) -> void:

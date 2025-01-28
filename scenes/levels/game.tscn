@@ -1,0 +1,183 @@
+[gd_scene load_steps=20 format=3 uid="uid://bcqukwdbqtooe"]
+
+[ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_42yc2"]
+[ext_resource type="Script" path="res://scripts/managers/task_manager.gd" id="2_x87pj"]
+[ext_resource type="Script" path="res://scripts/ui/screen_fade.gd" id="3_hdrb3"]
+[ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="4_pewms"]
+[ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="5_iu24r"]
+[ext_resource type="Texture2D" uid="uid://cvcgy5kfngise" path="res://assets/textures/prototype/Light/texture_04.png" id="6_r520n"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/bed.gd" id="13_lwghu"]
+[ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="14_0tdmq"]
+
+[sub_resource type="Animation" id="Animation_x4ld4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ulvqh"]
+resource_name = "screen_fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_screen_fade_in"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_peo5f"]
+resource_name = "screen_fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b0css"]
+_data = {
+"RESET": SubResource("Animation_x4ld4"),
+"screen_fade_in": SubResource("Animation_ulvqh"),
+"screen_fade_out": SubResource("Animation_peo5f")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6hwok"]
+sky_top_color = Color(0.317647, 0.498039, 0.67451, 1)
+sky_horizon_color = Color(0.713726, 0.737255, 0.733333, 1)
+ground_bottom_color = Color(0.843137, 0.686275, 0.603922, 1)
+ground_horizon_color = Color(0.713726, 0.737255, 0.733333, 1)
+
+[sub_resource type="Sky" id="Sky_x5v6s"]
+sky_material = SubResource("ProceduralSkyMaterial_6hwok")
+
+[sub_resource type="Environment" id="Environment_m7bmb"]
+background_mode = 2
+sky = SubResource("Sky_x5v6s")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_vleru"]
+offsets = PackedFloat32Array(0, 0.253333, 0.773333, 1)
+colors = PackedColorArray(1, 0.698039, 0.580392, 1, 0.347278, 0.55139, 1, 1, 0.35557, 0.546424, 0.836199, 1, 1, 0.392157, 0.239216, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtdb5"]
+albedo_texture = ExtResource("6_r520n")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gk6m6"]
+albedo_texture = ExtResource("14_0tdmq")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dc5vb"]
+size = Vector3(3.94849, 1.15973, 2.33176)
+
+[node name="game" type="Node3D"]
+transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 0, 0, 0)
+
+[node name="managers" type="Node" parent="."]
+
+[node name="game_manager" parent="managers" node_paths=PackedStringArray("player") instance=ExtResource("1_42yc2")]
+unique_name_in_owner = true
+player = NodePath("../../player")
+
+[node name="task_manager" type="Node" parent="managers"]
+script = ExtResource("2_x87pj")
+
+[node name="ui" type="Node" parent="."]
+
+[node name="screen_fade" type="ColorRect" parent="ui"]
+unique_name_in_owner = true
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+script = ExtResource("3_hdrb3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui/screen_fade"]
+libraries = {
+"": SubResource("AnimationLibrary_b0css")
+}
+
+[node name="lighting" type="Node" parent="."]
+
+[node name="sun_pivot" type="Node3D" parent="lighting"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="sun" type="DirectionalLight3D" parent="lighting/sun_pivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+light_color = Color(0.956863, 0.898039, 0.764706, 1)
+light_energy = 0.69
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="lighting" node_paths=PackedStringArray("sun")]
+environment = SubResource("Environment_m7bmb")
+script = ExtResource("4_pewms")
+sun = NodePath("../sun_pivot/sun")
+sky_tint_from_time = SubResource("Gradient_vleru")
+sky_material = SubResource("ProceduralSkyMaterial_6hwok")
+
+[node name="player" parent="." instance=ExtResource("5_iu24r")]
+
+[node name="objects" type="Node" parent="."]
+
+[node name="ground" type="CSGBox3D" parent="objects"]
+material_override = SubResource("StandardMaterial3D_mtdb5")
+use_collision = true
+size = Vector3(1000, 0.001, 1000)
+
+[node name="bed" type="StaticBody3D" parent="objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54893, 0.297662, -7.03122)
+visible = false
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("13_lwghu")
+prompt_message = "Sleep"
+
+[node name="CSGBox3D" type="CSGBox3D" parent="objects/bed"]
+material_override = SubResource("StandardMaterial3D_gk6m6")
+size = Vector3(3.55957, 0.63855, 1.8623)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="objects/bed"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 0.0798645, -0.127365)
+shape = SubResource("BoxShape3D_dc5vb")
+
+[connection signal="day_ended" from="managers/game_manager" to="lighting/WorldEnvironment" method="_on_day_ended"]
+[connection signal="interacted" from="objects/bed" to="objects/bed" method="_on_interacted"]
+[connection signal="sleeping" from="objects/bed" to="managers/game_manager" method="_on_sleeping"]
