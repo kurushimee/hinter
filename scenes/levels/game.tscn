@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bcqukwdbqtooe"]
+[gd_scene load_steps=30 format=3 uid="uid://bcqukwdbqtooe"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_42yc2"]
 [ext_resource type="Script" path="res://scripts/managers/task_manager.gd" id="2_x87pj"]
@@ -6,6 +6,11 @@
 [ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="4_pewms"]
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="5_iu24r"]
 [ext_resource type="Texture2D" uid="uid://cvcgy5kfngise" path="res://assets/textures/prototype/Light/texture_04.png" id="6_r520n"]
+[ext_resource type="Texture2D" uid="uid://cu0vrc26sa0yg" path="res://assets/textures/prototype/Orange/texture_09.png" id="9_3fsx4"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/door.gd" id="10_7n6we"]
+[ext_resource type="Texture2D" uid="uid://cgov37lrnvv7e" path="res://assets/textures/prototype/Dark/texture_08.png" id="10_exm2e"]
+[ext_resource type="Texture2D" uid="uid://72rjrqawd40d" path="res://assets/textures/prototype/Dark/texture_09.png" id="11_xlw3m"]
+[ext_resource type="Texture2D" uid="uid://b6m63stbsdjyi" path="res://assets/textures/prototype/Orange/texture_08.png" id="13_hqj34"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/bed.gd" id="13_lwghu"]
 [ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="14_0tdmq"]
 
@@ -98,6 +103,25 @@ colors = PackedColorArray(1, 0.698039, 0.580392, 1, 0.347278, 0.55139, 1, 1, 0.3
 albedo_texture = ExtResource("6_r520n")
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlbku"]
+albedo_texture = ExtResource("9_3fsx4")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgcvx"]
+albedo_texture = ExtResource("10_exm2e")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5a2eu"]
+size = Vector3(1.35748, 2.3623, 0.523682)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2tca"]
+albedo_texture = ExtResource("11_xlw3m")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0yqsr"]
+albedo_texture = ExtResource("13_hqj34")
+uv1_triplanar = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gk6m6"]
 albedo_texture = ExtResource("14_0tdmq")
 uv1_triplanar = true
@@ -154,30 +178,90 @@ sky_tint_from_time = SubResource("Gradient_vleru")
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 
 [node name="player" parent="." instance=ExtResource("5_iu24r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165536, 0, 11.0474)
 
-[node name="objects" type="Node" parent="."]
+[node name="world" type="Node" parent="."]
 
-[node name="ground" type="CSGBox3D" parent="objects"]
+[node name="ground" type="CSGBox3D" parent="world"]
 material_override = SubResource("StandardMaterial3D_mtdb5")
 use_collision = true
 size = Vector3(1000, 0.001, 1000)
 
-[node name="bed" type="StaticBody3D" parent="objects"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.54893, 0.297662, -7.03122)
-visible = false
+[node name="trailer" type="CSGBox3D" parent="world"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0890198, 1.71854, -0.0310392)
+material_override = SubResource("StandardMaterial3D_mlbku")
+use_collision = true
+collision_mask = 0
+size = Vector3(10.7983, 3.54938, 4.48438)
+
+[node name="doors" type="Node" parent="world/trailer"]
+
+[node name="door" type="StaticBody3D" parent="world/trailer/doors" node_paths=PackedStringArray("teleport_to")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04126, 1.43869, 2.29687)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("10_7n6we")
+teleport_to = NodePath("../../../../trailer_inside/doors/door_enter_point")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="world/trailer/doors/door"]
+material_override = SubResource("StandardMaterial3D_qgcvx")
+size = Vector3(1, 2, 0.195)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world/trailer/doors/door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00967407, 0.0571289, -0.00915527)
+shape = SubResource("BoxShape3D_5a2eu")
+
+[node name="door_exit_point" type="Node3D" parent="world/trailer/doors"]
+transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 1.99978, -2.38419e-07, 3.10711)
+
+[node name="trailer_inside" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
+
+[node name="walls" type="CSGBox3D" parent="trailer_inside"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+material_override = SubResource("StandardMaterial3D_l2tca")
+use_collision = true
+collision_mask = 0
+flip_faces = true
+size = Vector3(12, 3, 5)
+
+[node name="doors" type="Node" parent="trailer_inside"]
+
+[node name="door" type="StaticBody3D" parent="trailer_inside/doors" node_paths=PackedStringArray("teleport_to")]
+transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 1.46744, -49.0161, 2.4455)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("10_7n6we")
+teleport_to = NodePath("../../../world/trailer/doors/door_exit_point")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="trailer_inside/doors/door"]
+material_override = SubResource("StandardMaterial3D_0yqsr")
+size = Vector3(1, 2, 0.195)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="trailer_inside/doors/door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00967407, 0.0571289, -0.00915527)
+shape = SubResource("BoxShape3D_5a2eu")
+
+[node name="door_enter_point" type="Node3D" parent="trailer_inside/doors"]
+transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 1.37677, -50, 1.6374)
+
+[node name="bed" type="StaticBody3D" parent="trailer_inside"]
+transform = Transform3D(0.99976, 0, 0.0218847, 0, 1, 0, -0.0218847, 0, 0.99976, -4.28521, 0.31414, -1.54063)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("13_lwghu")
 prompt_message = "Sleep"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="objects/bed"]
+[node name="CSGBox3D" type="CSGBox3D" parent="trailer_inside/bed"]
 material_override = SubResource("StandardMaterial3D_gk6m6")
 size = Vector3(3.55957, 0.63855, 1.8623)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="objects/bed"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="trailer_inside/bed"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 0.0798645, -0.127365)
 shape = SubResource("BoxShape3D_dc5vb")
 
 [connection signal="day_ended" from="managers/game_manager" to="lighting/WorldEnvironment" method="_on_day_ended"]
-[connection signal="interacted" from="objects/bed" to="objects/bed" method="_on_interacted"]
-[connection signal="sleeping" from="objects/bed" to="managers/game_manager" method="_on_sleeping"]
+[connection signal="interacted" from="world/trailer/doors/door" to="world/trailer/doors/door" method="_on_interacted"]
+[connection signal="interacted" from="trailer_inside/doors/door" to="trailer_inside/doors/door" method="_on_interacted"]
+[connection signal="interacted" from="trailer_inside/bed" to="trailer_inside/bed" method="_on_interacted"]
+[connection signal="sleeping" from="trailer_inside/bed" to="managers/game_manager" method="_on_sleeping"]

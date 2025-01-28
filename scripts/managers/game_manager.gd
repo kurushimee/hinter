@@ -7,25 +7,40 @@ signal day_ended
 # Whether the screen is currently fading to black.
 var transitioning := false
 
+var teleporting_to: Node3D = null
+
 
 func _on_sleeping() -> void:
-	if transitioning:
-		return
-	sleep()
+	start_transition(end_day)
 
 
-# Initiates transition to sleep.
-func sleep() -> void:
+# Initiates a transition animation.
+func start_transition(to: Callable) -> void:
 	transitioning = true
+	%screen_fade.screen_black.connect(to)
 	%screen_fade.fade_in()
-	%screen_fade.screen_black.connect(end_day)
+
+
+# Dismantles a transition.
+func stop_transition(to: Callable) -> void:
+	transitioning = false
+	%screen_fade.screen_black.disconnect(to)
+	%screen_fade.fade_out()
 
 
 # Ends the current day and prepares the next.
 func end_day() -> void:
-	%screen_fade.screen_black.disconnect(end_day)
-	transitioning = false
-
 	day_ended.emit()
+	stop_transition(end_day)
 
-	%screen_fade.fade_out()
+
+# Teleports the player to a given Node3D.
+func teleport_player(to: Node3D) -> void:
+	teleporting_to = to
+	start_transition(commence_teleport)
+
+
+func commence_teleport() -> void:
+	if teleporting_to != null:
+		player.global_position = teleporting_to.global_position
+		stop_transition(commence_teleport)
