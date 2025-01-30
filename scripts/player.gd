@@ -9,6 +9,8 @@ const SENSITIVITY = 0.003
 @onready var head: Node3D = $head
 @onready var camera: Camera3D = $head/Camera3D
 
+var input_disabled := false
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

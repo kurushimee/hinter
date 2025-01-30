@@ -9,6 +9,8 @@ extends RayCast3D
 
 func _process(_delta: float) -> void:
 	prompt_bg.hide()
+	if %game_manager.transitioning:
+		return
 	if not is_colliding():
 		return  # Check if looking at anything.
 
