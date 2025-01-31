@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://bcqukwdbqtooe"]
+[gd_scene load_steps=33 format=3 uid="uid://bcqukwdbqtooe"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_42yc2"]
-[ext_resource type="Script" path="res://scripts/managers/task_manager.gd" id="2_x87pj"]
+[ext_resource type="Script" path="res://scripts/managers/tasks.gd" id="2_x87pj"]
+[ext_resource type="Script" path="res://scripts/managers/pushing.gd" id="2_xw3cp"]
 [ext_resource type="Script" path="res://scripts/ui/screen_fade.gd" id="3_hdrb3"]
-[ext_resource type="Script" path="res://scripts/day_night_cycle.gd" id="4_pewms"]
+[ext_resource type="Script" path="res://scripts/managers/time.gd" id="4_pewms"]
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="5_iu24r"]
 [ext_resource type="Texture2D" uid="uid://cvcgy5kfngise" path="res://assets/textures/prototype/Light/texture_04.png" id="6_r520n"]
 [ext_resource type="Texture2D" uid="uid://cu0vrc26sa0yg" path="res://assets/textures/prototype/Orange/texture_09.png" id="9_3fsx4"]
@@ -14,6 +15,16 @@
 [ext_resource type="Texture2D" uid="uid://b6m63stbsdjyi" path="res://assets/textures/prototype/Orange/texture_08.png" id="13_hqj34"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/bed.gd" id="13_lwghu"]
 [ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="14_0tdmq"]
+
+[sub_resource type="Gradient" id="Gradient_vleru"]
+offsets = PackedFloat32Array(0, 0.253333, 0.773333, 1)
+colors = PackedColorArray(1, 0.698039, 0.580392, 1, 0.347278, 0.55139, 1, 1, 0.35557, 0.546424, 0.836199, 1, 1, 0.392157, 0.239216, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6hwok"]
+sky_top_color = Color(0.317647, 0.498039, 0.67451, 1)
+sky_horizon_color = Color(0.713726, 0.737255, 0.733333, 1)
+ground_bottom_color = Color(0.843137, 0.686275, 0.603922, 1)
+ground_horizon_color = Color(0.713726, 0.737255, 0.733333, 1)
 
 [sub_resource type="Animation" id="Animation_x4ld4"]
 length = 0.001
@@ -81,12 +92,6 @@ _data = {
 "screen_fade_out": SubResource("Animation_peo5f")
 }
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6hwok"]
-sky_top_color = Color(0.317647, 0.498039, 0.67451, 1)
-sky_horizon_color = Color(0.713726, 0.737255, 0.733333, 1)
-ground_bottom_color = Color(0.843137, 0.686275, 0.603922, 1)
-ground_horizon_color = Color(0.713726, 0.737255, 0.733333, 1)
-
 [sub_resource type="Sky" id="Sky_x5v6s"]
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 
@@ -95,10 +100,6 @@ background_mode = 2
 sky = SubResource("Sky_x5v6s")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="Gradient" id="Gradient_vleru"]
-offsets = PackedFloat32Array(0, 0.253333, 0.773333, 1)
-colors = PackedColorArray(1, 0.698039, 0.580392, 1, 0.347278, 0.55139, 1, 1, 0.35557, 0.546424, 0.836199, 1, 1, 0.392157, 0.239216, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtdb5"]
 albedo_texture = ExtResource("6_r520n")
@@ -136,15 +137,21 @@ size = Vector3(3.94849, 1.15973, 2.33176)
 [node name="game" type="Node3D"]
 transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 0, 0, 0)
 
-[node name="managers" type="Node" parent="."]
-
-[node name="game_manager" parent="managers" node_paths=PackedStringArray("player") instance=ExtResource("1_42yc2")]
+[node name="game_manager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_42yc2")]
 unique_name_in_owner = true
-player = NodePath("../../player")
+player = NodePath("../player")
 
-[node name="task_manager" type="Node" parent="managers"]
-unique_name_in_owner = true
+[node name="pushing" type="Node" parent="game_manager"]
+script = ExtResource("2_xw3cp")
+
+[node name="tasks" type="Node" parent="game_manager"]
 script = ExtResource("2_x87pj")
+
+[node name="time" type="Node" parent="game_manager" node_paths=PackedStringArray("sun")]
+script = ExtResource("4_pewms")
+sun = NodePath("../../lighting/sun_pivot/sun")
+sky_tint_from_time = SubResource("Gradient_vleru")
+sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 
 [node name="ui" type="Node" parent="."]
 
@@ -175,12 +182,8 @@ light_color = Color(0.956863, 0.898039, 0.764706, 1)
 light_energy = 0.69
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="lighting" node_paths=PackedStringArray("sun")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="lighting"]
 environment = SubResource("Environment_m7bmb")
-script = ExtResource("4_pewms")
-sun = NodePath("../sun_pivot/sun")
-sky_tint_from_time = SubResource("Gradient_vleru")
-sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 
 [node name="player" parent="." instance=ExtResource("5_iu24r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165536, 0, 11.0474)
@@ -277,9 +280,9 @@ size = Vector3(3.55957, 0.63855, 1.8623)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 0.0798645, -0.127365)
 shape = SubResource("BoxShape3D_dc5vb")
 
-[connection signal="day_ended" from="managers/game_manager" to="lighting/WorldEnvironment" method="_on_day_ended"]
+[connection signal="day_ended" from="game_manager" to="lighting/WorldEnvironment" method="_on_day_ended"]
 [connection signal="interacted" from="world/trailer/doors/door" to="world/trailer/doors/door" method="_on_interacted"]
 [connection signal="interacted" from="world/trailer/push" to="world/trailer/push" method="_on_interacted"]
 [connection signal="interacted" from="trailer_inside/doors/door" to="trailer_inside/doors/door" method="_on_interacted"]
 [connection signal="interacted" from="trailer_inside/bed" to="trailer_inside/bed" method="_on_interacted"]
-[connection signal="sleeping" from="trailer_inside/bed" to="managers/game_manager" method="_on_sleeping"]
+[connection signal="sleeping" from="trailer_inside/bed" to="game_manager" method="_on_sleeping"]
