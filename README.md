@@ -4,9 +4,9 @@
 
 # Dates
 
-**MVP:** 31st January.
+**MVP:** 9th of February.
 
-**Demo:** mid-February.
+**Demo:** End of February.
 
 # Controls
 - **[WASD]** Move
