@@ -4,7 +4,7 @@
 
 # Dates
 
-**MVP:** 9th of February.
+**MVP:** 12th of February.
 
 **Demo:** End of February.
 
