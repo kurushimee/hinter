@@ -9,7 +9,7 @@ const SENSITIVITY = 0.003
 @onready var head: Node3D = $head
 @onready var camera: Camera3D = $head/Camera3D
 
-var input_disabled := false
+var input_enabled := true
 
 
 func _ready() -> void:
@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if %game_manager.transitioning:
+	if not input_enabled:
 		return
 
 	if event is InputEventMouseMotion:
@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if %game_manager.transitioning:
+	if not input_enabled:
 		direction = Vector3.ZERO
 	if is_on_floor():
 		if direction:

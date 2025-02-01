@@ -6,9 +6,13 @@ extends RayCast3D
 @onready var prompt: Label = $prompt_bg/prompt
 @onready var progress_bar: ProgressBar = $prompt_bg/prompt_progress
 
+@onready var player: CharacterBody3D = $"../../.."
+
 
 func _process(_delta: float) -> void:
 	prompt_bg.hide()
+	if not player.input_enabled:
+		return
 	if not is_colliding():
 		return  # Check if looking at anything.
 

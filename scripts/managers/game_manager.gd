@@ -17,6 +17,7 @@ func _on_sleeping() -> void:
 # Initiates a transition animation.
 func start_transition(to: Callable) -> void:
 	transitioning = true
+	player.input_enabled = false
 	%screen_fade.screen_black.connect(to)
 	%screen_fade.fade_in()
 
@@ -24,6 +25,7 @@ func start_transition(to: Callable) -> void:
 # Dismantles a transition.
 func stop_transition(to: Callable) -> void:
 	transitioning = false
+	player.input_enabled = true
 	%screen_fade.screen_black.disconnect(to)
 	%screen_fade.fade_out()
 
