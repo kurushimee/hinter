@@ -24,6 +24,8 @@ func _process(delta: float) -> void:
 	var day_progress: float = day_time / day_length_seconds
 	if day_progress >= 1.0:
 		sunset.emit()
+		print("Hinter: I'm tired. I should go to sleep.")
+		process_mode = PROCESS_MODE_DISABLED
 
 	# Change sky color depending on time of day.
 	sky_material.sky_top_color = sky_tint_from_time.sample(day_progress)
@@ -35,6 +37,7 @@ func _process(delta: float) -> void:
 # Reset time when day ends.
 func _on_day_ended() -> void:
 	day_time = 0.0
+	process_mode = PROCESS_MODE_INHERIT
 
 
 # Fast-forwards the time by a given percentage.
