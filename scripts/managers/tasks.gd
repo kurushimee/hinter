@@ -7,6 +7,12 @@ var active_task: task = null
 var difficulty := 0
 
 
+# Disables done task and clears active task.
+func complete_task() -> void:
+	active_task.is_active = false
+	active_task = null
+
+
 # Whether there is an active task.
 func task_pending() -> bool:
 	return active_task != null
@@ -17,6 +23,5 @@ func new_task() -> void:
 	if len(all_tasks) == 0:
 		return
 
-	var append_task: task = all_tasks.pick_random()
-	append_task.is_active = true
-	active_task = append_task
+	active_task = all_tasks.pick_random()
+	active_task.is_active = true

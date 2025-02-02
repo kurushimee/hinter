@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bcqukwdbqtooe"]
+[gd_scene load_steps=35 format=3 uid="uid://bcqukwdbqtooe"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_42yc2"]
 [ext_resource type="Script" path="res://scripts/managers/tasks.gd" id="2_x87pj"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cgov37lrnvv7e" path="res://assets/textures/prototype/Dark/texture_08.png" id="10_exm2e"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/push.gd" id="10_gcf1b"]
 [ext_resource type="Texture2D" uid="uid://72rjrqawd40d" path="res://assets/textures/prototype/Dark/texture_09.png" id="11_xlw3m"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/tasks/placeholder_task.gd" id="12_scn3a"]
 [ext_resource type="Texture2D" uid="uid://b6m63stbsdjyi" path="res://assets/textures/prototype/Orange/texture_08.png" id="13_hqj34"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/bed.gd" id="13_lwghu"]
 [ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="14_0tdmq"]
@@ -119,6 +120,9 @@ size = Vector3(1.35748, 2.3623, 0.523682)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkdvg"]
 size = Vector3(0.715332, 3.8111, 4.7381)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nyv6s"]
+size = Vector3(1.34119, 1.2063, 0.774536)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2tca"]
 albedo_texture = ExtResource("11_xlw3m")
 uv1_triplanar = true
@@ -144,8 +148,9 @@ player = NodePath("../player")
 [node name="pushing" type="Node" parent="game_manager"]
 script = ExtResource("2_xw3cp")
 
-[node name="tasks" type="Node" parent="game_manager"]
+[node name="tasks" type="Node" parent="game_manager" node_paths=PackedStringArray("all_tasks")]
 script = ExtResource("2_x87pj")
+all_tasks = [NodePath("../../world/trailer/placeholder_task")]
 
 [node name="time" type="Node" parent="game_manager" node_paths=PackedStringArray("sun")]
 script = ExtResource("4_pewms")
@@ -234,6 +239,21 @@ interaction_type = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142334, 0.0906067, 0.033905)
 shape = SubResource("BoxShape3D_hkdvg")
 
+[node name="placeholder_task" type="StaticBody3D" parent="world/trailer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.26573, -0.0563505, 2.38075)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("12_scn3a")
+prompt_message = "Complete Task"
+interaction_type = 1
+
+[node name="CSGBox3D" type="CSGBox3D" parent="world/trailer/placeholder_task"]
+size = Vector3(1, 1, 0.298828)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world/trailer/placeholder_task"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00750732, 0.0145264, -0.112732)
+shape = SubResource("BoxShape3D_nyv6s")
+
 [node name="trailer_inside" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 
@@ -283,6 +303,7 @@ shape = SubResource("BoxShape3D_dc5vb")
 [connection signal="day_ended" from="game_manager" to="lighting/WorldEnvironment" method="_on_day_ended"]
 [connection signal="interacted" from="world/trailer/doors/door" to="world/trailer/doors/door" method="_on_interacted"]
 [connection signal="interacted" from="world/trailer/push" to="world/trailer/push" method="_on_interacted"]
+[connection signal="interacted" from="world/trailer/placeholder_task" to="world/trailer/placeholder_task" method="_on_interacted"]
 [connection signal="interacted" from="trailer_inside/doors/door" to="trailer_inside/doors/door" method="_on_interacted"]
 [connection signal="interacted" from="trailer_inside/bed" to="trailer_inside/bed" method="_on_interacted"]
 [connection signal="sleeping" from="trailer_inside/bed" to="game_manager" method="_on_sleeping"]

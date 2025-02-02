@@ -11,6 +11,8 @@ extends RayCast3D
 
 func _process(_delta: float) -> void:
 	prompt_bg.hide()
+	if not player.input_enabled:
+		return
 	if not is_colliding():
 		return  # Check if looking at anything.
 
@@ -22,31 +24,30 @@ func _process(_delta: float) -> void:
 	if not collider.is_active:
 		return
 
-	if player.input_enabled:
-		# Show button prompt.
-		prompt_bg.show()
-		# Update prompt message.
-		prompt.text = "[LMB] " + collider.prompt_message
-		progress_bar.value = 0  # Clear hold progress bar.
+	# Show button prompt.
+	prompt_bg.show()
+	# Update prompt message.
+	prompt.text = "[LMB] " + collider.prompt_message
+	progress_bar.value = 0  # Clear hold progress bar.
 
 	# Get object's interaction type.
 	var is_press = collider.interaction_type == interactable.INTERACTION_TYPE.PRESS
 	var is_hold = not is_press
-	if player.input_enabled and is_press and Input.is_action_just_pressed("interact"):
+	if is_press and Input.is_action_just_pressed("interact"):
 		# Handle press interaction.
 		collider.interact()
 	elif is_hold:
-		# Handle hold interaction.
-		if player.input_enabled:
-			if Input.is_action_just_pressed("interact"):
-				# Setup the timer for this interaction.
-				hold_timer.start()
-				hold_timer.timeout.connect(collider.interact)
-			if Input.is_action_pressed("interact"):
-				var time_passed = hold_timer.wait_time - hold_timer.time_left
-				var progress = time_passed / hold_timer.wait_time
-				progress_bar.value = progress
+		if Input.is_action_just_pressed("interact"):
+			hold_timer.start()
+
+		if Input.is_action_pressed("interact"):
+			var time_passed = hold_timer.wait_time - hold_timer.time_left
+			var progress = time_passed / hold_timer.wait_time
+			progress_bar.value = progress
+
+			if progress >= 1.0:
+				collider.interact()
+				hold_timer.stop()
+
 		if Input.is_action_just_released("interact"):
-			# Stop progressing the hold.
 			hold_timer.stop()
-			hold_timer.timeout.disconnect(collider.interact)

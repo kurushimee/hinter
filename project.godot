@@ -69,4 +69,4 @@ menu={
 
 [layer_names]
 
-3d_physics/layer_2="Interaction Layer"
+3d_physics/layer_2="interaction_layer"
