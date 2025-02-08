@@ -300,7 +300,7 @@ size = Vector3(3.55957, 0.63855, 1.8623)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 0.0798645, -0.127365)
 shape = SubResource("BoxShape3D_dc5vb")
 
-[connection signal="day_ended" from="game_manager" to="lighting/WorldEnvironment" method="_on_day_ended"]
+[connection signal="day_ended" from="game_manager" to="game_manager/time" method="_on_day_ended"]
 [connection signal="interacted" from="world/trailer/doors/door" to="world/trailer/doors/door" method="_on_interacted"]
 [connection signal="interacted" from="world/trailer/push" to="world/trailer/push" method="_on_interacted"]
 [connection signal="interacted" from="world/trailer/placeholder_task" to="world/trailer/placeholder_task" method="_on_interacted"]
