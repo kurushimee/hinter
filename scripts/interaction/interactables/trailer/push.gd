@@ -6,7 +6,7 @@ func _on_interacted() -> void:
 		%game_manager.start_transition(perform)
 	else:
 		var pending_task = %game_manager/tasks.active_task
-		print("Hinter: I need to fix %s first." % pending_task)
+		%game_manager/dialogue.show("I need to fix %s first." % pending_task)
 
 
 func perform() -> void:

@@ -7,6 +7,7 @@ signal sunset
 @export var sky_tint_from_time: Gradient  # Color of the sky throughout the day.
 @export var sky_material: ProceduralSkyMaterial
 
+@export var dialogue_text: String
 @export var day_length_minutes := 10  # Total amount of minutes in a day.
 
 var day_length_seconds: int  # Total amount of seconds in a day.
@@ -24,7 +25,7 @@ func _process(delta: float) -> void:
 	var day_progress: float = day_time / day_length_seconds
 	if day_progress >= 1.0:
 		sunset.emit()
-		%game_manager/dialogue.show("I'm tired. I should go to sleep.")
+		%game_manager/dialogue.show(dialogue_text)
 		process_mode = PROCESS_MODE_DISABLED
 
 	# Change sky color depending on time of day.

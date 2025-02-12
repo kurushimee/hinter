@@ -22,6 +22,8 @@ func empty() -> void:
 
 
 func show(text: String) -> void:
+	if is_printing:
+		return
 	is_printing = true
 	dialogue_label.text = "Hinter: "
 
