@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://duqqou4qslq6d"
-path="res://.godot/imported/Cactus_5.fbx-d0b5e208d1e89531f4b124a59b1055c7.scn"
+uid="uid://cb3bveir207c7"
+path="res://.godot/imported/Cactus_1.fbx-1af682f8c2f7165a6801a1ff9b58834a.scn"
 
 [deps]
 
-source_file="res://assets/models/desert/cactus/Cactus_5.fbx"
-dest_files=["res://.godot/imported/Cactus_5.fbx-d0b5e208d1e89531f4b124a59b1055c7.scn"]
+source_file="res://assets/models/cactus/Cactus_1.fbx"
+dest_files=["res://.godot/imported/Cactus_1.fbx-1af682f8c2f7165a6801a1ff9b58834a.scn"]
 
 [params]
 
@@ -35,7 +35,7 @@ _subresources={
 "materials": {
 "Cactus_mat": {
 "use_external/enabled": true,
-"use_external/path": "res://assets/models/desert/cactus/cactus_material.tres"
+"use_external/path": "res://assets/materials/cactus.tres"
 }
 }
 }

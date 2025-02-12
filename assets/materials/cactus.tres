@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://du5myb5ifbook"]
+
+[ext_resource type="Texture2D" uid="uid://cgb5qbo6cfckk" path="res://assets/textures/cactus/T_Cactus_BaseColor.png" id="1_t2t56"]
+[ext_resource type="Texture2D" uid="uid://svbrf11kb6yp" path="res://assets/textures/cactus/T_Cactus_Roughness.png" id="2_0qlum"]
+
+[resource]
+albedo_texture = ExtResource("1_t2t56")
+roughness_texture = ExtResource("2_0qlum")

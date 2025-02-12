@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://svbrf11kb6yp"
-path.s3tc="res://.godot/imported/T_Cactus_Roughness.png-045fe1b0a094ad4409cd621d1220edbd.s3tc.ctex"
+path.s3tc="res://.godot/imported/T_Cactus_Roughness.png-6443f2556d48c91e8b879bf981011d5a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/models/desert/cactus/T_Cactus_Roughness.png"
-dest_files=["res://.godot/imported/T_Cactus_Roughness.png-045fe1b0a094ad4409cd621d1220edbd.s3tc.ctex"]
+source_file="res://assets/textures/cactus/T_Cactus_Roughness.png"
+dest_files=["res://.godot/imported/T_Cactus_Roughness.png-6443f2556d48c91e8b879bf981011d5a.s3tc.ctex"]
 
 [params]
 

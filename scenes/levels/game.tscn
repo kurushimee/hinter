@@ -15,15 +15,15 @@
 [ext_resource type="Texture2D" uid="uid://72rjrqawd40d" path="res://assets/textures/prototype/Dark/texture_09.png" id="11_xlw3m"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/tasks/placeholder_task.gd" id="12_scn3a"]
 [ext_resource type="Texture2D" uid="uid://b6m63stbsdjyi" path="res://assets/textures/prototype/Orange/texture_08.png" id="13_hqj34"]
-[ext_resource type="Script" path="res://scripts/interaction/interactables/bed.gd" id="13_lwghu"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/bed.gd" id="13_lwghu"]
 [ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="14_0tdmq"]
-[ext_resource type="PackedScene" uid="uid://cb3bveir207c7" path="res://assets/models/desert/cactus/Cactus_1.fbx" id="17_wpqcj"]
-[ext_resource type="PackedScene" uid="uid://dfuvtxt640o7s" path="res://assets/models/desert/cactus/Cactus_2.fbx" id="18_o1ju0"]
-[ext_resource type="PackedScene" uid="uid://c5qpxuwbjwq7e" path="res://assets/models/desert/cactus/Cactus_3.fbx" id="19_fjoxc"]
-[ext_resource type="PackedScene" uid="uid://byvs80owopi67" path="res://assets/models/desert/cactus/Cactus_4.fbx" id="20_753rj"]
-[ext_resource type="PackedScene" uid="uid://duqqou4qslq6d" path="res://assets/models/desert/cactus/Cactus_5.fbx" id="21_hqr0k"]
-[ext_resource type="PackedScene" uid="uid://cwn400517w48y" path="res://assets/models/desert/cactus/Cactus_6.fbx" id="22_5ujtv"]
-[ext_resource type="PackedScene" uid="uid://cyljnnkji328v" path="res://assets/models/desert/cactus/Cactus_7.fbx" id="23_7sxi2"]
+[ext_resource type="PackedScene" uid="uid://cb3bveir207c7" path="res://assets/models/cactus/Cactus_1.fbx" id="17_wpqcj"]
+[ext_resource type="PackedScene" uid="uid://dfuvtxt640o7s" path="res://assets/models/cactus/Cactus_2.fbx" id="18_o1ju0"]
+[ext_resource type="PackedScene" uid="uid://c5qpxuwbjwq7e" path="res://assets/models/cactus/Cactus_3.fbx" id="19_fjoxc"]
+[ext_resource type="PackedScene" uid="uid://byvs80owopi67" path="res://assets/models/cactus/Cactus_4.fbx" id="20_753rj"]
+[ext_resource type="PackedScene" uid="uid://duqqou4qslq6d" path="res://assets/models/cactus/Cactus_5.fbx" id="21_hqr0k"]
+[ext_resource type="PackedScene" uid="uid://cwn400517w48y" path="res://assets/models/cactus/Cactus_6.fbx" id="22_5ujtv"]
+[ext_resource type="PackedScene" uid="uid://cyljnnkji328v" path="res://assets/models/cactus/Cactus_7.fbx" id="23_7sxi2"]
 
 [sub_resource type="Gradient" id="Gradient_vleru"]
 offsets = PackedFloat32Array(0, 0.253333, 0.773333, 1)
@@ -281,25 +281,27 @@ size = Vector3(1, 1, 0.298828)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00750732, 0.0145264, -0.112732)
 shape = SubResource("BoxShape3D_nyv6s")
 
-[node name="Cactus_1" parent="world" instance=ExtResource("17_wpqcj")]
+[node name="cacti" type="Node" parent="world"]
+
+[node name="Cactus_1" parent="world/cacti" instance=ExtResource("17_wpqcj")]
 transform = Transform3D(25, 0, 5.96046e-08, 0, 25, 0, -5.96046e-08, 0, 25, -12.1562, 0.000500202, -6.35387)
 
-[node name="Cactus_2" parent="world" instance=ExtResource("18_o1ju0")]
+[node name="Cactus_2" parent="world/cacti" instance=ExtResource("18_o1ju0")]
 transform = Transform3D(25, 0, 5.96046e-08, 0, 25, 0, -5.96046e-08, 0, 25, -12.089, 0.000499964, -3.51974)
 
-[node name="Cactus_3" parent="world" instance=ExtResource("19_fjoxc")]
+[node name="Cactus_3" parent="world/cacti" instance=ExtResource("19_fjoxc")]
 transform = Transform3D(40, 0, 1.19209e-07, 0, 40, 0, -1.19209e-07, 0, 40, -12.12, 0.000500202, -0.00560641)
 
-[node name="Cactus_4" parent="world" instance=ExtResource("20_753rj")]
+[node name="Cactus_4" parent="world/cacti" instance=ExtResource("20_753rj")]
 transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.5066, 0.000499487, 3.42131)
 
-[node name="Cactus_5" parent="world" instance=ExtResource("21_hqr0k")]
+[node name="Cactus_5" parent="world/cacti" instance=ExtResource("21_hqr0k")]
 transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.6942, 0.000500202, 6.58142)
 
-[node name="Cactus_6" parent="world" instance=ExtResource("22_5ujtv")]
+[node name="Cactus_6" parent="world/cacti" instance=ExtResource("22_5ujtv")]
 transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.5089, 0.000499725, 9.67557)
 
-[node name="Cactus_7" parent="world" instance=ExtResource("23_7sxi2")]
+[node name="Cactus_7" parent="world/cacti" instance=ExtResource("23_7sxi2")]
 transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.6019, 0.000499725, 12.231)
 
 [node name="trailer_inside" type="Node3D" parent="."]

@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bxpufn62gfs5i" path="res://assets/audio/sfx/button.wav" id="4_xp82r"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/gym/press_button.gd" id="7_tkxwt"]
 [ext_resource type="Texture2D" uid="uid://wxpbwxw8ljn3" path="res://assets/textures/prototype/Red/texture_08.png" id="9_ed2dt"]
-[ext_resource type="Script" path="res://scripts/interaction/interactables/bed.gd" id="10_iat4y"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/bed.gd" id="10_iat4y"]
 [ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="10_qxued"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/gym/hold_button.gd" id="11_dfdxi"]
 [ext_resource type="Texture2D" uid="uid://cl7o5g84aq00h" path="res://assets/textures/prototype/Purple/texture_08.png" id="11_xhjrb"]
