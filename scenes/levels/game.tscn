@@ -169,7 +169,6 @@ sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 [node name="dialogue" type="Node" parent="game_manager" node_paths=PackedStringArray("dialogue_label")]
 script = ExtResource("5_bvy5l")
 dialogue_label = NodePath("../../ui/dialogue_label")
-print_delay = 0.05
 
 [node name="ui" type="Node" parent="."]
 
