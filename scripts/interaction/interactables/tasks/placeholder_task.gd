@@ -2,5 +2,5 @@ extends task
 
 
 func _on_interacted() -> void:
-	print("Hinter: I completed a task.")
+	%game_manager/dialogue.show("I completed a task.")
 	end_task()

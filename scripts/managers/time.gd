@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	var day_progress: float = day_time / day_length_seconds
 	if day_progress >= 1.0:
 		sunset.emit()
-		print("Hinter: I'm tired. I should go to sleep.")
+		%game_manager/dialogue.show("I'm tired. I should go to sleep.")
 		process_mode = PROCESS_MODE_DISABLED
 
 	# Change sky color depending on time of day.
