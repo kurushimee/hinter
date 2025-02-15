@@ -44,4 +44,3 @@ func _on_day_ended() -> void:
 # Fast-forwards the time by a given percentage.
 func fast_forward(percentage: float) -> void:
 	day_time += day_length_seconds * percentage
-	print("day time (seconds): %f" % day_time)

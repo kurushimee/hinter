@@ -19,6 +19,9 @@ func _input(event: InputEvent) -> void:
 
 func empty() -> void:
 	dialogue_label.text = ""
+	# Forcefully reset the printing parameters.
+	is_printing = false
+	is_skipping = false
 
 
 func show(text: String) -> void:
