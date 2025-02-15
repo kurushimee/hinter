@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cyueh6nmalcll"]
+
+[ext_resource type="Texture2D" uid="uid://d041hyame1v2o" path="res://assets/textures/stones/small/T_Stone_small_BaseColor.png" id="1_lifrm"]
+[ext_resource type="Texture2D" uid="uid://bsga846jl7faf" path="res://assets/textures/stones/small/T_Stone_small_Roughness.png" id="2_ycfy5"]
+
+[resource]
+albedo_texture = ExtResource("1_lifrm")
+roughness_texture = ExtResource("2_ycfy5")

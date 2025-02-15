@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cp2thfy4wpqfo"]
+
+[ext_resource type="Texture2D" uid="uid://q1exob4i1vw6" path="res://assets/textures/stones/mid/T_Stone_mid_BaseColor.png" id="1_ew6qr"]
+[ext_resource type="Texture2D" uid="uid://nrmbis68lapx" path="res://assets/textures/stones/mid/T_Stone_mid_Roughness.png" id="2_wditg"]
+
+[resource]
+albedo_texture = ExtResource("1_ew6qr")
+roughness_texture = ExtResource("2_wditg")

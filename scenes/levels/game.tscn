@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bcqukwdbqtooe"]
+[gd_scene load_steps=53 format=3 uid="uid://bcqukwdbqtooe"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_42yc2"]
 [ext_resource type="Script" path="res://scripts/managers/tasks.gd" id="2_x87pj"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://scripts/managers/time.gd" id="4_pewms"]
 [ext_resource type="Script" path="res://scripts/managers/dialogue.gd" id="5_bvy5l"]
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="5_iu24r"]
-[ext_resource type="Texture2D" uid="uid://cvcgy5kfngise" path="res://assets/textures/prototype/Light/texture_04.png" id="6_r520n"]
+[ext_resource type="Texture2D" uid="uid://nrmbis68lapx" path="res://assets/textures/stones/mid/T_Stone_mid_Roughness.png" id="8_ptwjj"]
 [ext_resource type="Texture2D" uid="uid://cu0vrc26sa0yg" path="res://assets/textures/prototype/Orange/texture_09.png" id="9_3fsx4"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/door.gd" id="10_7n6we"]
 [ext_resource type="Texture2D" uid="uid://cgov37lrnvv7e" path="res://assets/textures/prototype/Dark/texture_08.png" id="10_exm2e"]
@@ -22,8 +22,18 @@
 [ext_resource type="PackedScene" uid="uid://c5qpxuwbjwq7e" path="res://assets/models/cactus/Cactus_3.fbx" id="19_fjoxc"]
 [ext_resource type="PackedScene" uid="uid://byvs80owopi67" path="res://assets/models/cactus/Cactus_4.fbx" id="20_753rj"]
 [ext_resource type="PackedScene" uid="uid://duqqou4qslq6d" path="res://assets/models/cactus/Cactus_5.fbx" id="21_hqr0k"]
+[ext_resource type="PackedScene" uid="uid://ummji0g22xgh" path="res://assets/models/stones/mid/Stone_mid_1.fbx" id="21_lc5pj"]
+[ext_resource type="PackedScene" uid="uid://btctkan75uuhl" path="res://assets/models/stones/mid/Stone_mid_2.fbx" id="22_5l0a3"]
 [ext_resource type="PackedScene" uid="uid://cwn400517w48y" path="res://assets/models/cactus/Cactus_6.fbx" id="22_5ujtv"]
+[ext_resource type="PackedScene" uid="uid://2uuvy0soo0me" path="res://assets/models/stones/mid/Stone_mid_3.fbx" id="23_2e3mv"]
 [ext_resource type="PackedScene" uid="uid://cyljnnkji328v" path="res://assets/models/cactus/Cactus_7.fbx" id="23_7sxi2"]
+[ext_resource type="PackedScene" uid="uid://bxws6hrpvyjvh" path="res://assets/models/stones/mid/Stone_mid_4.fbx" id="24_r51er"]
+[ext_resource type="PackedScene" uid="uid://cjc6ssqwuivni" path="res://assets/models/stones/mid/Stone_mid_5.fbx" id="25_i7bur"]
+[ext_resource type="PackedScene" uid="uid://djpyollqi03wf" path="res://assets/models/stones/small/Stone_small_1.fbx" id="26_h6jkq"]
+[ext_resource type="PackedScene" uid="uid://c3mldq6tklr7q" path="res://assets/models/stones/small/Stone_small_2.fbx" id="27_bj1cx"]
+[ext_resource type="PackedScene" uid="uid://b8uvhq1nymi08" path="res://assets/models/stones/small/Stone_small_3.fbx" id="28_1ybdu"]
+[ext_resource type="PackedScene" uid="uid://xoalks0kws8e" path="res://assets/models/stones/small/Stone_small_4.fbx" id="29_pho23"]
+[ext_resource type="PackedScene" uid="uid://bovxnue1a7pc7" path="res://assets/models/stones/small/Stone_small_5.fbx" id="30_slo0o"]
 
 [sub_resource type="Gradient" id="Gradient_vleru"]
 offsets = PackedFloat32Array(0, 0.253333, 0.773333, 1)
@@ -110,9 +120,8 @@ sky = SubResource("Sky_x5v6s")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mtdb5"]
-albedo_texture = ExtResource("6_r520n")
-uv1_triplanar = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aojrd"]
+albedo_texture = ExtResource("8_ptwjj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlbku"]
 albedo_texture = ExtResource("9_3fsx4")
@@ -222,7 +231,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48719, 0, 4.83485)
 [node name="world" type="Node" parent="."]
 
 [node name="ground" type="CSGBox3D" parent="world"]
-material_override = SubResource("StandardMaterial3D_mtdb5")
+material_override = SubResource("StandardMaterial3D_aojrd")
 use_collision = true
 size = Vector3(1000, 0.001, 1000)
 
@@ -303,6 +312,42 @@ transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.5
 
 [node name="Cactus_7" parent="world/cacti" instance=ExtResource("23_7sxi2")]
 transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.6019, 0.000499725, 12.231)
+
+[node name="stones" type="Node" parent="world"]
+
+[node name="mid" type="Node" parent="world/stones"]
+
+[node name="Stone_mid_1" parent="world/stones/mid" instance=ExtResource("21_lc5pj")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.9067, 0.000499725, 12.7269)
+
+[node name="Stone_mid_2" parent="world/stones/mid" instance=ExtResource("22_5l0a3")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.8417, 0.000498772, 9.76466)
+
+[node name="Stone_mid_3" parent="world/stones/mid" instance=ExtResource("23_2e3mv")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.6019, 0.000500679, 6.77057)
+
+[node name="Stone_mid_4" parent="world/stones/mid" instance=ExtResource("24_r51er")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.5675, 0.000500679, 3.18775)
+
+[node name="Stone_mid_5" parent="world/stones/mid" instance=ExtResource("25_i7bur")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.47, 0.000499725, -0.086378)
+
+[node name="small" type="Node" parent="world/stones"]
+
+[node name="Stone_small_1" parent="world/stones/small" instance=ExtResource("26_h6jkq")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.7058, 0.000499725, 12.6481)
+
+[node name="Stone_small_2" parent="world/stones/small" instance=ExtResource("27_bj1cx")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.7255, 0.000501156, 9.95624)
+
+[node name="Stone_small_3" parent="world/stones/small" instance=ExtResource("28_1ybdu")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.863, 0.000499725, 6.81751)
+
+[node name="Stone_small_4" parent="world/stones/small" instance=ExtResource("29_pho23")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.8001, 0.000499725, 3.5919)
+
+[node name="Stone_small_5" parent="world/stones/small" instance=ExtResource("30_slo0o")]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.6949, 0.000499249, -0.039925)
 
 [node name="trailer_inside" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
