@@ -39,6 +39,7 @@ offset_right = 100.0
 offset_bottom = 126.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 color = Color(0, 0, 0, 0.501961)
 
 [node name="prompt" type="Label" parent="head/Camera3D/interact_ray/prompt_bg"]

@@ -26,6 +26,11 @@ func _input(event: InputEvent) -> void:
 		camera.rotation.x = clamp(camera.rotation.x, -PI / 2, PI / 2)
 	elif event.is_action_pressed("menu"):
 		get_tree().quit()
+	elif event.is_action_pressed("fullscreen"):
+		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN
+		if DisplayServer.window_get_mode() == mode:
+			mode = DisplayServer.WINDOW_MODE_WINDOWED
+		DisplayServer.window_set_mode(mode)
 
 
 func _physics_process(delta: float) -> void:
