@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://bcqukwdbqtooe"]
+[gd_scene load_steps=55 format=3 uid="uid://bcqukwdbqtooe"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_42yc2"]
 [ext_resource type="Script" path="res://scripts/managers/tasks.gd" id="2_x87pj"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/managers/time.gd" id="4_pewms"]
 [ext_resource type="Script" path="res://scripts/managers/dialogue.gd" id="5_bvy5l"]
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="5_iu24r"]
+[ext_resource type="Texture2D" uid="uid://bsdkotyuxx3kr" path="res://assets/textures/ui/prompts/kbm/Esc_Key_Dark.png" id="7_ciqoe"]
+[ext_resource type="Texture2D" uid="uid://bmawwqol2gol" path="res://assets/textures/ui/prompts/kbm/11_Key_Dark.png" id="8_0fagm"]
 [ext_resource type="Texture2D" uid="uid://nrmbis68lapx" path="res://assets/textures/stones/mid/T_Stone_mid_Roughness.png" id="8_ptwjj"]
 [ext_resource type="Texture2D" uid="uid://cu0vrc26sa0yg" path="res://assets/textures/prototype/Orange/texture_09.png" id="9_3fsx4"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/door.gd" id="10_7n6we"]
@@ -206,10 +208,52 @@ anchor_bottom = 1.0
 offset_top = -135.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 32
 text = "Hinter: This is a dialogue."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="prompts" type="VBoxContainer" parent="ui"]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 99.0
+offset_bottom = 85.0
+
+[node name="quit" type="HBoxContainer" parent="ui/prompts"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ui/prompts/quit"]
+layout_mode = 2
+texture = ExtResource("7_ciqoe")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ui/prompts/quit"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+
+[node name="toggle_fullscreen" type="HBoxContainer" parent="ui/prompts"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ui/prompts/toggle_fullscreen"]
+layout_mode = 2
+texture = ExtResource("8_0fagm")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="ui/prompts/toggle_fullscreen"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "Toggle Fullscreen"
 
 [node name="lighting" type="Node" parent="."]
 

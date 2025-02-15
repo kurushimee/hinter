@@ -2,15 +2,14 @@ extends RayCast3D
 
 @onready var hold_timer: Timer = $hold_timer
 
-@onready var prompt_bg: ColorRect = $prompt_bg
-@onready var prompt: Label = $prompt_bg/prompt
-@onready var progress_bar: ProgressBar = $prompt_bg/prompt_progress
+@onready var prompt: HBoxContainer = $prompt
+@onready var prompt_label: Label = $prompt/Label
 
 @onready var player: CharacterBody3D = $"../../.."
 
 
 func _process(_delta: float) -> void:
-	prompt_bg.hide()
+	prompt.hide()
 	if not player.input_enabled:
 		return
 	if not is_colliding():
@@ -24,17 +23,13 @@ func _process(_delta: float) -> void:
 	if not collider.is_active:
 		return
 
-	# Show button prompt.
-	prompt_bg.show()
-	# Update prompt message.
-	prompt.text = "[LMB] " + collider.prompt_message
-	progress_bar.value = 0  # Clear hold progress bar.
+	prompt.show()
+	prompt_label.text = collider.prompt_message
 
 	# Get object's interaction type.
 	var is_press = collider.interaction_type == interactable.INTERACTION_TYPE.PRESS
 	var is_hold = not is_press
 	if is_press and Input.is_action_just_pressed("interact"):
-		# Handle press interaction.
 		collider.interact()
 	elif is_hold:
 		if Input.is_action_just_pressed("interact"):
@@ -43,8 +38,6 @@ func _process(_delta: float) -> void:
 		if Input.is_action_pressed("interact"):
 			var time_passed = hold_timer.wait_time - hold_timer.time_left
 			var progress = time_passed / hold_timer.wait_time
-			progress_bar.value = progress
-
 			if progress >= 1.0:
 				collider.interact()
 				hold_timer.stop()
