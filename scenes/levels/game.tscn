@@ -319,7 +319,6 @@ collision_layer = 2
 collision_mask = 0
 script = ExtResource("10_gcf1b")
 prompt_message = "Push the RV"
-interaction_type = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="world/trailer/push"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.142334, 0.0906067, 0.033905)
@@ -332,7 +331,6 @@ collision_mask = 0
 script = ExtResource("12_scn3a")
 dialogue_text = "I completed a task."
 prompt_message = "Complete Task"
-interaction_type = 1
 
 [node name="CSGBox3D" type="CSGBox3D" parent="world/trailer/placeholder_task"]
 size = Vector3(1, 1, 0.298828)
