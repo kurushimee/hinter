@@ -12,7 +12,6 @@
 [ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/door.gd" id="10_7n6we"]
 [ext_resource type="Texture2D" uid="uid://cgov37lrnvv7e" path="res://assets/textures/prototype/Dark/texture_08.png" id="10_exm2e"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/push.gd" id="10_gcf1b"]
-[ext_resource type="Texture2D" uid="uid://72rjrqawd40d" path="res://assets/textures/prototype/Dark/texture_09.png" id="11_xlw3m"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/tasks/placeholder_task.gd" id="12_scn3a"]
 [ext_resource type="Texture2D" uid="uid://b6m63stbsdjyi" path="res://assets/textures/prototype/Orange/texture_08.png" id="13_hqj34"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/bed.gd" id="13_lwghu"]
@@ -34,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://b8uvhq1nymi08" path="res://assets/models/stones/small/Stone_small_3.fbx" id="28_1ybdu"]
 [ext_resource type="PackedScene" uid="uid://xoalks0kws8e" path="res://assets/models/stones/small/Stone_small_4.fbx" id="29_pho23"]
 [ext_resource type="PackedScene" uid="uid://bovxnue1a7pc7" path="res://assets/models/stones/small/Stone_small_5.fbx" id="30_slo0o"]
+[ext_resource type="Texture2D" uid="uid://c3qulwmtt70bv" path="res://assets/textures/prototype/Light/texture_02.png" id="31_evo6p"]
 
 [sub_resource type="Gradient" id="Gradient_vleru"]
 offsets = PackedFloat32Array(0, 0.253333, 0.773333, 1)
@@ -140,8 +140,8 @@ size = Vector3(0.715332, 3.8111, 4.7381)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nyv6s"]
 size = Vector3(1.34119, 1.2063, 0.774536)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2tca"]
-albedo_texture = ExtResource("11_xlw3m")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjuu6"]
+albedo_texture = ExtResource("31_evo6p")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0yqsr"]
@@ -352,13 +352,50 @@ transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.6949, 0.000499249, -0.
 [node name="trailer_inside" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
 
-[node name="walls" type="CSGBox3D" parent="trailer_inside"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-material_override = SubResource("StandardMaterial3D_l2tca")
+[node name="walls" type="Node3D" parent="trailer_inside"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="trailer_inside/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.349, -3)
+material_override = SubResource("StandardMaterial3D_yjuu6")
 use_collision = true
-collision_mask = 0
-flip_faces = true
-size = Vector3(12, 3, 5)
+size = Vector3(14, 4, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="trailer_inside/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.349, 3)
+material_override = SubResource("StandardMaterial3D_yjuu6")
+use_collision = true
+size = Vector3(14, 4, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="trailer_inside/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1.349, 0)
+material_override = SubResource("StandardMaterial3D_yjuu6")
+use_collision = true
+size = Vector3(1, 4, 6)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="trailer_inside/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 1.349, 0)
+material_override = SubResource("StandardMaterial3D_yjuu6")
+use_collision = true
+size = Vector3(1, 4, 6)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="trailer_inside/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_yjuu6")
+use_collision = true
+size = Vector3(14, 1, 6)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="trailer_inside/walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+material_override = SubResource("StandardMaterial3D_yjuu6")
+use_collision = true
+size = Vector3(14, 1, 6)
+
+[node name="lightbulb" type="OmniLight3D" parent="trailer_inside"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48551, 0)
+light_color = Color(1, 1, 0.796078, 1)
+light_size = 1.85
+light_bake_mode = 1
+shadow_enabled = true
 
 [node name="doors" type="Node" parent="trailer_inside"]
 
