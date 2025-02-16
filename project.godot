@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Hinter"
-run/main_scene="res://scenes/levels/game.tscn"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Events="*res://scripts/events.gd"
 
 [dialogic]
 
@@ -24,6 +28,7 @@ directories/dtl_directory={}
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=3
 
 [editor_plugins]
 

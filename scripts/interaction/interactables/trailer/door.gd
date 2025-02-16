@@ -1,7 +1,7 @@
-extends interactable
+extends Interactable
 
-@export var teleport_to: Node3D
+@export var destination: Node3D
 
 
 func _on_interacted() -> void:
-	%game_manager.teleport_player(teleport_to)
+	%game_manager.teleport_player(destination)

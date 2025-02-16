@@ -17,9 +17,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not input_enabled:
-		return
-
+	if not input_enabled: return
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)

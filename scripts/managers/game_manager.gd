@@ -25,6 +25,7 @@ func start_transition(to: Callable) -> void:
 # Dismantles a transition.
 func stop_transition(to: Callable) -> void:
 	transitioning = false
+	Events.transitioned.emit()
 	player.input_enabled = true
 	%screen_fade.screen_black.disconnect(to)
 	%screen_fade.fade_out()

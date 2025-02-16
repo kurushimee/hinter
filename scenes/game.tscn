@@ -1,41 +1,41 @@
 [gd_scene load_steps=55 format=3 uid="uid://bcqukwdbqtooe"]
 
-[ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_42yc2"]
-[ext_resource type="Script" path="res://scripts/managers/tasks.gd" id="2_x87pj"]
-[ext_resource type="Script" path="res://scripts/managers/pushing.gd" id="2_xw3cp"]
-[ext_resource type="Script" path="res://scripts/ui/screen_fade.gd" id="3_hdrb3"]
-[ext_resource type="Script" path="res://scripts/managers/time.gd" id="4_pewms"]
-[ext_resource type="Script" path="res://scripts/managers/dialogue.gd" id="5_bvy5l"]
-[ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="5_iu24r"]
-[ext_resource type="Texture2D" uid="uid://bsdkotyuxx3kr" path="res://assets/textures/ui/prompts/kbm/Esc_Key_Dark.png" id="7_ciqoe"]
-[ext_resource type="Texture2D" uid="uid://bmawwqol2gol" path="res://assets/textures/ui/prompts/kbm/11_Key_Dark.png" id="8_0fagm"]
-[ext_resource type="Texture2D" uid="uid://nrmbis68lapx" path="res://assets/textures/stones/mid/T_Stone_mid_Roughness.png" id="8_ptwjj"]
-[ext_resource type="Texture2D" uid="uid://cu0vrc26sa0yg" path="res://assets/textures/prototype/Orange/texture_09.png" id="9_3fsx4"]
-[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/door.gd" id="10_7n6we"]
-[ext_resource type="Texture2D" uid="uid://cgov37lrnvv7e" path="res://assets/textures/prototype/Dark/texture_08.png" id="10_exm2e"]
-[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/push.gd" id="10_gcf1b"]
-[ext_resource type="Script" path="res://scripts/interaction/interactables/tasks/placeholder_task.gd" id="12_scn3a"]
-[ext_resource type="Texture2D" uid="uid://b6m63stbsdjyi" path="res://assets/textures/prototype/Orange/texture_08.png" id="13_hqj34"]
-[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/bed.gd" id="13_lwghu"]
-[ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="14_0tdmq"]
-[ext_resource type="PackedScene" uid="uid://cb3bveir207c7" path="res://assets/models/cactus/Cactus_1.fbx" id="17_wpqcj"]
-[ext_resource type="PackedScene" uid="uid://dfuvtxt640o7s" path="res://assets/models/cactus/Cactus_2.fbx" id="18_o1ju0"]
-[ext_resource type="PackedScene" uid="uid://c5qpxuwbjwq7e" path="res://assets/models/cactus/Cactus_3.fbx" id="19_fjoxc"]
-[ext_resource type="PackedScene" uid="uid://byvs80owopi67" path="res://assets/models/cactus/Cactus_4.fbx" id="20_753rj"]
-[ext_resource type="PackedScene" uid="uid://duqqou4qslq6d" path="res://assets/models/cactus/Cactus_5.fbx" id="21_hqr0k"]
-[ext_resource type="PackedScene" uid="uid://ummji0g22xgh" path="res://assets/models/stones/mid/Stone_mid_1.fbx" id="21_lc5pj"]
-[ext_resource type="PackedScene" uid="uid://btctkan75uuhl" path="res://assets/models/stones/mid/Stone_mid_2.fbx" id="22_5l0a3"]
-[ext_resource type="PackedScene" uid="uid://cwn400517w48y" path="res://assets/models/cactus/Cactus_6.fbx" id="22_5ujtv"]
-[ext_resource type="PackedScene" uid="uid://2uuvy0soo0me" path="res://assets/models/stones/mid/Stone_mid_3.fbx" id="23_2e3mv"]
-[ext_resource type="PackedScene" uid="uid://cyljnnkji328v" path="res://assets/models/cactus/Cactus_7.fbx" id="23_7sxi2"]
-[ext_resource type="PackedScene" uid="uid://bxws6hrpvyjvh" path="res://assets/models/stones/mid/Stone_mid_4.fbx" id="24_r51er"]
-[ext_resource type="PackedScene" uid="uid://cjc6ssqwuivni" path="res://assets/models/stones/mid/Stone_mid_5.fbx" id="25_i7bur"]
-[ext_resource type="PackedScene" uid="uid://djpyollqi03wf" path="res://assets/models/stones/small/Stone_small_1.fbx" id="26_h6jkq"]
-[ext_resource type="PackedScene" uid="uid://c3mldq6tklr7q" path="res://assets/models/stones/small/Stone_small_2.fbx" id="27_bj1cx"]
-[ext_resource type="PackedScene" uid="uid://b8uvhq1nymi08" path="res://assets/models/stones/small/Stone_small_3.fbx" id="28_1ybdu"]
-[ext_resource type="PackedScene" uid="uid://xoalks0kws8e" path="res://assets/models/stones/small/Stone_small_4.fbx" id="29_pho23"]
-[ext_resource type="PackedScene" uid="uid://bovxnue1a7pc7" path="res://assets/models/stones/small/Stone_small_5.fbx" id="30_slo0o"]
-[ext_resource type="Texture2D" uid="uid://c3qulwmtt70bv" path="res://assets/textures/prototype/Light/texture_02.png" id="31_evo6p"]
+[ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_ws3en"]
+[ext_resource type="Script" path="res://scripts/managers/pushing.gd" id="2_6du52"]
+[ext_resource type="Script" path="res://scripts/managers/tasks.gd" id="3_phxnk"]
+[ext_resource type="Script" path="res://scripts/managers/time.gd" id="4_lhlgk"]
+[ext_resource type="Script" path="res://scripts/managers/dialogue.gd" id="5_r24th"]
+[ext_resource type="Script" path="res://scripts/ui/screen_fade.gd" id="6_tbedr"]
+[ext_resource type="Texture2D" uid="uid://bsdkotyuxx3kr" path="res://assets/textures/ui/prompts/kbm/Esc_Key_Dark.png" id="7_h87w4"]
+[ext_resource type="Texture2D" uid="uid://bmawwqol2gol" path="res://assets/textures/ui/prompts/kbm/11_Key_Dark.png" id="8_i7c4e"]
+[ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="9_3oejf"]
+[ext_resource type="Texture2D" uid="uid://nrmbis68lapx" path="res://assets/textures/stones/mid/T_Stone_mid_Roughness.png" id="10_f1wxd"]
+[ext_resource type="Texture2D" uid="uid://cu0vrc26sa0yg" path="res://assets/textures/prototype/Orange/texture_09.png" id="11_lr0yc"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/door.gd" id="12_ikwqf"]
+[ext_resource type="Texture2D" uid="uid://cgov37lrnvv7e" path="res://assets/textures/prototype/Dark/texture_08.png" id="13_fqgfa"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/push.gd" id="14_wi26l"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/tasks/placeholder_task.gd" id="15_jytk8"]
+[ext_resource type="PackedScene" uid="uid://cb3bveir207c7" path="res://assets/models/cactus/Cactus_1.fbx" id="16_1ocdi"]
+[ext_resource type="PackedScene" uid="uid://dfuvtxt640o7s" path="res://assets/models/cactus/Cactus_2.fbx" id="17_x18pi"]
+[ext_resource type="PackedScene" uid="uid://c5qpxuwbjwq7e" path="res://assets/models/cactus/Cactus_3.fbx" id="18_ce80m"]
+[ext_resource type="PackedScene" uid="uid://byvs80owopi67" path="res://assets/models/cactus/Cactus_4.fbx" id="19_kjg18"]
+[ext_resource type="PackedScene" uid="uid://duqqou4qslq6d" path="res://assets/models/cactus/Cactus_5.fbx" id="20_vu2cq"]
+[ext_resource type="PackedScene" uid="uid://cwn400517w48y" path="res://assets/models/cactus/Cactus_6.fbx" id="21_586v5"]
+[ext_resource type="PackedScene" uid="uid://cyljnnkji328v" path="res://assets/models/cactus/Cactus_7.fbx" id="22_xs6fb"]
+[ext_resource type="PackedScene" uid="uid://ummji0g22xgh" path="res://assets/models/stones/mid/Stone_mid_1.fbx" id="23_w6f1s"]
+[ext_resource type="PackedScene" uid="uid://btctkan75uuhl" path="res://assets/models/stones/mid/Stone_mid_2.fbx" id="24_4huxu"]
+[ext_resource type="PackedScene" uid="uid://2uuvy0soo0me" path="res://assets/models/stones/mid/Stone_mid_3.fbx" id="25_yw4ph"]
+[ext_resource type="PackedScene" uid="uid://bxws6hrpvyjvh" path="res://assets/models/stones/mid/Stone_mid_4.fbx" id="26_e332w"]
+[ext_resource type="PackedScene" uid="uid://cjc6ssqwuivni" path="res://assets/models/stones/mid/Stone_mid_5.fbx" id="27_uom2x"]
+[ext_resource type="PackedScene" uid="uid://djpyollqi03wf" path="res://assets/models/stones/small/Stone_small_1.fbx" id="28_ncxq7"]
+[ext_resource type="PackedScene" uid="uid://c3mldq6tklr7q" path="res://assets/models/stones/small/Stone_small_2.fbx" id="29_73jvf"]
+[ext_resource type="PackedScene" uid="uid://b8uvhq1nymi08" path="res://assets/models/stones/small/Stone_small_3.fbx" id="30_1ehql"]
+[ext_resource type="PackedScene" uid="uid://xoalks0kws8e" path="res://assets/models/stones/small/Stone_small_4.fbx" id="31_sihpq"]
+[ext_resource type="PackedScene" uid="uid://bovxnue1a7pc7" path="res://assets/models/stones/small/Stone_small_5.fbx" id="32_3e62q"]
+[ext_resource type="Texture2D" uid="uid://c3qulwmtt70bv" path="res://assets/textures/prototype/Light/texture_02.png" id="33_np6uk"]
+[ext_resource type="Texture2D" uid="uid://b6m63stbsdjyi" path="res://assets/textures/prototype/Orange/texture_08.png" id="34_wsy4h"]
+[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/bed.gd" id="35_aplks"]
+[ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="36_cd0sf"]
 
 [sub_resource type="Gradient" id="Gradient_vleru"]
 offsets = PackedFloat32Array(0, 0.253333, 0.773333, 1)
@@ -123,14 +123,14 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aojrd"]
-albedo_texture = ExtResource("8_ptwjj")
+albedo_texture = ExtResource("10_f1wxd")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlbku"]
-albedo_texture = ExtResource("9_3fsx4")
+albedo_texture = ExtResource("11_lr0yc")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qgcvx"]
-albedo_texture = ExtResource("10_exm2e")
+albedo_texture = ExtResource("13_fqgfa")
 uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5a2eu"]
@@ -143,15 +143,15 @@ size = Vector3(0.715332, 3.8111, 4.7381)
 size = Vector3(1.34119, 1.2063, 0.774536)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjuu6"]
-albedo_texture = ExtResource("31_evo6p")
+albedo_texture = ExtResource("33_np6uk")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0yqsr"]
-albedo_texture = ExtResource("13_hqj34")
+albedo_texture = ExtResource("34_wsy4h")
 uv1_triplanar = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gk6m6"]
-albedo_texture = ExtResource("14_0tdmq")
+albedo_texture = ExtResource("36_cd0sf")
 uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dc5vb"]
@@ -160,26 +160,26 @@ size = Vector3(3.94849, 1.15973, 2.33176)
 [node name="game" type="Node3D"]
 transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 0, 0, 0)
 
-[node name="game_manager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_42yc2")]
+[node name="game_manager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_ws3en")]
 unique_name_in_owner = true
 player = NodePath("../player")
 
 [node name="pushing" type="Node" parent="game_manager"]
-script = ExtResource("2_xw3cp")
+script = ExtResource("2_6du52")
 
 [node name="tasks" type="Node" parent="game_manager" node_paths=PackedStringArray("all_tasks")]
-script = ExtResource("2_x87pj")
+script = ExtResource("3_phxnk")
 all_tasks = [NodePath("../../world/trailer/placeholder_task")]
 
 [node name="time" type="Node" parent="game_manager" node_paths=PackedStringArray("sun")]
-script = ExtResource("4_pewms")
+script = ExtResource("4_lhlgk")
 sun = NodePath("../../lighting/sun_pivot/sun")
 sky_tint_from_time = SubResource("Gradient_vleru")
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 dialogue_text = "I'm tired. I should go to sleep."
 
 [node name="dialogue" type="Node" parent="game_manager" node_paths=PackedStringArray("dialogue_label")]
-script = ExtResource("5_bvy5l")
+script = ExtResource("5_r24th")
 dialogue_label = NodePath("../../ui/dialogue_label")
 
 [node name="ui" type="Node" parent="."]
@@ -193,7 +193,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
-script = ExtResource("3_hdrb3")
+script = ExtResource("6_tbedr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ui/screen_fade"]
 libraries = {
@@ -234,7 +234,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ui/prompts/quit"]
 layout_mode = 2
-texture = ExtResource("7_ciqoe")
+texture = ExtResource("7_h87w4")
 expand_mode = 2
 stretch_mode = 4
 
@@ -251,7 +251,7 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="ui/prompts/toggle_fullscreen"]
 layout_mode = 2
-texture = ExtResource("8_0fagm")
+texture = ExtResource("8_i7c4e")
 expand_mode = 2
 stretch_mode = 4
 
@@ -276,7 +276,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="lighting"]
 environment = SubResource("Environment_m7bmb")
 
-[node name="player" parent="." instance=ExtResource("5_iu24r")]
+[node name="player" parent="." instance=ExtResource("9_3oejf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59175, -50, 0.0792493)
 
 [node name="world" type="Node" parent="."]
@@ -295,12 +295,12 @@ size = Vector3(10.7983, 3.54938, 4.48438)
 
 [node name="doors" type="Node" parent="world/trailer"]
 
-[node name="door" type="StaticBody3D" parent="world/trailer/doors" node_paths=PackedStringArray("teleport_to")]
+[node name="door" type="StaticBody3D" parent="world/trailer/doors" node_paths=PackedStringArray("destination")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04126, 1.43869, 2.29687)
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("10_7n6we")
-teleport_to = NodePath("../../../../trailer_inside/doors/door_enter_point")
+script = ExtResource("12_ikwqf")
+destination = NodePath("../../../../trailer_inside/doors/door_enter_point")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="world/trailer/doors/door"]
 material_override = SubResource("StandardMaterial3D_qgcvx")
@@ -317,7 +317,7 @@ transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65564, 0, 0)
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("10_gcf1b")
+script = ExtResource("14_wi26l")
 prompt_message = "Push the RV"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="world/trailer/push"]
@@ -328,7 +328,7 @@ shape = SubResource("BoxShape3D_hkdvg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.26573, -0.0563505, 2.38075)
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("12_scn3a")
+script = ExtResource("15_jytk8")
 dialogue_text = "I completed a task."
 prompt_message = "Complete Task"
 
@@ -341,61 +341,61 @@ shape = SubResource("BoxShape3D_nyv6s")
 
 [node name="cacti" type="Node" parent="world"]
 
-[node name="Cactus_1" parent="world/cacti" instance=ExtResource("17_wpqcj")]
+[node name="Cactus_1" parent="world/cacti" instance=ExtResource("16_1ocdi")]
 transform = Transform3D(25, 0, 5.96046e-08, 0, 25, 0, -5.96046e-08, 0, 25, -12.1562, 0.000500202, -6.35387)
 
-[node name="Cactus_2" parent="world/cacti" instance=ExtResource("18_o1ju0")]
+[node name="Cactus_2" parent="world/cacti" instance=ExtResource("17_x18pi")]
 transform = Transform3D(25, 0, 5.96046e-08, 0, 25, 0, -5.96046e-08, 0, 25, -12.089, 0.000499964, -3.51974)
 
-[node name="Cactus_3" parent="world/cacti" instance=ExtResource("19_fjoxc")]
+[node name="Cactus_3" parent="world/cacti" instance=ExtResource("18_ce80m")]
 transform = Transform3D(40, 0, 1.19209e-07, 0, 40, 0, -1.19209e-07, 0, 40, -12.12, 0.000500202, -0.00560641)
 
-[node name="Cactus_4" parent="world/cacti" instance=ExtResource("20_753rj")]
+[node name="Cactus_4" parent="world/cacti" instance=ExtResource("19_kjg18")]
 transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.5066, 0.000499487, 3.42131)
 
-[node name="Cactus_5" parent="world/cacti" instance=ExtResource("21_hqr0k")]
+[node name="Cactus_5" parent="world/cacti" instance=ExtResource("20_vu2cq")]
 transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.6942, 0.000500202, 6.58142)
 
-[node name="Cactus_6" parent="world/cacti" instance=ExtResource("22_5ujtv")]
+[node name="Cactus_6" parent="world/cacti" instance=ExtResource("21_586v5")]
 transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.5089, 0.000499725, 9.67557)
 
-[node name="Cactus_7" parent="world/cacti" instance=ExtResource("23_7sxi2")]
+[node name="Cactus_7" parent="world/cacti" instance=ExtResource("22_xs6fb")]
 transform = Transform3D(30, 0, 1.19209e-07, 0, 30, 0, -1.19209e-07, 0, 30, -12.6019, 0.000499725, 12.231)
 
 [node name="stones" type="Node" parent="world"]
 
 [node name="mid" type="Node" parent="world/stones"]
 
-[node name="Stone_mid_1" parent="world/stones/mid" instance=ExtResource("21_lc5pj")]
+[node name="Stone_mid_1" parent="world/stones/mid" instance=ExtResource("23_w6f1s")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.9067, 0.000499725, 12.7269)
 
-[node name="Stone_mid_2" parent="world/stones/mid" instance=ExtResource("22_5l0a3")]
+[node name="Stone_mid_2" parent="world/stones/mid" instance=ExtResource("24_4huxu")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.8417, 0.000498772, 9.76466)
 
-[node name="Stone_mid_3" parent="world/stones/mid" instance=ExtResource("23_2e3mv")]
+[node name="Stone_mid_3" parent="world/stones/mid" instance=ExtResource("25_yw4ph")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.6019, 0.000500679, 6.77057)
 
-[node name="Stone_mid_4" parent="world/stones/mid" instance=ExtResource("24_r51er")]
+[node name="Stone_mid_4" parent="world/stones/mid" instance=ExtResource("26_e332w")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.5675, 0.000500679, 3.18775)
 
-[node name="Stone_mid_5" parent="world/stones/mid" instance=ExtResource("25_i7bur")]
+[node name="Stone_mid_5" parent="world/stones/mid" instance=ExtResource("27_uom2x")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -17.47, 0.000499725, -0.086378)
 
 [node name="small" type="Node" parent="world/stones"]
 
-[node name="Stone_small_1" parent="world/stones/small" instance=ExtResource("26_h6jkq")]
+[node name="Stone_small_1" parent="world/stones/small" instance=ExtResource("28_ncxq7")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.7058, 0.000499725, 12.6481)
 
-[node name="Stone_small_2" parent="world/stones/small" instance=ExtResource("27_bj1cx")]
+[node name="Stone_small_2" parent="world/stones/small" instance=ExtResource("29_73jvf")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.7255, 0.000501156, 9.95624)
 
-[node name="Stone_small_3" parent="world/stones/small" instance=ExtResource("28_1ybdu")]
+[node name="Stone_small_3" parent="world/stones/small" instance=ExtResource("30_1ehql")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.863, 0.000499725, 6.81751)
 
-[node name="Stone_small_4" parent="world/stones/small" instance=ExtResource("29_pho23")]
+[node name="Stone_small_4" parent="world/stones/small" instance=ExtResource("31_sihpq")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.8001, 0.000499725, 3.5919)
 
-[node name="Stone_small_5" parent="world/stones/small" instance=ExtResource("30_slo0o")]
+[node name="Stone_small_5" parent="world/stones/small" instance=ExtResource("32_3e62q")]
 transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, -21.6949, 0.000499249, -0.039925)
 
 [node name="trailer_inside" type="Node3D" parent="."]
@@ -448,12 +448,12 @@ shadow_enabled = true
 
 [node name="doors" type="Node" parent="trailer_inside"]
 
-[node name="door" type="StaticBody3D" parent="trailer_inside/doors" node_paths=PackedStringArray("teleport_to")]
+[node name="door" type="StaticBody3D" parent="trailer_inside/doors" node_paths=PackedStringArray("destination")]
 transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 1.46744, -49.0161, 2.4455)
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("10_7n6we")
-teleport_to = NodePath("../../../world/trailer/doors/door_exit_point")
+script = ExtResource("12_ikwqf")
+destination = NodePath("../../../world/trailer/doors/door_exit_point")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="trailer_inside/doors/door"]
 material_override = SubResource("StandardMaterial3D_0yqsr")
@@ -470,7 +470,7 @@ transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761
 transform = Transform3D(0.99976, 0, 0.0218847, 0, 1, 0, -0.0218847, 0, 0.99976, -4.28521, 0.31414, -1.54063)
 collision_layer = 2
 collision_mask = 0
-script = ExtResource("13_lwghu")
+script = ExtResource("35_aplks")
 prompt_message = "Sleep"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="trailer_inside/bed"]

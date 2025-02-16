@@ -1,4 +1,4 @@
-extends interactable
+extends Interactable
 
 signal sleeping
 

@@ -10,6 +10,8 @@ var is_skipping := false
 
 func _ready() -> void:
 	empty()
+	Events.transitioned.connect(skip)
+	Events.dialogue_requested.connect(show)
 
 
 func _input(event: InputEvent) -> void:
