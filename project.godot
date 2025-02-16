@@ -19,11 +19,6 @@ config/icon="res://icon.svg"
 
 Events="*res://scripts/events.gd"
 
-[dialogic]
-
-directories/dch_directory={}
-directories/dtl_directory={}
-
 [display]
 
 window/stretch/mode="canvas_items"
