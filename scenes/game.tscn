@@ -322,6 +322,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65564, 0, 0)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("14_wi26l")
+push_fail_dialogue = "I can't do that yet. There's something I need to fix first..."
 prompt_message = "Push the RV"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="world/trailer/push"]
