@@ -484,7 +484,6 @@ shape = SubResource("BoxShape3D_dc5vb")
 [connection signal="day_ended" from="game_manager" to="game_manager/time" method="_on_day_ended"]
 [connection signal="interacted" from="world/trailer/doors/door" to="world/trailer/doors/door" method="_on_interacted"]
 [connection signal="interacted" from="world/trailer/push" to="world/trailer/push" method="_on_interacted"]
-[connection signal="interacted" from="world/trailer/placeholder_task" to="world/trailer/placeholder_task" method="_on_interacted"]
 [connection signal="interacted" from="trailer_inside/doors/door" to="trailer_inside/doors/door" method="_on_interacted"]
 [connection signal="interacted" from="trailer_inside/bed" to="trailer_inside/bed" method="_on_interacted"]
 [connection signal="sleeping" from="trailer_inside/bed" to="game_manager" method="_on_sleeping"]

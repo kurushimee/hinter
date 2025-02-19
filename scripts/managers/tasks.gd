@@ -1,14 +1,16 @@
 extends Node
 
-@export var all_tasks: Array[task]
+@export var all_tasks: Array[Task]
 
-var active_task: task = null
-# Difficulty affects how many tasks in a row can there be.
-var difficulty := 0
+var active_task: Task = null
 
 
-# Disables done task and clears active task.
-func complete_task() -> void:
+func _ready() -> void:
+	Events.task_completed.connect(_on_events_task_completed)
+
+
+# Disables completed task and resets active task state.
+func _on_events_task_completed() -> void:
 	active_task.is_active = false
 	active_task = null
 
@@ -20,8 +22,7 @@ func task_pending() -> bool:
 
 # Activate a random task.
 func new_task() -> void:
-	if len(all_tasks) == 0:
-		return
+	if len(all_tasks) == 0: return
 
 	active_task = all_tasks.pick_random()
 	active_task.is_active = true
