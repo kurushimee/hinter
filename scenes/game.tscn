@@ -1,10 +1,11 @@
-[gd_scene load_steps=55 format=3 uid="uid://bcqukwdbqtooe"]
+[gd_scene load_steps=56 format=3 uid="uid://bcqukwdbqtooe"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_ws3en"]
 [ext_resource type="Script" path="res://scripts/managers/pushing.gd" id="2_6du52"]
 [ext_resource type="Script" path="res://scripts/managers/tasks.gd" id="3_phxnk"]
 [ext_resource type="Script" path="res://scripts/managers/time.gd" id="4_lhlgk"]
-[ext_resource type="Script" path="res://scripts/managers/dialogue.gd" id="5_r24th"]
+[ext_resource type="Script" path="res://scripts/managers/transition_manager.gd" id="5_p0qoo"]
+[ext_resource type="Script" path="res://scripts/ui/dialogue_label.gd" id="5_r24th"]
 [ext_resource type="Script" path="res://scripts/ui/screen_fade.gd" id="6_tbedr"]
 [ext_resource type="Texture2D" uid="uid://bsdkotyuxx3kr" path="res://assets/textures/ui/prompts/kbm/Esc_Key_Dark.png" id="7_h87w4"]
 [ext_resource type="Texture2D" uid="uid://bmawwqol2gol" path="res://assets/textures/ui/prompts/kbm/11_Key_Dark.png" id="8_i7c4e"]
@@ -63,7 +64,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_ulvqh"]
-resource_name = "screen_fade_in"
+resource_name = "fade_in"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -87,12 +88,12 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"_on_screen_fade_in"
+"method": &"_on_fade_in_complete"
 }]
 }
 
 [sub_resource type="Animation" id="Animation_peo5f"]
-resource_name = "screen_fade_out"
+resource_name = "fade_out"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,8 +110,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b0css"]
 _data = {
 "RESET": SubResource("Animation_x4ld4"),
-"screen_fade_in": SubResource("Animation_ulvqh"),
-"screen_fade_out": SubResource("Animation_peo5f")
+"fade_in": SubResource("Animation_ulvqh"),
+"fade_out": SubResource("Animation_peo5f")
 }
 
 [sub_resource type="Sky" id="Sky_x5v6s"]
@@ -160,27 +161,28 @@ size = Vector3(3.94849, 1.15973, 2.33176)
 [node name="game" type="Node3D"]
 transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 0, 0, 0)
 
-[node name="game_manager" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_ws3en")]
-unique_name_in_owner = true
-player = NodePath("../player")
+[node name="managers" type="Node" parent="."]
 
-[node name="pushing" type="Node" parent="game_manager"]
+[node name="game_manager" parent="managers" instance=ExtResource("1_ws3en")]
+unique_name_in_owner = true
+
+[node name="pushing" type="Node" parent="managers/game_manager"]
 script = ExtResource("2_6du52")
 
-[node name="tasks" type="Node" parent="game_manager" node_paths=PackedStringArray("all_tasks")]
+[node name="tasks" type="Node" parent="managers/game_manager" node_paths=PackedStringArray("all_tasks")]
 script = ExtResource("3_phxnk")
-all_tasks = [NodePath("../../world/trailer/placeholder_task")]
+all_tasks = [NodePath("../../../world/trailer/placeholder_task")]
 
-[node name="time" type="Node" parent="game_manager" node_paths=PackedStringArray("sun")]
+[node name="time" type="Node" parent="managers/game_manager" node_paths=PackedStringArray("sun")]
 script = ExtResource("4_lhlgk")
-sun = NodePath("../../lighting/sun_pivot/sun")
+sunset_dialogue = "I'm tired. I should go to sleep."
+sun = NodePath("../../../lighting/sun_pivot/sun")
 sky_tint_from_time = SubResource("Gradient_vleru")
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
-dialogue_text = "I'm tired. I should go to sleep."
 
-[node name="dialogue" type="Node" parent="game_manager" node_paths=PackedStringArray("dialogue_label")]
-script = ExtResource("5_r24th")
-dialogue_label = NodePath("../../ui/dialogue_label")
+[node name="transition_manager" type="Node" parent="managers" node_paths=PackedStringArray("screen_fade")]
+script = ExtResource("5_p0qoo")
+screen_fade = NodePath("../../ui/screen_fade")
 
 [node name="ui" type="Node" parent="."]
 
@@ -221,6 +223,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 justification_flags = 161
+script = ExtResource("5_r24th")
+print_delay = 0.02
 
 [node name="prompts" type="VBoxContainer" parent="ui"]
 offset_left = 25.0
@@ -481,9 +485,7 @@ size = Vector3(3.55957, 0.63855, 1.8623)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 0.0798645, -0.127365)
 shape = SubResource("BoxShape3D_dc5vb")
 
-[connection signal="day_ended" from="game_manager" to="game_manager/time" method="_on_day_ended"]
 [connection signal="interacted" from="world/trailer/doors/door" to="world/trailer/doors/door" method="_on_interacted"]
 [connection signal="interacted" from="world/trailer/push" to="world/trailer/push" method="_on_interacted"]
 [connection signal="interacted" from="trailer_inside/doors/door" to="trailer_inside/doors/door" method="_on_interacted"]
 [connection signal="interacted" from="trailer_inside/bed" to="trailer_inside/bed" method="_on_interacted"]
-[connection signal="sleeping" from="trailer_inside/bed" to="game_manager" method="_on_sleeping"]

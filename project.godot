@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Events="*res://scripts/events.gd"
+Events="*res://scripts/utility/events.gd"
 
 [display]
 

@@ -1,7 +1,6 @@
 extends Interactable
 
-signal sleeping
 
-
+# TODO: Rework sleeping architecture.
 func _on_interacted() -> void:
-	sleeping.emit()
+	pass

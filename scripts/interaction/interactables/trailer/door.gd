@@ -4,4 +4,9 @@ extends Interactable
 
 
 func _on_interacted() -> void:
-	%game_manager.teleport_player(destination)
+	Events.transition_requested.emit(enter)
+
+
+# Teleports Hinter to Node3D `destination`.
+func enter() -> void:
+	Player.instance.global_position = destination.global_position

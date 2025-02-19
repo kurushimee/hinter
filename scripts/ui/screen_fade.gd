@@ -1,15 +1,16 @@
+class_name ScreenFade
 extends ColorRect
 
-signal screen_black
+signal turned_black
 
 
-func _on_screen_fade_in() -> void:
-	screen_black.emit()
+func _on_fade_in_complete() -> void:
+	turned_black.emit()
 
 
-func fade_in() -> void:
-	$AnimationPlayer.play("screen_fade_in")
+func start_fade_in() -> void:
+	$AnimationPlayer.play(&"fade_in")
 
 
-func fade_out() -> void:
-	$AnimationPlayer.play("screen_fade_out")
+func start_fade_out() -> void:
+	$AnimationPlayer.play(&"fade_out")

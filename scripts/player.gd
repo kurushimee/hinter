@@ -1,4 +1,7 @@
+class_name Player
 extends CharacterBody3D
+
+static var instance: Player
 
 # Movement constants.
 const SPEED = 3.0
@@ -13,6 +16,7 @@ var input_enabled := true
 
 
 func _ready() -> void:
+	instance = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
