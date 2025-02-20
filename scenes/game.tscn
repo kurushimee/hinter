@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_ws3en"]
 [ext_resource type="Script" path="res://scripts/managers/pushing.gd" id="2_6du52"]
 [ext_resource type="Script" path="res://scripts/managers/tasks.gd" id="3_phxnk"]
-[ext_resource type="Script" path="res://scripts/managers/time.gd" id="4_lhlgk"]
+[ext_resource type="Script" path="res://scripts/managers/time_manager.gd" id="4_lhlgk"]
 [ext_resource type="Script" path="res://scripts/managers/transition_manager.gd" id="5_p0qoo"]
 [ext_resource type="Script" path="res://scripts/ui/dialogue_label.gd" id="5_r24th"]
 [ext_resource type="Script" path="res://scripts/ui/screen_fade.gd" id="6_tbedr"]
@@ -173,16 +173,16 @@ script = ExtResource("2_6du52")
 script = ExtResource("3_phxnk")
 all_tasks = [NodePath("../../../world/trailer/placeholder_task")]
 
-[node name="time" type="Node" parent="managers/game_manager" node_paths=PackedStringArray("sun")]
-script = ExtResource("4_lhlgk")
-sunset_dialogue = "I'm tired. I should go to sleep."
-sun = NodePath("../../../lighting/sun_pivot/sun")
-sky_tint_from_time = SubResource("Gradient_vleru")
-sky_material = SubResource("ProceduralSkyMaterial_6hwok")
-
 [node name="transition_manager" type="Node" parent="managers" node_paths=PackedStringArray("screen_fade")]
 script = ExtResource("5_p0qoo")
 screen_fade = NodePath("../../ui/screen_fade")
+
+[node name="time_manager" type="Node" parent="managers" node_paths=PackedStringArray("sun")]
+script = ExtResource("4_lhlgk")
+day_over_dialogue = "I'm tired... I should go to sleep."
+sun = NodePath("../../lighting/sun_pivot/sun")
+sky_tint_from_time = SubResource("Gradient_vleru")
+sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 
 [node name="ui" type="Node" parent="."]
 
@@ -224,7 +224,7 @@ vertical_alignment = 1
 autowrap_mode = 3
 justification_flags = 161
 script = ExtResource("5_r24th")
-print_delay = 0.02
+print_delay = 0.03
 
 [node name="prompts" type="VBoxContainer" parent="ui"]
 offset_left = 25.0
@@ -322,7 +322,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65564, 0, 0)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("14_wi26l")
-push_fail_dialogue = "I can't do that yet. There's something I need to fix first..."
+task_left_dialogue = "There's something I need to fix first..."
+day_over_dialogue = "I'm too tired to do that... I need to go to sleep."
 prompt_message = "Push the RV"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="world/trailer/push"]
@@ -476,6 +477,7 @@ transform = Transform3D(0.99976, 0, 0.0218847, 0, 1, 0, -0.0218847, 0, 0.99976, 
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("35_aplks")
+refuse_dialogue = "I'm not tired. I don't want to sleep yet."
 prompt_message = "Sleep"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="trailer_inside/bed"]
@@ -485,3 +487,5 @@ size = Vector3(3.55957, 0.63855, 1.8623)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trailer_inside/bed"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 0.0798645, -0.127365)
 shape = SubResource("BoxShape3D_dc5vb")
+
+[connection signal="fell_asleep" from="trailer_inside/bed" to="managers/time_manager" method="_on_bed_fell_asleep"]

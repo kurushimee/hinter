@@ -1,16 +1,19 @@
 extends Interactable
 
-@export var push_fail_dialogue := ""
+@export var task_left_dialogue := ""
+@export var day_over_dialogue := ""
 
 
 func interact() -> void:
-	if not %game_manager/tasks.task_pending():
-		Events.transition_requested.emit(start)
+	if TimeManager.instance.is_day_over():
+		Events.dialogue_requested.emit(day_over_dialogue)
+	elif %game_manager/tasks.is_task_active():
+		Events.dialogue_requested.emit(task_left_dialogue)
 	else:
-		Events.dialogue_requested.emit(push_fail_dialogue)
+		Events.transition_requested.emit(start)
 
 
 func start() -> void:
-	%game_manager/pushing.next_location()
-	%game_manager/time.fast_forward(0.1)
 	%game_manager/tasks.new_task()
+	%game_manager/pushing.next_location()
+	TimeManager.instance.fast_forward(0.1)

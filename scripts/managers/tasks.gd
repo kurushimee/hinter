@@ -15,8 +15,7 @@ func _on_events_task_completed() -> void:
 	active_task = null
 
 
-# Whether there is an active task.
-func task_pending() -> bool:
+func is_task_active() -> bool:
 	return active_task != null
 
 
