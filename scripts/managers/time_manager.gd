@@ -22,7 +22,7 @@ func _ready() -> void:
 	instance = self
 
 
-# Advanced time of day when state is IN_PROGRESS.
+# Advances time of day when state is IN_PROGRESS.
 func _process(delta: float) -> void:
 	if current_state != DayState.IN_PROGRESS: return
 
