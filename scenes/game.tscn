@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bsdkotyuxx3kr" path="res://assets/textures/ui/prompts/kbm/Esc_Key_Dark.png" id="7_h87w4"]
 [ext_resource type="Texture2D" uid="uid://bmawwqol2gol" path="res://assets/textures/ui/prompts/kbm/11_Key_Dark.png" id="8_i7c4e"]
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="9_3oejf"]
-[ext_resource type="Texture2D" uid="uid://nrmbis68lapx" path="res://assets/textures/stones/mid/T_Stone_mid_Roughness.png" id="10_f1wxd"]
+[ext_resource type="Texture2D" uid="uid://b3gcq7r2wiane" path="res://assets/textures/prototype/Light/texture_03.png" id="11_2biis"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/door.gd" id="12_ikwqf"]
 [ext_resource type="PackedScene" uid="uid://bnb75cakp3hl6" path="res://assets/models/rv/breaking_bad_1986_fleetwood_bounder_rv.glb" id="12_yxam7"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/push.gd" id="14_wi26l"]
@@ -122,8 +122,9 @@ sky = SubResource("Sky_x5v6s")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aojrd"]
-albedo_texture = ExtResource("10_f1wxd")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xriey"]
+albedo_texture = ExtResource("11_2biis")
+uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ommyl"]
 size = Vector3(8.3103, 3.46497, 2.99115)
@@ -280,7 +281,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59175, -50, 0.0792493)
 [node name="world" type="Node" parent="."]
 
 [node name="ground" type="CSGBox3D" parent="world"]
-material_override = SubResource("StandardMaterial3D_aojrd")
+material_override = SubResource("StandardMaterial3D_xriey")
 use_collision = true
 size = Vector3(1000, 0.001, 1000)
 
@@ -319,7 +320,7 @@ collision_mask = 0
 script = ExtResource("14_wi26l")
 task_left_dialogue = "There's something I need to fix first..."
 day_over_dialogue = "I'm too tired to do that... I need to go to sleep."
-prompt_message = "Push the RV"
+prompt_message = "Push forward"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="world/trailer/push"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.267944, -0.494716, -0.0144575)
@@ -331,7 +332,7 @@ collision_layer = 2
 collision_mask = 0
 script = ExtResource("15_jytk8")
 dialogue_text = "I completed a task."
-prompt_message = "Complete Task"
+prompt_message = "Complete task"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="world/trailer/placeholder_task"]
 size = Vector3(1, 1, 0.298828)
