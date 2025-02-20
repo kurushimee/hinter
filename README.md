@@ -4,11 +4,12 @@
 
 # Dates
 
-**MVP:** 12th of February.
+**MVP:** End of February.
 
-**Demo:** End of February.
+**Demo:** Somewhere in March.
 
 # Controls
 - **[WASD]** Move
-- **[LMB]** Interact
+- **[LMB]** Interact/Skip Dialogue
 - **[ESC]** Quit Game
+- **[F11]** Toggle Fullscreen
