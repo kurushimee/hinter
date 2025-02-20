@@ -11,8 +11,9 @@ const SENSITIVITY = 0.003
 
 @onready var head: Node3D = $head
 @onready var camera: Camera3D = $head/Camera3D
+@onready var interact_ray: RayCast3D = $head/Camera3D/interact_ray
 
-var input_enabled := true
+var move_direction := Vector3.ZERO
 
 
 func _ready() -> void:
@@ -20,8 +21,12 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
-func _input(event: InputEvent) -> void:
-	if not input_enabled: return
+# Handles all of the game's controls.
+func input(event: InputEvent) -> void:
+	# Read movement direction.
+	var move_input := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	move_direction = (head.transform.basis * Vector3(move_input.x, 0, move_input.y)).normalized()
+	# Handle rest of controls.
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
@@ -35,25 +40,22 @@ func _input(event: InputEvent) -> void:
 		DisplayServer.window_set_mode(mode)
 
 
+# Handles player's movement velocity.
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Get the input direction and handle the movement/deceleration.
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	var direction := (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if not input_enabled:
-		direction = Vector3.ZERO
+	# Handle movement/deceleration.
 	if is_on_floor():
-		if direction:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
+		if move_direction:
+			velocity.x = move_direction.x * SPEED
+			velocity.z = move_direction.z * SPEED
 		else:
-			velocity.x = lerp(velocity.x, direction.x * SPEED, delta * GROUND_CONTROL)
-			velocity.z = lerp(velocity.z, direction.z * SPEED, delta * GROUND_CONTROL)
+			velocity.x = move_toward(velocity.x, 0, SPEED * GROUND_CONTROL)
+			velocity.z = move_toward(velocity.z, 0, SPEED * GROUND_CONTROL)
 	else:
-		velocity.x = lerp(velocity.x, direction.x * SPEED, delta * AIR_CONTROL)
-		velocity.z = lerp(velocity.z, direction.z * SPEED, delta * AIR_CONTROL)
+		velocity.x = move_toward(velocity.x, 0, SPEED * AIR_CONTROL)
+		velocity.z = move_toward(velocity.z, 0, SPEED * AIR_CONTROL)
 
 	move_and_slide()
