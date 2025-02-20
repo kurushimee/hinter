@@ -3,7 +3,7 @@ extends Interactable
 @export var push_fail_dialogue := ""
 
 
-func _on_interacted() -> void:
+func interact() -> void:
 	if not %game_manager/tasks.task_pending():
 		Events.transition_requested.emit(start)
 	else:

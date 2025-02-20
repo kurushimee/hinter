@@ -3,7 +3,7 @@ extends Interactable
 @export var destination: Node3D
 
 
-func _on_interacted() -> void:
+func interact() -> void:
 	Events.transition_requested.emit(enter)
 
 

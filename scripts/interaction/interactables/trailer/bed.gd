@@ -2,5 +2,5 @@ extends Interactable
 
 
 # TODO: Rework sleeping architecture.
-func _on_interacted() -> void:
+func interact() -> void:
 	pass

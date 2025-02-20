@@ -25,7 +25,7 @@ func process() -> void:
 	var is_hold := not is_press
 	# Handle press interaction.
 	if is_press and Input.is_action_just_pressed("interact"):
-		collider.interacted.emit()
+		collider.interact()
 	# Handle hold interaction.
 	elif is_hold:
 		if Input.is_action_just_pressed("interact"):
@@ -35,7 +35,7 @@ func process() -> void:
 			var time_passed := hold_timer.wait_time - hold_timer.time_left
 			var progress := time_passed / hold_timer.wait_time
 			if progress >= 1.0:
-				collider.interacted.emit()
+				collider.interact()
 				hold_timer.stop()
 
 		if Input.is_action_just_released("interact"):

@@ -5,11 +5,10 @@ extends Interactable
 # Set up task Interactable.
 func _ready() -> void:
 	is_active = false
-	interacted.connect(_on_interacted)
 
 
 # Universal for all tasks.
-func _on_interacted() -> void:
+func interact() -> void:
 	await start()
 	Events.task_completed.emit()
 

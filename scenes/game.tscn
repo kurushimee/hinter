@@ -485,8 +485,3 @@ size = Vector3(3.55957, 0.63855, 1.8623)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trailer_inside/bed"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00964355, 0.0798645, -0.127365)
 shape = SubResource("BoxShape3D_dc5vb")
-
-[connection signal="interacted" from="world/trailer/doors/door" to="world/trailer/doors/door" method="_on_interacted"]
-[connection signal="interacted" from="world/trailer/push" to="world/trailer/push" method="_on_interacted"]
-[connection signal="interacted" from="trailer_inside/doors/door" to="trailer_inside/doors/door" method="_on_interacted"]
-[connection signal="interacted" from="trailer_inside/bed" to="trailer_inside/bed" method="_on_interacted"]
