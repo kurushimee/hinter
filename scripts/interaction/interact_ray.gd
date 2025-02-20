@@ -7,9 +7,8 @@ extends RayCast3D
 
 
 func process() -> void:
-	if not is_colliding():
-		prompt.hide()
-		return
+	prompt.hide()
+	if not is_colliding(): return
 
 	# Get collider for the Interactable.
 	var collider := get_collider() as Interactable
