@@ -62,3 +62,8 @@ func is_day_over() -> bool:
 # Fast-forwards the time by a given percentage.
 func fast_forward(percentage: float) -> void:
 	day_time += day_length_seconds * percentage
+
+
+# Triggers time fast-forward after pushing.
+func _on_push_area_pushed() -> void:
+	fast_forward(0.1)

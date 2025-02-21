@@ -1,4 +1,7 @@
+class_name TaskManager
 extends Node
+
+static var instance: TaskManager
 
 @export var all_tasks: Array[Task]
 
@@ -6,6 +9,7 @@ var active_task: Task = null
 
 
 func _ready() -> void:
+	instance = self
 	Events.task_completed.connect(_on_events_task_completed)
 
 
@@ -25,3 +29,8 @@ func new_task() -> void:
 
 	active_task = all_tasks.pick_random()
 	active_task.is_active = true
+
+
+# Triggers the creation of a new task after pushing.
+func _on_push_area_pushed() -> void:
+	new_task()

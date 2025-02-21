@@ -22,7 +22,7 @@ func _input(event: InputEvent) -> void:
 
 
 # Processes player interaction in GAMEPLAY.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	match current_state:
 		GameState.GAMEPLAY:
 			Player.instance.interact_ray.process()
