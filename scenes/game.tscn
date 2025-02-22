@@ -172,7 +172,7 @@ albedo_texture = ExtResource("33_y74ul")
 uv1_triplanar = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5box7"]
-size = Vector3(7.20764, 2.8252, 8.83929)
+size = Vector3(9.62747, 2.01624, 10.6828)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xriey"]
 albedo_texture = ExtResource("11_2biis")
@@ -365,14 +365,13 @@ transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761
 
 [node name="test_location" type="Node3D" parent="world/locations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75013, 0, -17.8537)
-visible = false
 script = ExtResource("15_v1k5t")
 
 [node name="model" type="CSGBox3D" parent="world/locations/test_location"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.897944, 0.777971, -1.59144)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.897943, 1.79079, -1.59144)
 material_override = SubResource("StandardMaterial3D_xyfd4")
 use_collision = true
-size = Vector3(2.76672, 1.56885, 4.22363)
+size = Vector3(2.76672, 3.59448, 4.22363)
 
 [node name="visit_area" type="Area3D" parent="world/locations/test_location"]
 collision_layer = 0
@@ -380,7 +379,7 @@ collision_mask = 4
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="world/locations/test_location/visit_area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20245, 0.912598, -2.0643)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.706615, 0.508117, -1.14253)
 shape = SubResource("BoxShape3D_5box7")
 
 [node name="environment" type="Node" parent="world"]
