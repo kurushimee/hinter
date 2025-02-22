@@ -365,6 +365,7 @@ transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761
 
 [node name="test_location" type="Node3D" parent="world/locations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75013, 0, -17.8537)
+visible = false
 script = ExtResource("15_v1k5t")
 
 [node name="model" type="CSGBox3D" parent="world/locations/test_location"]
