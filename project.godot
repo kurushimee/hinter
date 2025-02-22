@@ -72,6 +72,7 @@ fullscreen={
 [layer_names]
 
 3d_physics/layer_2="interaction_layer"
+3d_physics/layer_3="player"
 
 [physics]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bcqukwdbqtooe"]
+[gd_scene load_steps=58 format=3 uid="uid://bcqukwdbqtooe"]
 
 [ext_resource type="PackedScene" uid="uid://d0rlkv2ohnvtp" path="res://scenes/game_manager.tscn" id="1_ws3en"]
 [ext_resource type="Script" path="res://scripts/managers/task_manager.gd" id="3_phxnk"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bnb75cakp3hl6" path="res://assets/models/rv/breaking_bad_1986_fleetwood_bounder_rv.glb" id="12_yxam7"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/push_area.gd" id="14_wi26l"]
 [ext_resource type="Script" path="res://scripts/interaction/interactables/tasks/placeholder_task.gd" id="15_jytk8"]
+[ext_resource type="Script" path="res://scripts/location.gd" id="15_v1k5t"]
 [ext_resource type="PackedScene" uid="uid://cb3bveir207c7" path="res://assets/models/cactus/Cactus_1.fbx" id="16_1ocdi"]
 [ext_resource type="PackedScene" uid="uid://dfuvtxt640o7s" path="res://assets/models/cactus/Cactus_2.fbx" id="17_x18pi"]
 [ext_resource type="PackedScene" uid="uid://c5qpxuwbjwq7e" path="res://assets/models/cactus/Cactus_3.fbx" id="18_ce80m"]
@@ -138,6 +139,9 @@ size = Vector3(1.34119, 1.2063, 0.774536)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xyfd4"]
 albedo_texture = ExtResource("33_y74ul")
 uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5box7"]
+size = Vector3(7.20764, 2.8252, 8.83929)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xriey"]
 albedo_texture = ExtResource("11_2biis")
@@ -282,6 +286,7 @@ environment = SubResource("Environment_m7bmb")
 
 [node name="player" parent="." instance=ExtResource("9_3oejf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59175, -50, 0.0792493)
+collision_layer = 4
 
 [node name="world" type="Node" parent="."]
 
@@ -318,8 +323,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36796, 0, 0)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("14_wi26l")
-task_left_dialogue = "There's something I need to fix first..."
 day_over_dialogue = "I'm too tired to do that... I need to go to sleep."
+task_left_dialogue = "There's something I need to fix first..."
+explore_dialogue = "There's something I want to explore first."
 prompt_message = "Push forward"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="world/rv_outerior/push_area"]
@@ -346,12 +352,22 @@ shape = SubResource("BoxShape3D_nyv6s")
 [node name="test_location" type="Node3D" parent="world/locations"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75013, 0, -17.8537)
 visible = false
+script = ExtResource("15_v1k5t")
 
 [node name="model" type="CSGBox3D" parent="world/locations/test_location"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.897944, 0.777971, -1.59144)
 material_override = SubResource("StandardMaterial3D_xyfd4")
 use_collision = true
 size = Vector3(2.76672, 1.56885, 4.22363)
+
+[node name="visit_area" type="Area3D" parent="world/locations/test_location"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="world/locations/test_location/visit_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20245, 0.912598, -2.0643)
+shape = SubResource("BoxShape3D_5box7")
 
 [node name="environment" type="Node" parent="world"]
 
