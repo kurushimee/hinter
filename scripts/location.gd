@@ -13,6 +13,6 @@ func _ready() -> void:
 	visit_area.body_entered.connect(_on_visit_area_body_entered)
 
 
-func _on_visit_area_body_entered(body: Node3D) -> void:
+func _on_visit_area_body_entered(_body: Node3D) -> void:
 	Events.location_visited.emit()
 	Events.dialogue_requested.emit("I've explored this location.")

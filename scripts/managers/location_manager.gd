@@ -3,9 +3,9 @@ extends Node
 
 static var instance: LocationManager
 
-@export var all_locations: Array[Node3D]
+@export var all_locations: Array[Location]
 
-var current_location: Node3D = null
+var current_location: Location = null
 var changed_today := false
 var location_visited := false
 

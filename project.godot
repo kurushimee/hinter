@@ -21,6 +21,11 @@ config/windows_native_icon="res://icon.ico"
 
 Events="*res://scripts/utility/events.gd"
 
+[debug]
+
+gdscript/warnings/unused_signal=0
+gdscript/warnings/redundant_await=0
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -71,7 +76,7 @@ fullscreen={
 
 [layer_names]
 
-3d_physics/layer_2="interaction_layer"
+3d_physics/layer_2="interactables"
 3d_physics/layer_3="player"
 
 [physics]

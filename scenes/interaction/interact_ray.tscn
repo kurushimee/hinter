@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://v3bj623lgo57"]
+
+[ext_resource type="Script" path="res://scripts/interaction/interact_ray.gd" id="1_okksw"]
+[ext_resource type="Texture2D" uid="uid://cxrnahp18vrni" path="res://assets/textures/ui/prompts/kbm/Mouse_Left_Key_Dark.png" id="2_jvmpm"]
+
+[node name="interact_ray" type="RayCast3D"]
+target_position = Vector3(0, 0, -4)
+collision_mask = 2
+debug_shape_custom_color = Color(1, 1, 0, 1)
+debug_shape_thickness = 5
+script = ExtResource("1_okksw")
+
+[node name="hold_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="prompt" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.5
+offset_top = 26.0
+offset_right = 32.5
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="prompt"]
+layout_mode = 2
+texture = ExtResource("2_jvmpm")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="prompt"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+text = "Interact"

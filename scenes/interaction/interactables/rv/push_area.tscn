@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg5whi0akisfw"]
+
+[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/push_area.gd" id="1_amh4a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hkdvg"]
+size = Vector3(0.482574, 2.82025, 2.97215)
+
+[node name="push_area" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_amh4a")
+day_over_dialogue = "I'm too tired to do that... I need to go to sleep."
+task_left_dialogue = "There's something I need to fix first..."
+explore_dialogue = "There's something I want to explore first..."
+prompt_message = "Push forward"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_hkdvg")
