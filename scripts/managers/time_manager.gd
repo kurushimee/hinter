@@ -39,11 +39,6 @@ func _process(delta: float) -> void:
 	sun.rotation_degrees.x = clampf(-180 * day_progress, -180 + 1, 0 - 1)
 
 
-# Resets the day state on falling asleep.
-func _on_bed_fell_asleep() -> void:
-	change_state(DayState.IN_PROGRESS)
-
-
 # Handles everything related to changing states.
 func change_state(new_state: DayState) -> void:
 	current_state = new_state
@@ -67,3 +62,8 @@ func fast_forward(percentage: float) -> void:
 # Triggers time fast-forward after pushing.
 func _on_push_area_pushed() -> void:
 	fast_forward(0.1)
+
+
+# Resets the day state on falling asleep.
+func _on_bed_fell_asleep() -> void:
+	change_state(DayState.IN_PROGRESS)

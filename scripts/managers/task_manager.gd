@@ -13,12 +13,6 @@ func _ready() -> void:
 	Events.task_completed.connect(_on_events_task_completed)
 
 
-# Disables completed task and resets active task state.
-func _on_events_task_completed() -> void:
-	active_task.is_active = false
-	active_task = null
-
-
 func is_task_active() -> bool:
 	return active_task != null
 
@@ -34,3 +28,9 @@ func new_task() -> void:
 # Triggers the creation of a new task after pushing.
 func _on_push_area_pushed() -> void:
 	new_task()
+
+
+# Disables completed task and resets active task state.
+func _on_events_task_completed() -> void:
+	active_task.is_active = false
+	active_task = null
