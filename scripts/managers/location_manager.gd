@@ -35,7 +35,7 @@ func next_location() -> void:
 		current_location.show()
 
 		# Prompts Hinter to notice something new after a short delay.
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(1.0).timeout
 		Events.dialogue_requested.emit("Huh? What's that?")
 
 
