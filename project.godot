@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Hinter"
-config/version="0.1.0"
+config/description="Hinter is a short 3D adventure story game. You play as Hinter, a now-nomad who bought a shady home trailer at some point, which tends to explode violently whenever something breaks for some reason. The engine gave up some time ago, so now the only choice is to push the trailer forward manually, while travelling through the desert."
+config/version="0.1.1"
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
