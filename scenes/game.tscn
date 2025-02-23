@@ -40,8 +40,8 @@
 [ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="36_cd0sf"]
 
 [sub_resource type="Gradient" id="Gradient_vleru"]
-offsets = PackedFloat32Array(0, 0.253333, 0.773333, 1)
-colors = PackedColorArray(1, 0.698039, 0.580392, 1, 0.347278, 0.55139, 1, 1, 0.35557, 0.546424, 0.836199, 1, 1, 0.392157, 0.239216, 1)
+offsets = PackedFloat32Array(0, 0.253333, 0.645833, 0.825, 1)
+colors = PackedColorArray(1, 0.698039, 0.580392, 1, 0.347278, 0.55139, 1, 1, 0.35557, 0.546424, 0.836199, 1, 1, 0.515844, 0.534376, 1, 0.377228, 0.342567, 0.581289, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6hwok"]
 sky_top_color = Color(0.317647, 0.498039, 0.67451, 1)
@@ -215,6 +215,7 @@ day_over_dialogue = "I'm tired... I should go to sleep."
 sun = NodePath("../../lighting/sun_pivot/sun")
 sky_tint_from_time = SubResource("Gradient_vleru")
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
+day_length_minutes = 1
 
 [node name="transition_manager" type="Node" parent="managers" node_paths=PackedStringArray("screen_fade")]
 script = ExtResource("5_p0qoo")

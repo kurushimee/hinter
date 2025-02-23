@@ -4,7 +4,7 @@ extends CharacterBody3D
 static var instance: Player
 
 # Movement constants.
-const SPEED = 3.0
+const SPEED = 4.0
 const GROUND_CONTROL = 10.0
 const AIR_CONTROL = 3.0
 const SENSITIVITY = 0.003
@@ -12,6 +12,7 @@ const SENSITIVITY = 0.003
 @onready var head: Node3D = $head
 @onready var camera: Camera3D = $head/Camera3D
 @onready var interact_ray: RayCast3D = $head/Camera3D/interact_ray
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var move_direction := Vector3.ZERO
 
@@ -49,6 +50,7 @@ func _physics_process(delta: float) -> void:
 	# Handle movement/deceleration.
 	if is_on_floor():
 		if move_direction:
+			$AnimationPlayer.play(&"walk")
 			velocity.x = move_direction.x * SPEED
 			velocity.z = move_direction.z * SPEED
 		else:

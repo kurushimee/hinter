@@ -13,6 +13,7 @@ config_version=5
 config/name="Hinter"
 config/description="A short 3D adventure"
 config/version="0.0.3"
+config/tags=PackedStringArray("3d", "first_person", "story")
 run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
