@@ -159,7 +159,14 @@ sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 background_mode = 2
 sky = SubResource("Sky_x5v6s")
 tonemap_mode = 2
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
 glow_enabled = true
+volumetric_fog_density = 0.0253
+volumetric_fog_albedo = Color(1, 0.882249, 0.754126, 1)
+volumetric_fog_ambient_inject = 1.0
+volumetric_fog_sky_affect = 0.25
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ommyl"]
 size = Vector3(10.7736, 4.00153, 3.7879)
@@ -493,9 +500,15 @@ size = Vector3(14, 1, 6)
 [node name="lightbulb" type="OmniLight3D" parent="rv_interior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.48551, 0)
 light_color = Color(1, 1, 0.796078, 1)
-light_size = 1.85
+light_energy = 1.6
+light_indirect_energy = 1.455
+light_size = 1.86
 light_bake_mode = 1
 shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 20.0
+distance_fade_shadow = 30.0
+omni_range = 8.0
 
 [node name="doors" type="Node" parent="rv_interior"]
 
