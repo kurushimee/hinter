@@ -214,6 +214,7 @@ day_over_dialogue = "I'm tired... I should go to sleep."
 sun = NodePath("../../lighting/sun_pivot/sun")
 sky_tint_from_time = SubResource("Gradient_vleru")
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
+day_length_minutes = 20
 
 [node name="transition_manager" type="Node" parent="managers" node_paths=PackedStringArray("screen_fade")]
 script = ExtResource("5_p0qoo")

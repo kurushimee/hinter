@@ -23,7 +23,7 @@ func _ready() -> void:
 
 
 # Advances time of day when state is IN_PROGRESS.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if current_state != DayState.IN_PROGRESS: return
 
 	day_time += delta
@@ -61,7 +61,7 @@ func fast_forward(percentage: float) -> void:
 
 # Triggers time fast-forward after pushing.
 func _on_push_area_pushed() -> void:
-	fast_forward(0.1)
+	fast_forward(0.25)
 
 
 # Resets the day state on falling asleep.
