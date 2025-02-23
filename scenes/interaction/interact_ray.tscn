@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://v3bj623lgo57"]
 
-[ext_resource type="Script" path="res://scripts/interaction/interact_ray.gd" id="1_okksw"]
+[ext_resource type="Script" uid="uid://ydqc87svvcf7" path="res://scripts/interaction/interact_ray.gd" id="1_okksw"]
 [ext_resource type="Texture2D" uid="uid://cxrnahp18vrni" path="res://assets/textures/ui/prompts/kbm/Mouse_Left_Key_Dark.png" id="2_jvmpm"]
 
 [node name="interact_ray" type="RayCast3D"]

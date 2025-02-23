@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://rxub3v8canv8"]
 
-[ext_resource type="Script" path="res://scripts/interaction/interactables/tasks/placeholder_task.gd" id="1_xn2rf"]
+[ext_resource type="Script" uid="uid://dijenpn7dq3d0" path="res://scripts/interaction/interactables/tasks/placeholder_task.gd" id="1_xn2rf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nyv6s"]
 size = Vector3(1.34119, 1.2063, 0.774536)

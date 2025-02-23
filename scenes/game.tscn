@@ -1,21 +1,21 @@
 [gd_scene load_steps=59 format=3 uid="uid://bcqukwdbqtooe"]
 
-[ext_resource type="Script" path="res://scripts/managers/game_manager.gd" id="1_0kgsf"]
-[ext_resource type="Script" path="res://scripts/managers/task_manager.gd" id="3_phxnk"]
-[ext_resource type="Script" path="res://scripts/managers/time_manager.gd" id="4_lhlgk"]
-[ext_resource type="Script" path="res://scripts/managers/location_manager.gd" id="5_0vflc"]
-[ext_resource type="Script" path="res://scripts/managers/transition_manager.gd" id="5_p0qoo"]
-[ext_resource type="Script" path="res://scripts/ui/dialogue.gd" id="5_r24th"]
-[ext_resource type="Script" path="res://scripts/ui/screen_fade.gd" id="6_tbedr"]
+[ext_resource type="Script" uid="uid://16e46p6c1br0" path="res://scripts/managers/game_manager.gd" id="1_0kgsf"]
+[ext_resource type="Script" uid="uid://bts5msvob08tr" path="res://scripts/managers/task_manager.gd" id="3_phxnk"]
+[ext_resource type="Script" uid="uid://dobkfu6prig37" path="res://scripts/managers/time_manager.gd" id="4_lhlgk"]
+[ext_resource type="Script" uid="uid://chxntcntkqu0f" path="res://scripts/managers/location_manager.gd" id="5_0vflc"]
+[ext_resource type="Script" uid="uid://d3kcecmu1fdjb" path="res://scripts/managers/transition_manager.gd" id="5_p0qoo"]
+[ext_resource type="Script" uid="uid://bheteihte564w" path="res://scripts/ui/dialogue.gd" id="5_r24th"]
+[ext_resource type="Script" uid="uid://dicbxn3cbyebc" path="res://scripts/ui/screen_fade.gd" id="6_tbedr"]
 [ext_resource type="Texture2D" uid="uid://bsdkotyuxx3kr" path="res://assets/textures/ui/prompts/kbm/Esc_Key_Dark.png" id="7_h87w4"]
 [ext_resource type="Texture2D" uid="uid://bmawwqol2gol" path="res://assets/textures/ui/prompts/kbm/11_Key_Dark.png" id="8_i7c4e"]
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="9_3oejf"]
 [ext_resource type="Texture2D" uid="uid://b3gcq7r2wiane" path="res://assets/textures/prototype/Light/texture_03.png" id="11_2biis"]
 [ext_resource type="PackedScene" uid="uid://c5askj6ptb7l5" path="res://assets/models/car/Car.fbx" id="11_kswnd"]
-[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/door.gd" id="12_ikwqf"]
+[ext_resource type="Script" uid="uid://l4dgm4r562ml" path="res://scripts/interaction/interactables/trailer/door.gd" id="12_ikwqf"]
 [ext_resource type="PackedScene" uid="uid://cg5whi0akisfw" path="res://scenes/interaction/interactables/rv/push_area.tscn" id="13_rbarx"]
 [ext_resource type="PackedScene" uid="uid://rxub3v8canv8" path="res://scenes/interaction/interactables/tasks/placeholder_task.tscn" id="14_77qdq"]
-[ext_resource type="Script" path="res://scripts/location.gd" id="15_v1k5t"]
+[ext_resource type="Script" uid="uid://iur1inqllye2" path="res://scripts/location.gd" id="15_v1k5t"]
 [ext_resource type="PackedScene" uid="uid://cb3bveir207c7" path="res://assets/models/cactus/Cactus_1.fbx" id="16_1ocdi"]
 [ext_resource type="PackedScene" uid="uid://dfuvtxt640o7s" path="res://assets/models/cactus/Cactus_2.fbx" id="17_x18pi"]
 [ext_resource type="PackedScene" uid="uid://c5qpxuwbjwq7e" path="res://assets/models/cactus/Cactus_3.fbx" id="18_ce80m"]
@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://c3qulwmtt70bv" path="res://assets/textures/prototype/Light/texture_02.png" id="33_np6uk"]
 [ext_resource type="Texture2D" uid="uid://bk8q2y2guaq58" path="res://assets/textures/prototype/Dark/texture_01.png" id="33_y74ul"]
 [ext_resource type="Texture2D" uid="uid://b6m63stbsdjyi" path="res://assets/textures/prototype/Orange/texture_08.png" id="34_wsy4h"]
-[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/bed.gd" id="35_aplks"]
+[ext_resource type="Script" uid="uid://4yqdt7vrgrf5" path="res://scripts/interaction/interactables/trailer/bed.gd" id="35_aplks"]
 [ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="36_cd0sf"]
 
 [sub_resource type="Gradient" id="Gradient_vleru"]
@@ -110,9 +110,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b0css"]
 _data = {
-"RESET": SubResource("Animation_x4ld4"),
-"fade_in": SubResource("Animation_ulvqh"),
-"fade_out": SubResource("Animation_peo5f")
+&"RESET": SubResource("Animation_x4ld4"),
+&"fade_in": SubResource("Animation_ulvqh"),
+&"fade_out": SubResource("Animation_peo5f")
 }
 
 [sub_resource type="Animation" id="Animation_eoi4q"]
@@ -148,8 +148,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8gapt"]
 _data = {
-"RESET": SubResource("Animation_eoi4q"),
-"hide_after_delay": SubResource("Animation_agrl6")
+&"RESET": SubResource("Animation_eoi4q"),
+&"hide_after_delay": SubResource("Animation_agrl6")
 }
 
 [sub_resource type="Sky" id="Sky_x5v6s"]
@@ -194,7 +194,6 @@ uv1_triplanar = true
 size = Vector3(3.94849, 1.15973, 2.33176)
 
 [node name="game" type="Node3D"]
-transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 0, 0, 0)
 
 [node name="managers" type="Node" parent="."]
 
@@ -215,7 +214,6 @@ day_over_dialogue = "I'm tired... I should go to sleep."
 sun = NodePath("../../lighting/sun_pivot/sun")
 sky_tint_from_time = SubResource("Gradient_vleru")
 sky_material = SubResource("ProceduralSkyMaterial_6hwok")
-day_length_minutes = 1
 
 [node name="transition_manager" type="Node" parent="managers" node_paths=PackedStringArray("screen_fade")]
 script = ExtResource("5_p0qoo")
@@ -236,7 +234,7 @@ script = ExtResource("6_tbedr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ui/screen_fade"]
 libraries = {
-"": SubResource("AnimationLibrary_b0css")
+&"": SubResource("AnimationLibrary_b0css")
 }
 
 [node name="dialogue" type="Label" parent="ui"]
@@ -265,7 +263,7 @@ print_delay = 0.04
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ui/dialogue"]
 libraries = {
-"": SubResource("AnimationLibrary_8gapt")
+&"": SubResource("AnimationLibrary_8gapt")
 }
 
 [node name="prompts" type="VBoxContainer" parent="ui"]

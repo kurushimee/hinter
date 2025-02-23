@@ -15,7 +15,7 @@ config/description="A short 3D adventure"
 config/version="0.0.3"
 config/tags=PackedStringArray("3d", "first_person", "story")
 run/main_scene="res://scenes/game.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"
 
@@ -83,4 +83,6 @@ fullscreen={
 
 [physics]
 
-common/physics_ticks_per_second=75
+common/physics_jitter_fix=0.0
+3d/physics_engine="Jolt Physics"
+common/physics_interpolation=true

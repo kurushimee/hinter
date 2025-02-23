@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://bnt2oeiddrab4"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_0fxja"]
+[ext_resource type="Script" uid="uid://211aw5hff6sj" path="res://scripts/player.gd" id="1_0fxja"]
 [ext_resource type="PackedScene" uid="uid://v3bj623lgo57" path="res://scenes/interaction/interact_ray.tscn" id="2_jw632"]
 [ext_resource type="AudioStream" uid="uid://b3gfrj745kgtc" path="res://assets/audio/sfx/footsteps/footstep1.wav" id="3_ahjld"]
 [ext_resource type="AudioStream" uid="uid://boqi6mw3fujog" path="res://assets/audio/sfx/footsteps/footstep2.wav" id="4_m1klb"]
@@ -42,7 +42,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jhdua"]
 _data = {
-"walk": SubResource("Animation_3ntrf")
+&"walk": SubResource("Animation_3ntrf")
 }
 
 [node name="player" type="CharacterBody3D"]

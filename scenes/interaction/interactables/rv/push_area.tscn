@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cg5whi0akisfw"]
 
-[ext_resource type="Script" path="res://scripts/interaction/interactables/trailer/push_area.gd" id="1_amh4a"]
+[ext_resource type="Script" uid="uid://rta477n3ocip" path="res://scripts/interaction/interactables/trailer/push_area.gd" id="1_amh4a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkdvg"]
 size = Vector3(0.482574, 2.82025, 2.97215)
