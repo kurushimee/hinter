@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 	sky_material.sky_top_color = sky_tint_from_time.sample(day_progress)
 	# Set sun's position to reflect current time.
 	# Minimum and maximum rotation is clamped so that shadows don't look weird at 0 or -180 degrees.
-	sun.rotation_degrees.x = clampf(-180 * day_progress, -180 + 1, 0 - 1)
+	sun.rotation_degrees.x = clampf(-180.0 * day_progress, -179.0, -1.0)
 
 
 # Handles everything related to changing states.

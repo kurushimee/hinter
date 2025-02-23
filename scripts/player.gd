@@ -31,7 +31,7 @@ func input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
-		camera.rotation.x = clamp(camera.rotation.x, -PI / 2, PI / 2)
+		camera.rotation.x = clampf(camera.rotation.x, -PI / 2.0, PI / 2.0)
 	elif event.is_action_pressed("menu"):
 		get_tree().quit()
 	elif event.is_action_pressed("fullscreen"):
@@ -54,10 +54,10 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_direction.x * SPEED
 			velocity.z = move_direction.z * SPEED
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED * GROUND_CONTROL)
-			velocity.z = move_toward(velocity.z, 0, SPEED * GROUND_CONTROL)
+			velocity.x = move_toward(velocity.x, 0.0, SPEED * GROUND_CONTROL)
+			velocity.z = move_toward(velocity.z, 0.0, SPEED * GROUND_CONTROL)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * AIR_CONTROL)
-		velocity.z = move_toward(velocity.z, 0, SPEED * AIR_CONTROL)
+		velocity.x = move_toward(velocity.x, 0.0, SPEED * AIR_CONTROL)
+		velocity.z = move_toward(velocity.z, 0.0, SPEED * AIR_CONTROL)
 
 	move_and_slide()
