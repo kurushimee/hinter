@@ -339,7 +339,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417694, 0.233184, -0.007671
 shape = SubResource("BoxShape3D_ommyl")
 
 [node name="push_area" parent="world/rv_outerior" instance=ExtResource("13_rbarx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.61608, 0.505067, 0.0408831)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1202, 0.505067, 0.0408831)
 
 [node name="placeholder_task" parent="world/rv_outerior" instance=ExtResource("14_77qdq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3962, -0.0623188, 1.73054)
