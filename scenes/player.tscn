@@ -45,20 +45,21 @@ _data = {
 &"walk": SubResource("Animation_3ntrf")
 }
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interact_ray", "animation_player")]
 script = ExtResource("1_0fxja")
+camera = NodePath("Camera3D")
+interact_ray = NodePath("Camera3D/interact_ray")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_lrit0")
 
-[node name="head" type="Node3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
-
-[node name="Camera3D" type="Camera3D" parent="head"]
 current = true
 
-[node name="interact_ray" parent="head/Camera3D" instance=ExtResource("2_jw632")]
+[node name="interact_ray" parent="Camera3D" instance=ExtResource("2_jw632")]
 
 [node name="footstep" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_5r2rb")
@@ -67,5 +68,5 @@ bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_jhdua")
+&"": SubResource("AnimationLibrary_jhdua")
 }

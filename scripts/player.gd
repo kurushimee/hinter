@@ -9,10 +9,9 @@ const GROUND_CONTROL = 10.0
 const AIR_CONTROL = 3.0
 const SENSITIVITY = 0.003
 
-@onready var head: Node3D = $head
-@onready var camera: Camera3D = $head/Camera3D
-@onready var interact_ray: RayCast3D = $head/Camera3D/interact_ray
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@export var camera: Camera3D
+@export var interact_ray: RayCast3D
+@export var animation_player: AnimationPlayer
 
 var move_direction := Vector3.ZERO
 
@@ -25,16 +24,16 @@ func _ready() -> void:
 # Handles all of the game's controls.
 func input(event: InputEvent) -> void:
 	# Read movement direction.
-	var move_input := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	move_direction = (head.transform.basis * Vector3(move_input.x, 0, move_input.y)).normalized()
+	var move_input := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
+	move_direction = (transform.basis * Vector3(move_input.x, 0, move_input.y)).normalized()
 	# Handle rest of controls.
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
+		rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clampf(camera.rotation.x, -PI / 2.0, PI / 2.0)
-	elif event.is_action_pressed("menu"):
+	elif event.is_action_pressed(&"menu"):
 		get_tree().quit()
-	elif event.is_action_pressed("fullscreen"):
+	elif event.is_action_pressed(&"fullscreen"):
 		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN
 		if DisplayServer.window_get_mode() == mode:
 			mode = DisplayServer.WINDOW_MODE_WINDOWED
