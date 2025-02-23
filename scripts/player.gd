@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	# Handle movement/deceleration.
 	if is_on_floor():
 		if move_direction:
-			$AnimationPlayer.play(&"walk")
+			animation_player.play(&"walk")
 			velocity.x = move_direction.x * SPEED
 			velocity.z = move_direction.z * SPEED
 		else:
