@@ -5,17 +5,17 @@ enum DayState { IN_PROGRESS, OVER }
 
 static var instance: TimeManager
 
-@export var day_over_dialogue := ""
+@export var day_over_dialogue: String = ""
 
 @export var sun: DirectionalLight3D
 @export var sky_tint_from_time: Gradient  # Color of the sky throughout the day.
 @export var sky_material: ProceduralSkyMaterial
 
-@export var day_length_minutes := 10  # Total amount of minutes in a day.
-@onready var day_length_seconds := day_length_minutes * 60  # Total amount of seconds in a day.
-var day_time := 0.0  # Time passed in seconds.
+@export var day_length_minutes: int = 10  # Total amount of minutes in a day.
+@onready var day_length_seconds: int = day_length_minutes * 60  # Total amount of seconds in a day.
+var day_time: float = 0.0  # Time passed in seconds.
 
-var current_state := DayState.IN_PROGRESS
+var current_state: DayState = DayState.IN_PROGRESS
 
 
 func _ready() -> void:

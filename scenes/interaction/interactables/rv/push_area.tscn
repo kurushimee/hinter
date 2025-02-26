@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg5whi0akisfw"]
+[gd_scene load_steps=4 format=3 uid="uid://cg5whi0akisfw"]
 
 [ext_resource type="Script" uid="uid://rta477n3ocip" path="res://scripts/interaction/interactables/trailer/push_area.gd" id="1_amh4a"]
+[ext_resource type="Script" uid="uid://bg2280wm4owp5" path="res://scripts/interaction/interactables/minigames/minigame.gd" id="2_djbmv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hkdvg"]
 size = Vector3(0.482574, 2.82025, 2.97215)
@@ -16,3 +17,9 @@ prompt_message = "Push forward"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_hkdvg")
+
+[node name="minigame" type="Node" parent="."]
+script = ExtResource("2_djbmv")
+
+[node name="Camera3D" type="Camera3D" parent="minigame"]
+transform = Transform3D(-4.37114e-08, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1, 3.09086e-08, -3.09086e-08, -1.18632, 0, 0)

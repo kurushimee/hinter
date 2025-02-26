@@ -2,7 +2,7 @@ extends Interactable
 
 signal fell_asleep
 
-@export var refuse_dialogue := ""
+@export var refuse_dialogue: String = ""
 
 
 func interact() -> void:

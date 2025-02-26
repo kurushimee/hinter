@@ -5,7 +5,7 @@ extends Node3D
 func _ready() -> void:
 	# Get location bounds.
 	var visit_area: Area3D
-	for child in get_children():
+	for child: Node in get_children():
 		if child is Area3D:
 			visit_area = child
 			break

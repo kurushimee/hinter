@@ -1,9 +1,9 @@
 extends Label
 
-@export var print_delay := 0.01
+@export var print_delay: float = 0.01
 
-var is_printing := false
-var is_cancelled := false
+var is_printing: bool = false
+var is_cancelled: bool = false
 
 
 func _ready() -> void:
@@ -29,9 +29,9 @@ func render(dialogue: String) -> void:
 	is_printing = true
 	text = "Hinter: "
 
-	var text_left := dialogue
+	var text_left: String = dialogue
 	while len(text_left) > 0:
-		var letter := text_left[0]
+		var letter: String = text_left[0]
 		text_left = text_left.erase(0)
 		text += letter
 

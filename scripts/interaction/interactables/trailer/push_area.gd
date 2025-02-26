@@ -2,9 +2,9 @@ extends Interactable
 
 signal pushed
 
-@export var day_over_dialogue := ""
-@export var task_left_dialogue := ""
-@export var explore_dialogue := ""
+@export var day_over_dialogue: String = ""
+@export var task_left_dialogue: String = ""
+@export var explore_dialogue: String = ""
 
 
 # Triggers pushing if conditions are met.

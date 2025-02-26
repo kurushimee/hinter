@@ -6,8 +6,8 @@ static var instance: LocationManager
 @export var all_locations: Array[Location]
 
 var current_location: Location = null
-var changed_today := false
-var location_visited := false
+var changed_today: bool = false
+var location_visited: bool = false
 
 
 func _ready() -> void:

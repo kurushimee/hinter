@@ -1,15 +1,21 @@
+class_name GameManager
 extends Node
 
 enum GameState {
 	GAMEPLAY,
-	TRANSITION
+	TRANSITION,
+	MINIGAME
 }
 
-var current_state := GameState.GAMEPLAY
+static var instance: GameManager
+var current_state: GameState = GameState.GAMEPLAY
+
+var current_minigame: Minigame = null
 
 
 # Connects signals from the message bus.
 func _ready() -> void:
+	instance = self
 	Events.transition_requested.connect(_on_events_transition_requested)
 	Events.transitioned.connect(_on_events_transitioned)
 
@@ -19,21 +25,33 @@ func _input(event: InputEvent) -> void:
 	match current_state:
 		GameState.GAMEPLAY:
 			Player.instance.input(event)
+		GameState.MINIGAME:
+			current_minigame.input(event)
+
 
 
 # Processes player interaction in GAMEPLAY.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	match current_state:
 		GameState.GAMEPLAY:
 			Player.instance.interact_ray.process()
+		GameState.MINIGAME:
+			current_minigame.process(delta)
 
 
 # Handles everything related to changing states.
-func change_state(new_state: GameState) -> void:
+func change_state(new_state: GameState, minigame: Minigame = null) -> void:
 	current_state = new_state
+	current_minigame = minigame
 	match current_state:
+		GameState.GAMEPLAY:
+			Player.instance.camera.make_current()
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		GameState.TRANSITION:
 			Player.instance.move_direction = Vector3.ZERO
+		GameState.MINIGAME:
+			current_minigame.camera.make_current()
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 # Switches to TRANSITION on entering a transition.

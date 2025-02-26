@@ -4,16 +4,16 @@ extends CharacterBody3D
 static var instance: Player
 
 # Movement constants.
-const SPEED = 4.0
-const GROUND_CONTROL = 10.0
-const AIR_CONTROL = 3.0
-const SENSITIVITY = 0.003
+const SPEED: float = 4.0
+const GROUND_CONTROL: float = 10.0
+const AIR_CONTROL: float = 3.0
+const SENSITIVITY: float = 0.003
 
 @export var camera: Camera3D
 @export var interact_ray: RayCast3D
 @export var animation_player: AnimationPlayer
 
-var move_direction := Vector3.ZERO
+var move_direction: Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
@@ -24,7 +24,7 @@ func _ready() -> void:
 # Handles all of the game's controls.
 func input(event: InputEvent) -> void:
 	# Read movement direction.
-	var move_input := Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
+	var move_input: Vector2 = Input.get_vector(&"move_left", &"move_right", &"move_forward", &"move_backward")
 	move_direction = (transform.basis * Vector3(move_input.x, 0, move_input.y)).normalized()
 	# Handle rest of controls.
 	if event is InputEventMouseMotion:
@@ -34,7 +34,7 @@ func input(event: InputEvent) -> void:
 	elif event.is_action_pressed(&"menu"):
 		get_tree().quit()
 	elif event.is_action_pressed(&"fullscreen"):
-		var mode := DisplayServer.WINDOW_MODE_FULLSCREEN
+		var mode: DisplayServer.WindowMode = DisplayServer.WINDOW_MODE_FULLSCREEN
 		if DisplayServer.window_get_mode() == mode:
 			mode = DisplayServer.WINDOW_MODE_WINDOWED
 		DisplayServer.window_set_mode(mode)

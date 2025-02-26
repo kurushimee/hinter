@@ -1,6 +1,6 @@
 extends Task
 
-@export var dialogue_text: String
+@export var dialogue_text: String = ""
 
 
 func start() -> void:

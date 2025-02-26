@@ -11,7 +11,7 @@ func process() -> void:
 	if not is_colliding(): return
 
 	# Get collider for the Interactable.
-	var collider := get_collider() as Interactable
+	var collider: Interactable = get_collider() as Interactable
 	if collider is not Interactable: return
 	if not collider.is_active: return
 
@@ -20,8 +20,8 @@ func process() -> void:
 	prompt_label.text = collider.prompt_message
 
 	# Determine Interactable's interaction type.
-	var is_press := collider.interaction_type == Interactable.INTERACTION_TYPE.PRESS
-	var is_hold := not is_press
+	var is_press: bool = collider.interaction_type == Interactable.INTERACTION_TYPE.PRESS
+	var is_hold: bool = not is_press
 	# Handle press interaction.
 	if is_press and Input.is_action_just_pressed("interact"):
 		collider.interact()
@@ -31,8 +31,8 @@ func process() -> void:
 			hold_timer.start()
 
 		if Input.is_action_pressed("interact"):
-			var time_passed := hold_timer.wait_time - hold_timer.time_left
-			var progress := time_passed / hold_timer.wait_time
+			var time_passed: float = hold_timer.wait_time - hold_timer.time_left
+			var progress: float = time_passed / hold_timer.wait_time
 			if progress >= 1.0:
 				collider.interact()
 				hold_timer.stop()
