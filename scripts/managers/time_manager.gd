@@ -1,19 +1,19 @@
 class_name TimeManager
 extends Node
 
-enum DayState { IN_PROGRESS, OVER }
+enum DayState {IN_PROGRESS, OVER}
 
 static var instance: TimeManager
 
 @export var day_over_dialogue: String = ""
 
 @export var sun: DirectionalLight3D
-@export var sky_tint_from_time: Gradient  # Color of the sky throughout the day.
+@export var sky_tint_from_time: Gradient # Color of the sky throughout the day.
 @export var sky_material: ProceduralSkyMaterial
 
-@export var day_length_minutes: int = 10  # Total amount of minutes in a day.
-@onready var day_length_seconds: int = day_length_minutes * 60  # Total amount of seconds in a day.
-var day_time: float = 0.0  # Time passed in seconds.
+@export var day_length_minutes: int = 10 # Total amount of minutes in a day.
+@onready var day_length_seconds: int = day_length_minutes * 60 # Total amount of seconds in a day.
+var day_time: float = 0.0 # Time passed in seconds.
 
 var current_state: DayState = DayState.IN_PROGRESS
 
@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 
 	day_time += delta
 
-	var day_progress: float = day_time / day_length_seconds  # Value between 0 and 1.
+	var day_progress: float = day_time / day_length_seconds # Value between 0 and 1.
 	if day_progress >= 1.0:
 		change_state(DayState.OVER)
 
@@ -54,14 +54,10 @@ func is_day_over() -> bool:
 	return current_state == DayState.OVER
 
 
-# Fast-forwards the time by a given percentage.
-func fast_forward(percentage: float) -> void:
-	day_time += day_length_seconds * percentage
-
-
-# Triggers time fast-forward after pushing.
-func _on_push_area_pushed() -> void:
-	fast_forward(0.25)
+# Advances time by a given number of seconds.
+func advance_time(seconds: float) -> void:
+	if current_state != DayState.IN_PROGRESS: return
+	day_time += seconds
 
 
 # Resets the day state on falling asleep.

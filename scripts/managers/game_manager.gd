@@ -25,18 +25,13 @@ func _input(event: InputEvent) -> void:
 	match current_state:
 		GameState.GAMEPLAY:
 			Player.instance.input(event)
-		GameState.MINIGAME:
-			current_minigame.input(event)
-
 
 
 # Processes player interaction in GAMEPLAY.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	match current_state:
 		GameState.GAMEPLAY:
 			Player.instance.interact_ray.process()
-		GameState.MINIGAME:
-			current_minigame.process(delta)
 
 
 # Handles everything related to changing states.

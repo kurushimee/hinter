@@ -5,16 +5,12 @@ extends Node
 
 
 func enter() -> void:
-	GameManager.instance.change_state(GameManager.GameState.MINIGAME)
-
-
-func input(_event: InputEvent) -> void:
-	pass
-
-
-func process(_delta: float) -> void:
-	pass
+	GameManager.instance.change_state(GameManager.GameState.MINIGAME, self)
+	$qte.show()
+	$qte.start_qte()
 
 
 func exit() -> void:
+	$qte.hide()
+	get_parent().pushed.emit()
 	GameManager.instance.change_state(GameManager.GameState.GAMEPLAY)

@@ -159,9 +159,6 @@ sky_material = SubResource("ProceduralSkyMaterial_6hwok")
 background_mode = 2
 sky = SubResource("Sky_x5v6s")
 tonemap_mode = 2
-ssao_enabled = true
-ssil_enabled = true
-sdfgi_enabled = true
 glow_enabled = true
 volumetric_fog_density = 0.0253
 volumetric_fog_albedo = Color(1, 0.882249, 0.754126, 1)
@@ -549,6 +546,5 @@ shape = SubResource("BoxShape3D_dc5vb")
 
 [connection signal="pushed" from="world/rv_outerior/push_area" to="managers/location_manager" method="_on_push_area_pushed"]
 [connection signal="pushed" from="world/rv_outerior/push_area" to="managers/task_manager" method="_on_push_area_pushed"]
-[connection signal="pushed" from="world/rv_outerior/push_area" to="managers/time_manager" method="_on_push_area_pushed"]
 [connection signal="fell_asleep" from="rv_interior/bed" to="managers/location_manager" method="_on_bed_fell_asleep"]
 [connection signal="fell_asleep" from="rv_interior/bed" to="managers/time_manager" method="_on_bed_fell_asleep"]

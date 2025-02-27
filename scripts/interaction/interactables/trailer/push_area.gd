@@ -17,9 +17,4 @@ func interact() -> void:
 	elif LocationManager.instance.is_at_location() and not LocationManager.instance.location_visited:
 		Events.dialogue_requested.emit(explore_dialogue)
 	else:
-		Events.transition_requested.emit(start)
-
-
-# Emits `pushed` signal.
-func start() -> void:
-	pushed.emit()
+		$minigame.enter()
