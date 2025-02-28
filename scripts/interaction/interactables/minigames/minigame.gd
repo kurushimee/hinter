@@ -2,6 +2,7 @@ class_name Minigame
 extends Node
 
 signal completed
+signal failed
 
 # The camera used by this minigame
 @export var camera: Camera3D
@@ -21,6 +22,7 @@ func _ready() -> void:
 	# Connect signals from all elements
 	for element in elements:
 		element.completed.connect(_on_element_completed)
+		element.failed.connect(_on_element_failed)
 		
 		# Hide elements by default unless they should be shown
 		if not element._should_show_by_default():
@@ -74,6 +76,14 @@ func _on_element_completed() -> void:
 	# Handle element completion (can be overridden in subclasses)
 	# By default, we'll exit the minigame successfully
 	completed.emit()
+	exit()
+
+
+# Handle failure of a minigame element
+func _on_element_failed() -> void:
+	# Handle element failure (can be overridden in subclasses)
+	# By default, we'll exit the minigame with failure
+	failed.emit()
 	exit()
 
 
