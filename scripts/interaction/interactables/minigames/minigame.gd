@@ -2,7 +2,6 @@ class_name Minigame
 extends Node
 
 signal completed
-signal failed
 
 # The camera used by this minigame
 @export var camera: Camera3D
@@ -22,7 +21,6 @@ func _ready() -> void:
 	# Connect signals from all elements
 	for element in elements:
 		element.completed.connect(_on_element_completed)
-		element.failed.connect(_on_element_failed)
 		
 		# Hide elements by default unless they should be shown
 		if not element._should_show_by_default():
@@ -31,10 +29,10 @@ func _ready() -> void:
 
 # Called when entering the minigame
 func enter() -> void:
-	GameManager.instance.change_state(GameManager.GameState.MINIGAME, self)
+	GameManager.instance.change_state(GameManager.GameState.MINIGAME)
 	
 	# Start camera transition
-	_start_camera_transition(Player.instance.camera, camera)
+	await _start_camera_transition(Player.instance.camera, camera)
 	
 	# Activate the minigame elements
 	for element in elements:
@@ -66,12 +64,11 @@ func exit() -> void:
 		element.hide()
 	
 	# Start camera transition back to player
-	_start_camera_transition(camera, Player.instance.camera)
+	await _start_camera_transition(camera, Player.instance.camera)
 	
 	# Wait for camera transition to complete before changing state
-	await get_tree().create_timer(CAMERA_TRANSITION_TIME).timeout
+	#await get_tree().create_timer(CAMERA_TRANSITION_TIME).timeout
 	
-	get_parent().pushed.emit()
 	GameManager.instance.change_state(GameManager.GameState.GAMEPLAY)
 
 
@@ -80,14 +77,6 @@ func _on_element_completed() -> void:
 	# Handle element completion (can be overridden in subclasses)
 	# By default, we'll exit the minigame successfully
 	completed.emit()
-	exit()
-
-
-# Handle failure of a minigame element
-func _on_element_failed() -> void:
-	# Handle element failure (can be overridden in subclasses)
-	# By default, we'll exit the minigame as a failure
-	failed.emit()
 	exit()
 
 
@@ -119,8 +108,10 @@ func _start_camera_transition(from_camera: Camera3D, to_camera: Camera3D) -> voi
 	camera_transition_tween.tween_property(temp_camera, "global_position", to_pos, CAMERA_TRANSITION_TIME)
 	camera_transition_tween.parallel().tween_property(temp_camera, "global_rotation", to_rot, CAMERA_TRANSITION_TIME)
 	
-	# When transition completes, make the destination camera current and remove temp camera
-	camera_transition_tween.tween_callback(func() -> void:
-		to_camera.make_current()
-		temp_camera.queue_free()
-	)
+	await camera_transition_tween.finished
+	# Make destination camera current before freeing the temporary one
+	# to avoid any potential frame where no camera is current
+	#to_camera.make_current()
+	await get_tree().process_frame
+	to_camera.make_current()
+	temp_camera.queue_free()

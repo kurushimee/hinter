@@ -10,8 +10,6 @@ enum GameState {
 static var instance: GameManager
 var current_state: GameState = GameState.GAMEPLAY
 
-var current_minigame: Minigame = null
-
 
 # Connects signals from the message bus.
 func _ready() -> void:
@@ -35,9 +33,8 @@ func _process(_delta: float) -> void:
 
 
 # Handles everything related to changing states.
-func change_state(new_state: GameState, minigame: Minigame = null) -> void:
+func change_state(new_state: GameState) -> void:
 	current_state = new_state
-	current_minigame = minigame
 	match current_state:
 		GameState.GAMEPLAY:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

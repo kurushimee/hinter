@@ -32,3 +32,5 @@ transform = Transform3D(-4.37114e-08, 0.707107, -0.707107, 0, 0.707107, 0.707107
 visible = false
 position = Vector2(477, 370)
 script = ExtResource("3_mrbr3")
+
+[connection signal="completed" from="minigame" to="." method="_on_minigame_completed"]

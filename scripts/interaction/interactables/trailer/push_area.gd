@@ -22,3 +22,7 @@ func interact() -> void:
 		Events.dialogue_requested.emit(explore_dialogue)
 	else:
 		minigame.enter()
+
+
+func _on_minigame_completed() -> void:
+	pushed.emit()
