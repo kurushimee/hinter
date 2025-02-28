@@ -12,7 +12,7 @@ func _on_element_completed() -> void:
 	# Check if we've completed all elements
 	if current_element_index >= elements.size():
 		# All elements completed successfully
-		emit_signal("completed")
+		completed.emit()
 		exit()
 	else:
 		# Start the next element
