@@ -40,12 +40,10 @@ func change_state(new_state: GameState, minigame: Minigame = null) -> void:
 	current_minigame = minigame
 	match current_state:
 		GameState.GAMEPLAY:
-			Player.instance.camera.make_current()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		GameState.TRANSITION:
 			Player.instance.move_direction = Vector3.ZERO
 		GameState.MINIGAME:
-			current_minigame.camera.make_current()
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
