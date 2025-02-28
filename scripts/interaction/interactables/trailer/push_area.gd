@@ -2,9 +2,13 @@ extends Interactable
 
 signal pushed
 
+@export_group("Dialogue")
 @export var day_over_dialogue: String = ""
 @export var task_left_dialogue: String = ""
 @export var explore_dialogue: String = ""
+
+@export_group("Nodes")
+@export var minigame: Minigame
 
 
 # Triggers pushing if conditions are met.
@@ -17,4 +21,4 @@ func interact() -> void:
 	elif LocationManager.instance.is_at_location() and not LocationManager.instance.location_visited:
 		Events.dialogue_requested.emit(explore_dialogue)
 	else:
-		$minigame.enter()
+		minigame.enter()

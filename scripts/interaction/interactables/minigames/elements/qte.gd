@@ -1,4 +1,4 @@
-extends Node2D
+extends MinigameElement
 
 const RADIUS: float = 100.0 # Radius of the circle in pixels
 const SPEED: float = 2 * PI / 2.5 # Speed in radians per second (1 cycle per second)
@@ -17,8 +17,8 @@ var boost_time_left: float = 0.0 # Time remaining for speed boost
 var time_elapsed: float = 0.0 # Track elapsed time
 
 
-# Starts or restarts the QTE
-func start_qte() -> void:
+# Override the start method from MinigameElement
+func start() -> void:
     phi = randf() * TAU # Random start angle for highlight (0 to 2π)
     angle = 0.0 # Reset cursor to top (angle 0)
     is_active = true # Activate the QTE
@@ -26,6 +26,11 @@ func start_qte() -> void:
     boost_time_left = 0.0 # Reset boost timer
     time_elapsed = 0.0 # Reset elapsed time when starting
     queue_redraw() # Ensure initial draw
+
+
+# Override the stop method from MinigameElement
+func stop() -> void:
+    is_active = false
 
 
 # Updates cursor position and distance every frame
@@ -86,13 +91,13 @@ func success() -> void:
 
 
 func failure() -> void:
-    is_active = false # End the QTE
-    get_parent().exit() # Exit the minigame
+    stop() # Stop the QTE
+    emit_signal("failed") # Emit the failed signal
 
 
 func timeout() -> void:
-    is_active = false
-    get_parent().exit()
+    stop() # Stop the QTE
+    emit_signal("completed") # Emit the completed signal with success
 
 
 # Draws the circle, highlight, cursor and distance
