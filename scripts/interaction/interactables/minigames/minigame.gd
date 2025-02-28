@@ -65,10 +65,7 @@ func exit() -> void:
 	
 	# Start camera transition back to player
 	await _start_camera_transition(camera, Player.instance.camera)
-	
-	# Wait for camera transition to complete before changing state
-	#await get_tree().create_timer(CAMERA_TRANSITION_TIME).timeout
-	
+
 	GameManager.instance.change_state(GameManager.GameState.GAMEPLAY)
 
 
@@ -109,9 +106,8 @@ func _start_camera_transition(from_camera: Camera3D, to_camera: Camera3D) -> voi
 	camera_transition_tween.parallel().tween_property(temp_camera, "global_rotation", to_rot, CAMERA_TRANSITION_TIME)
 	
 	await camera_transition_tween.finished
-	# Make destination camera current before freeing the temporary one
-	# to avoid any potential frame where no camera is current
-	#to_camera.make_current()
+	# Make destination camera current a frame after tween ends
+	# to avoid potential frame where no camera is current
 	await get_tree().process_frame
 	to_camera.make_current()
 	temp_camera.queue_free()
