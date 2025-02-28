@@ -47,10 +47,8 @@ Hinter is a short 3D adventure story game built in Godot 4.4 RC2. The player con
 - Official Godot documentation: https://docs.godotengine.org/en/stable/classes/index.html
 
 ## Code Style
-- GDScript with strict typing
-  - Using official GDScript style guide: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html
-- Signal-based communication between systems
-- Singleton pattern for manager access
+- Use official GDScript style guide: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_styleguide.html
+- *Always* add type hints to *all* variable and function declarations 
 
 ## Verifying Changes
 

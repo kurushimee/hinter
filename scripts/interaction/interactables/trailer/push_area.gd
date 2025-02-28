@@ -26,8 +26,3 @@ func interact() -> void:
 
 func _on_minigame_completed() -> void:
 	pushed.emit()
-
-
-func _on_minigame_failed() -> void:
-	# Handle minigame failure - just show a dialogue message
-	Events.dialogue_requested.emit("I couldn't push it hard enough...")

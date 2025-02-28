@@ -2,7 +2,6 @@ class_name MinigameElement
 extends Node2D
 
 signal completed
-signal failed
 
 # Called when the minigame element is started
 func start() -> void:

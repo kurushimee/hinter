@@ -240,11 +240,6 @@ func apply_debuff() -> void:
     in_highlight = false
 
 
-func failure() -> void:
-    stop() # Stop the QTE
-    emit_signal("failed") # Emit the failed signal
-
-
 func timeout() -> void:
     stop() # Stop the QTE
     emit_signal("completed") # Emit the completed signal with success
