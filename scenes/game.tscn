@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bcqukwdbqtooe"]
+[gd_scene load_steps=58 format=3 uid="uid://bcqukwdbqtooe"]
 
 [ext_resource type="Script" uid="uid://16e46p6c1br0" path="res://scripts/managers/game_manager.gd" id="1_0kgsf"]
 [ext_resource type="Script" uid="uid://bts5msvob08tr" path="res://scripts/managers/task_manager.gd" id="3_phxnk"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://c5askj6ptb7l5" path="res://assets/models/car/Car.fbx" id="11_kswnd"]
 [ext_resource type="Script" uid="uid://l4dgm4r562ml" path="res://scripts/interaction/interactables/trailer/door.gd" id="12_ikwqf"]
 [ext_resource type="PackedScene" uid="uid://cg5whi0akisfw" path="res://scenes/interaction/interactables/rv/push_area.tscn" id="13_rbarx"]
-[ext_resource type="PackedScene" uid="uid://rxub3v8canv8" path="res://scenes/interaction/interactables/tasks/placeholder_task.tscn" id="14_77qdq"]
 [ext_resource type="Script" uid="uid://iur1inqllye2" path="res://scripts/location.gd" id="15_v1k5t"]
 [ext_resource type="PackedScene" uid="uid://cb3bveir207c7" path="res://assets/models/cactus/Cactus_1.fbx" id="16_1ocdi"]
 [ext_resource type="PackedScene" uid="uid://dfuvtxt640o7s" path="res://assets/models/cactus/Cactus_2.fbx" id="17_x18pi"]
@@ -210,7 +209,7 @@ all_locations = [NodePath("../../world/locations/test_location")]
 
 [node name="task_manager" type="Node" parent="managers" node_paths=PackedStringArray("all_tasks")]
 script = ExtResource("3_phxnk")
-all_tasks = [NodePath("../../world/rv_outerior/placeholder_task")]
+all_tasks = [NodePath("")]
 
 [node name="time_manager" type="Node" parent="managers" node_paths=PackedStringArray("sun")]
 script = ExtResource("4_lhlgk")
@@ -345,9 +344,6 @@ shape = SubResource("BoxShape3D_ommyl")
 [node name="push_area" parent="world/rv_outerior" instance=ExtResource("13_rbarx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.1202, 0.505067, 0.0408831)
 
-[node name="placeholder_task" parent="world/rv_outerior" instance=ExtResource("14_77qdq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3962, -0.0623188, 1.73054)
-
 [node name="doors" type="Node" parent="world/rv_outerior"]
 
 [node name="door" type="StaticBody3D" parent="world/rv_outerior/doors" node_paths=PackedStringArray("destination")]
@@ -364,6 +360,8 @@ shape = SubResource("BoxShape3D_5a2eu")
 
 [node name="door_exit_point" type="Node3D" parent="world/rv_outerior/doors"]
 transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 1.24815, -2.38419e-07, 2.37526)
+
+[node name="tasks" type="Node" parent="world/rv_outerior"]
 
 [node name="locations" type="Node" parent="world"]
 
