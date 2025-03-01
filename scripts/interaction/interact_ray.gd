@@ -7,7 +7,7 @@ extends RayCast3D
 
 
 func process() -> void:
-	prompt.hide()
+	hide_prompt()
 	if not is_colliding(): return
 
 	# Get collider for the Interactable.
@@ -39,3 +39,7 @@ func process() -> void:
 
 		if Input.is_action_just_released("interact"):
 			hold_timer.stop()
+
+
+func hide_prompt() -> void:
+	prompt.hide()

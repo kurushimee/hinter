@@ -1,13 +1,13 @@
 extends MinigameElement
 
 const RADIUS: float = 100.0 # Radius of the circle in pixels
-const SPEED: float = 2 * PI / 3 # Speed in radians per second
-const DELTA: float = PI / 3 # Highlight size
+const SPEED: float = 2 * PI / 4 # Speed in radians per second
+const DELTA: float = PI / 5 # Highlight size
 const BASE_DISTANCE_RATE: float = 8.0 # Base rate of distance increase per second
 const BOOST_MULTIPLIER: float = 4.0 # How much faster time moves during boost
 const BOOST_DURATION: float = 1.5 # How long the boost lasts in seconds
 const BASE_TIME_RATE: float = 8.0 # Base rate of time acceleration in seconds per second
-const TIME_LIMIT: float = 30.0 # Time limit for the minigame
+const TIME_LIMIT: float = 15.0 # Time limit for the minigame
 const DEBUFF_MULTIPLIER: float = 0.25 # How much slower time moves during debuff
 const DEBUFF_DURATION: float = 1.0 # How long the debuff lasts in seconds
 
@@ -41,7 +41,7 @@ func start() -> void:
     queue_redraw() # Ensure initial draw
 
 
-# Override the stop method from MinigameElement
+## Override the stop method from MinigameElement
 func stop() -> void:
     is_active = false
     # Hide any visible key
@@ -50,7 +50,7 @@ func stop() -> void:
         current_key_node = null
 
 
-# Updates cursor position and distance every frame
+## Updates cursor position and distance every frame
 func _process(delta: float) -> void:
     if is_active:
         # Update elapsed time
@@ -82,8 +82,11 @@ func _process(delta: float) -> void:
             in_highlight = true
             # Show the corresponding key node
             show_key_node(current_key)
-        # If exiting highlight, hide the key node
+        # If exiting highlight, hide the key node and trigger failure
         elif not is_in_highlight and in_highlight:
+            # Apply debuff and play failure effect if exiting without pressing the correct key
+            play_failure_effect()
+            apply_debuff()
             hide_key_node()
             current_key = ""
             in_highlight = false
@@ -110,7 +113,7 @@ func _process(delta: float) -> void:
         queue_redraw() # Redraw to update cursor position and distance
 
 
-# Shows the key node corresponding to the given key
+## Shows the key node corresponding to the given key
 func show_key_node(key: String) -> void:
     # Hide any previously shown key
     hide_key_node()
@@ -128,7 +131,7 @@ func show_key_node(key: String) -> void:
         play_key_idle_animation()
 
 
-# Hides the current key node if it exists
+## Hides the current key node if it exists
 func hide_key_node() -> void:
     if current_key_node:
         # Fade out animation
@@ -141,7 +144,7 @@ func hide_key_node() -> void:
         )
 
 
-# Plays an idle animation on the current key node
+## Plays an idle animation on the current key node
 func play_key_idle_animation() -> void:
     if current_key_node:
         # Create a tween for a simple pulse animation
@@ -151,7 +154,7 @@ func play_key_idle_animation() -> void:
         tween.tween_property(current_key_node, "scale", Vector2(1.0, 1.0), 0.5)
 
 
-# Plays a success effect on the key
+## Plays a success effect on the key
 func play_success_effect() -> void:
     if current_key_node:
         # Stop any existing animation
@@ -167,7 +170,7 @@ func play_success_effect() -> void:
         )
 
 
-# Plays a failure effect on the key
+## Plays a failure effect on the key
 func play_failure_effect() -> void:
     if current_key_node:
         # Stop any existing animation
@@ -183,7 +186,7 @@ func play_failure_effect() -> void:
         )
 
 
-# Handles player input
+## Handles player input
 func _input(event: InputEvent) -> void:
     if not is_active: return
 
@@ -245,7 +248,7 @@ func timeout() -> void:
     emit_signal("completed") # Emit the completed signal with success
 
 
-# Draws the circle, highlight, cursor and distance
+## Draws the circle, highlight, cursor and distance
 func _draw() -> void:
     # Draw circle outline (white, 10px thick)
     draw_arc(Vector2.ZERO, RADIUS, 0, TAU, 64, Color.WHITE, 10.0)
@@ -269,11 +272,31 @@ func _draw() -> void:
     draw_string(ThemeDB.fallback_font, Vector2(RADIUS + 20, 20), time_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 16, Color.WHITE)
 
 
-# Generates a new highlight position that doesn't overlap with the previous one
+## Generates a new highlight position that doesn't overlap with the previous one
 func generate_new_highlight_position() -> void:
     if prev_phi < 0:
-        # No previous highlight, just generate random position
-        phi = randf() * TAU
+        # First highlight, avoid spawning too close to the cursor's starting point (0 or 2π)
+        # Define a buffer zone around the starting point
+        var start_buffer := DELTA * 1.5
+        
+        # We need to avoid two regions:
+        # 1. The region from 0 to start_buffer
+        # 2. The region from (TAU - start_buffer) to TAU
+        # Also need to ensure the highlight's end doesn't wrap around into the buffer zone
+        
+        # Calculate the safe regions where we can place the highlight
+        # Safe region 1: from start_buffer to (TAU - start_buffer - DELTA)
+        var safe_start1 := start_buffer
+        var safe_end1 := TAU - start_buffer - DELTA
+        
+        # Check if there's enough space in the safe region
+        if safe_end1 > safe_start1:
+            # There's enough space in the safe region, place highlight there
+            phi = safe_start1 + randf() * (safe_end1 - safe_start1)
+        else:
+            # Not enough space, place highlight at a quarter of the circle
+            phi = TAU / 4
+            
         prev_phi = phi
         return
         
@@ -281,17 +304,25 @@ func generate_new_highlight_position() -> void:
     var prev_start := fmod(prev_phi, TAU)
     var prev_end := fmod(prev_phi + DELTA, TAU)
     
-    # Calculate available space before and after the previous highlight
+    # Define buffer zone (one full highlight size) after the previous highlight
+    var buffer_size := DELTA
+    var buffered_end := fmod(prev_end + buffer_size, TAU)
+    
+    # Calculate available space before and after the previous highlight (including buffer)
     var space_before: float
     var space_after: float
     
-    if prev_end > prev_start:
-        # Normal case: highlight doesn't wrap around
-        space_before = prev_start
-        space_after = TAU - prev_end
+    if buffered_end > prev_start:
+        # Normal case: highlight + buffer doesn't wrap around
+        if buffered_end > prev_end: # Normal case
+            space_before = prev_start
+            space_after = TAU - buffered_end
+        else: # Buffer wraps around
+            space_before = prev_start - buffered_end
+            space_after = 0.0
     else:
-        # Special case: highlight wraps around TAU
-        space_before = prev_start - prev_end
+        # Special case: highlight + buffer wraps around TAU
+        space_before = prev_start - buffered_end
         space_after = 0.0
     
     # Decide whether to place new highlight before or after based on available space
@@ -308,8 +339,8 @@ func generate_new_highlight_position() -> void:
             # Place highlight in space before previous
             phi = randf() * (space_before - DELTA)
         else:
-            # Place highlight in space after previous
-            phi = prev_end + randf() * (space_after - DELTA)
+            # Place highlight in space after previous (after buffer zone)
+            phi = buffered_end + randf() * (space_after - DELTA)
     
     # Store current position as previous for next time
     prev_phi = phi

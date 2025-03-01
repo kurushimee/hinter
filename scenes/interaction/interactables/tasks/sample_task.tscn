@@ -1,0 +1,98 @@
+[gd_scene load_steps=8 format=3 uid="uid://buejqb3sqxq6r"]
+
+[ext_resource type="Script" uid="uid://bg2280wm4owp5" path="res://scripts/interaction/interactables/minigames/minigame.gd" id="1_0enh0"]
+[ext_resource type="Script" uid="uid://bphd6hb5x2he6" path="res://scripts/interaction/interactables/tasks/task.gd" id="1_77xny"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_02fa5"]
+size = Vector3(1.67004, 0.919006, 0.199524)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nepv3"]
+albedo_color = Color(1, 0, 0, 1)
+metallic = 0.5
+metallic_specular = 1.0
+roughness = 0.5
+
+[sub_resource type="Animation" id="Animation_0enh0"]
+resource_name = "press_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.589812, 0.22827, 0), Vector3(0.589812, 0.22827, -0.0745934)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:albedo_color")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 1, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_77xny"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.589812, 0.22827, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7025r"]
+_data = {
+&"RESET": SubResource("Animation_77xny"),
+&"press_in": SubResource("Animation_0enh0")
+}
+
+[node name="sample_task" type="StaticBody3D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_77xny")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_02fa5")
+
+[node name="minigame" type="Node3D" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("1_0enh0")
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="minigame"]
+transform = Transform3D(1, 0, 0, 0, 0.998079, 0.0619544, 0, -0.0619544, 0.998079, -0.04649, 0.0904874, 0.831668)
+
+[node name="clickable_button" type="CSGSphere3D" parent="minigame"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.589812, 0.22827, 0)
+material = SubResource("StandardMaterial3D_nepv3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="minigame/clickable_button"]
+libraries = {
+&"": SubResource("AnimationLibrary_7025r")
+}

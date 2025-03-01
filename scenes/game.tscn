@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bcqukwdbqtooe"]
+[gd_scene load_steps=59 format=3 uid="uid://bcqukwdbqtooe"]
 
 [ext_resource type="Script" uid="uid://16e46p6c1br0" path="res://scripts/managers/game_manager.gd" id="1_0kgsf"]
 [ext_resource type="Script" uid="uid://bts5msvob08tr" path="res://scripts/managers/task_manager.gd" id="3_phxnk"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c5askj6ptb7l5" path="res://assets/models/car/Car.fbx" id="11_kswnd"]
 [ext_resource type="Script" uid="uid://l4dgm4r562ml" path="res://scripts/interaction/interactables/trailer/door.gd" id="12_ikwqf"]
 [ext_resource type="PackedScene" uid="uid://cg5whi0akisfw" path="res://scenes/interaction/interactables/rv/push_area.tscn" id="13_rbarx"]
+[ext_resource type="PackedScene" uid="uid://buejqb3sqxq6r" path="res://scenes/interaction/interactables/tasks/sample_task.tscn" id="14_nepv3"]
 [ext_resource type="Script" uid="uid://iur1inqllye2" path="res://scripts/location.gd" id="15_v1k5t"]
 [ext_resource type="PackedScene" uid="uid://cb3bveir207c7" path="res://assets/models/cactus/Cactus_1.fbx" id="16_1ocdi"]
 [ext_resource type="PackedScene" uid="uid://dfuvtxt640o7s" path="res://assets/models/cactus/Cactus_2.fbx" id="17_x18pi"]
@@ -76,20 +77,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_on_fade_in_complete"
-}]
 }
 
 [sub_resource type="Animation" id="Animation_peo5f"]
@@ -207,9 +194,8 @@ script = ExtResource("1_0kgsf")
 script = ExtResource("5_0vflc")
 all_locations = [NodePath("../../world/locations/test_location")]
 
-[node name="task_manager" type="Node" parent="managers" node_paths=PackedStringArray("all_tasks")]
+[node name="task_manager" type="Node" parent="managers"]
 script = ExtResource("3_phxnk")
-all_tasks = [NodePath("")]
 
 [node name="time_manager" type="Node" parent="managers" node_paths=PackedStringArray("sun")]
 script = ExtResource("4_lhlgk")
@@ -225,7 +211,7 @@ screen_fade = NodePath("../../ui/screen_fade")
 
 [node name="ui" type="Node" parent="."]
 
-[node name="screen_fade" type="ColorRect" parent="ui"]
+[node name="screen_fade" type="ColorRect" parent="ui" node_paths=PackedStringArray("animation_player")]
 unique_name_in_owner = true
 z_index = 1
 anchors_preset = 15
@@ -235,6 +221,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 script = ExtResource("6_tbedr")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ui/screen_fade"]
 libraries = {
@@ -362,6 +349,9 @@ shape = SubResource("BoxShape3D_5a2eu")
 transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761, 1.24815, -2.38419e-07, 2.37526)
 
 [node name="tasks" type="Node" parent="world/rv_outerior"]
+
+[node name="sample_task" parent="world/rv_outerior/tasks" instance=ExtResource("14_nepv3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36763, 1.64338, 1.76784)
 
 [node name="locations" type="Node" parent="world"]
 

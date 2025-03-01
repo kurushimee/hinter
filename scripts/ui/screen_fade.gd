@@ -1,16 +1,19 @@
 class_name ScreenFade
 extends ColorRect
 
-signal turned_black
+@export var animation_player: AnimationPlayer
+
+var fade_in: StringName = &"fade_in"
+var fade_out: StringName = &"fade_out"
 
 
-func start_fade_in() -> void:
-	$AnimationPlayer.play(&"fade_in")
+## Starts the fade in animation and waits for it to finish.
+func play_fade_in() -> void:
+	animation_player.play(fade_in)
+	await animation_player.animation_finished
 
 
-func start_fade_out() -> void:
-	$AnimationPlayer.play(&"fade_out")
-
-
-func _on_fade_in_complete() -> void:
-	turned_black.emit()
+## Starts the fade out animation and waits for it to finish.
+func play_fade_out() -> void:
+	animation_player.play(fade_out)
+	await animation_player.animation_finished
