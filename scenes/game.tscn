@@ -187,8 +187,9 @@ size = Vector3(3.94849, 1.15973, 2.33176)
 
 [node name="managers" type="Node" parent="."]
 
-[node name="game_manager" type="Node" parent="managers"]
+[node name="game_manager" type="Node" parent="managers" node_paths=PackedStringArray("ui")]
 script = ExtResource("1_0kgsf")
+ui = NodePath("../../ui")
 
 [node name="location_manager" type="Node" parent="managers" node_paths=PackedStringArray("all_locations")]
 script = ExtResource("5_0vflc")
@@ -210,11 +211,18 @@ day_length_minutes = 20
 script = ExtResource("5_p0qoo")
 screen_fade = NodePath("../../ui/screen_fade")
 
-[node name="ui" type="Node" parent="."]
+[node name="ui" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="screen_fade" type="ColorRect" parent="ui" node_paths=PackedStringArray("animation_player")]
 unique_name_in_owner = true
 z_index = 1
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -231,6 +239,7 @@ libraries = {
 
 [node name="dialogue" type="Label" parent="ui"]
 custom_minimum_size = Vector2(600, 200)
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0

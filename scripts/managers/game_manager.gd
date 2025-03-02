@@ -10,12 +10,14 @@ enum GameState {
 static var instance: GameManager
 var current_state: GameState = GameState.GAMEPLAY
 
+@export var ui: Control
+
 
 ## Connects signals from the message bus.
 func _ready() -> void:
 	instance = self
-	Events.transition_requested.connect(_on_events_transition_requested)
-	Events.transitioned.connect(_on_events_transitioned)
+	Events.transition_requested.connect(func(_arg): change_state(GameState.TRANSITION))
+	Events.transitioned.connect(func(): change_state(GameState.GAMEPLAY))
 
 
 ## Processes player input in GAMEPLAY.
@@ -37,10 +39,12 @@ func change_state(new_state: GameState) -> void:
 	current_state = new_state
 	match current_state:
 		GameState.GAMEPLAY:
+			ui.show()
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		GameState.TRANSITION:
 			disable_player_input()
 		GameState.MINIGAME:
+			ui.hide()
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			disable_player_input()
 
@@ -49,13 +53,3 @@ func change_state(new_state: GameState) -> void:
 func disable_player_input() -> void:
 	Player.instance.move_direction = Vector3.ZERO
 	Player.instance.interact_ray.hide_prompt()
-
-
-## Switches to TRANSITION on entering a transition.
-func _on_events_transition_requested(_call_after: Callable) -> void:
-	change_state(GameState.TRANSITION)
-
-
-## Switches to GAMEPLAY on exiting a transition.
-func _on_events_transitioned() -> void:
-	change_state(GameState.GAMEPLAY)

@@ -26,7 +26,6 @@ Events="*res://scripts/utility/events.gd"
 [debug]
 
 gdscript/warnings/unused_signal=0
-gdscript/warnings/untyped_declaration=2
 gdscript/warnings/redundant_await=0
 
 [display]
