@@ -152,7 +152,7 @@ volumetric_fog_ambient_inject = 1.0
 volumetric_fog_sky_affect = 0.25
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ommyl"]
-size = Vector3(10.7736, 4.00153, 3.7879)
+size = Vector3(10.7736, 4.00153, 3.61043)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5a2eu"]
 size = Vector3(1.05456, 2.32443, 0.368591)
@@ -194,8 +194,9 @@ script = ExtResource("1_0kgsf")
 script = ExtResource("5_0vflc")
 all_locations = [NodePath("../../world/locations/test_location")]
 
-[node name="task_manager" type="Node" parent="managers"]
+[node name="task_manager" type="Node" parent="managers" node_paths=PackedStringArray("all_tasks")]
 script = ExtResource("3_phxnk")
+all_tasks = [NodePath("../../world/rv_outerior/tasks/sample_task")]
 
 [node name="time_manager" type="Node" parent="managers" node_paths=PackedStringArray("sun")]
 script = ExtResource("4_lhlgk")
@@ -325,7 +326,7 @@ collision_mask = 0
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -1.73049, 0)
 
 [node name="collision_shape" type="CollisionShape3D" parent="world/rv_outerior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417694, 0.233184, -0.00767136)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417694, 0.233184, -0.0964078)
 shape = SubResource("BoxShape3D_ommyl")
 
 [node name="push_area" parent="world/rv_outerior" instance=ExtResource("13_rbarx")]
