@@ -2,5 +2,10 @@
     "files.exclude": {
         "**/*.uid": true,
         "**/*.import": true
+    },
+    "godotTools.lsp.serverPort": 6005,
+    "godotTools.editorPath.godot4": "c:\\Users\\kuru\\AppData\\Roaming\\Godot\\app_userdata\\Godots\\versions\\Godot_v4_4-rc3_win64_exe\\Godot_v4.4-rc3_win64.exe",
+    "[gdscript]": {
+        "editor.defaultFormatter": "EddieDover.gdscript-formatter-linter"
     }
 }

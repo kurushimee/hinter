@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "geequlim.godot-tools"
+        "geequlim.godot-tools",
+        "eddiedover.gdscript-formatter-linter"
     ]
 }
