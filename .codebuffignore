@@ -1,9 +1,0 @@
-.godot/
-.vscode/
-addons/
-assets/
-*.uid
-*.cfg
-*.ico
-*.png
-*.import

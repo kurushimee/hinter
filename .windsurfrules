@@ -1,0 +1,53 @@
+## Project Context
+A 3D game in Godot 4 of a "routine-simulator" genre. The main features are:
+- day cycle with the ability to sleep
+- various puzzle minigames
+
+## Code Style and Structure
+- Write concise, technical GDScript code with accurate type hinting
+- Use composition
+- Separate responsibility between scripts
+- Prefer iteration and modularization over code duplication
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
+- Structure repository files as follows:
+```
+scripts/
+├── interaction/    # Scripts handling player interaction with the environment
+├── managers/       # Scripts managing game state
+├── ui/             # User interface related scripts
+├── utility/        # Message bus
+├── location.gd     # Switching between locations
+└── player.gd       # Player movement and input handling
+```
+
+## Naming Conventions
+- Use snake_case for directories/files and names in scripts
+- Use type hints
+
+## Error Handling
+- Implement proper error boundaries
+- Log errors appropriately for debugging
+- Provide user-friendly error messages
+
+## Git Usage
+Commit Message Prefixes:
+- "fix:" for bug fixes
+- "feat:" for new features
+- "perf:" for performance improvements
+- "docs:" for documentation changes
+- "style:" for formatting changes
+- "refactor:" for code refactoring
+- "chore:" for maintenance tasks
+
+Rules:
+- Use lowercase for commit messages
+- Keep the summary line concise
+- Include description for non-obvious changes
+
+## Documentation
+- Document code architecture
+- Don't include comments unless it's for complex logic
+
+## Development Workflow
+- Use proper version control
+- Implement proper code review process
