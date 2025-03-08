@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://6if4k54moth"]
+
+[ext_resource type="Texture2D" uid="uid://dfgftiokfvkc0" path="res://assets/textures/caravan/mostly_glass/T_Mostly_glass_mat_BaseColor.png" id="1_f2bfl"]
+[ext_resource type="Texture2D" uid="uid://d1vgs7g4gb7qr" path="res://assets/textures/caravan/mostly_glass/T_Mostly_glass_mat_Emissive.png" id="2_08h70"]
+[ext_resource type="Texture2D" uid="uid://cgq3t2ecq4lx5" path="res://assets/textures/caravan/mostly_glass/T_Mostly_glass_mat_Normal.png" id="3_xqf2e"]
+[ext_resource type="Texture2D" uid="uid://b37ixoyc5nl57" path="res://assets/textures/caravan/mostly_glass/T_Mostly_glass_mat_Roughness.png" id="4_1ypka"]
+
+[resource]
+albedo_texture = ExtResource("1_f2bfl")
+roughness_texture = ExtResource("4_1ypka")
+emission_enabled = true
+emission_texture = ExtResource("2_08h70")
+normal_enabled = true
+normal_texture = ExtResource("3_xqf2e")

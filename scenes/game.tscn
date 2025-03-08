@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bmawwqol2gol" path="res://assets/textures/ui/prompts/kbm/11_Key_Dark.png" id="8_i7c4e"]
 [ext_resource type="PackedScene" uid="uid://bnt2oeiddrab4" path="res://scenes/player.tscn" id="9_3oejf"]
 [ext_resource type="Texture2D" uid="uid://b3gcq7r2wiane" path="res://assets/textures/prototype/Light/texture_03.png" id="11_2biis"]
-[ext_resource type="PackedScene" uid="uid://c5askj6ptb7l5" path="res://assets/models/car/Car.fbx" id="11_kswnd"]
 [ext_resource type="Script" uid="uid://l4dgm4r562ml" path="res://scripts/interaction/interactables/trailer/door.gd" id="12_ikwqf"]
 [ext_resource type="PackedScene" uid="uid://cg5whi0akisfw" path="res://scenes/interaction/interactables/rv/push_area.tscn" id="13_rbarx"]
 [ext_resource type="PackedScene" uid="uid://buejqb3sqxq6r" path="res://scenes/interaction/interactables/tasks/sample_task.tscn" id="14_nepv3"]
@@ -38,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://b6m63stbsdjyi" path="res://assets/textures/prototype/Orange/texture_08.png" id="34_wsy4h"]
 [ext_resource type="Script" uid="uid://4yqdt7vrgrf5" path="res://scripts/interaction/interactables/trailer/bed.gd" id="35_aplks"]
 [ext_resource type="Texture2D" uid="uid://dojrkk0cufvyh" path="res://assets/textures/prototype/Green/texture_09.png" id="36_cd0sf"]
+[ext_resource type="PackedScene" uid="uid://yc6qahfi8phl" path="res://assets/models/M_Car.fbx" id="38_nepv3"]
 
 [sub_resource type="Gradient" id="Gradient_vleru"]
 offsets = PackedFloat32Array(0, 0.253333, 0.645833, 0.825, 1)
@@ -152,7 +152,7 @@ volumetric_fog_ambient_inject = 1.0
 volumetric_fog_sky_affect = 0.25
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ommyl"]
-size = Vector3(10.7736, 4.00153, 3.61043)
+size = Vector3(10.0939, 3.70357, 3.4185)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5a2eu"]
 size = Vector3(1.05456, 2.32443, 0.368591)
@@ -268,6 +268,7 @@ libraries = {
 }
 
 [node name="prompts" type="VBoxContainer" parent="ui"]
+layout_mode = 0
 offset_left = 25.0
 offset_top = 25.0
 offset_right = 99.0
@@ -331,11 +332,11 @@ collision_layer = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0890198, 1.71854, -0.0310392)
 collision_mask = 0
 
-[node name="Car" parent="world/rv_outerior" instance=ExtResource("11_kswnd")]
-transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -1.73049, 0)
+[node name="M_Car" parent="world/rv_outerior" instance=ExtResource("38_nepv3")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, -1.74356, 0)
 
 [node name="collision_shape" type="CollisionShape3D" parent="world/rv_outerior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417694, 0.233184, -0.0964078)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.417766, 0.0842031, -0.000440873)
 shape = SubResource("BoxShape3D_ommyl")
 
 [node name="push_area" parent="world/rv_outerior" instance=ExtResource("13_rbarx")]
@@ -361,7 +362,7 @@ transform = Transform3D(0.999761, 0, -0.0218847, 0, 1, 0, 0.0218847, 0, 0.999761
 [node name="tasks" type="Node" parent="world/rv_outerior"]
 
 [node name="sample_task" parent="world/rv_outerior/tasks" instance=ExtResource("14_nepv3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36763, 1.64338, 1.76784)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36763, 1.64338, 1.65985)
 
 [node name="locations" type="Node" parent="world"]
 

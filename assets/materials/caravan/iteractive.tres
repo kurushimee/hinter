@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://r7udq6o017u3"]
+
+[ext_resource type="Texture2D" uid="uid://cb5u5jfeq3kf2" path="res://assets/textures/caravan/iteractive/T_Iteractive_mat_BaseColor.png" id="1_xc8hk"]
+[ext_resource type="Texture2D" uid="uid://wvawgrrm3n8i" path="res://assets/textures/caravan/iteractive/T_Iteractive_mat_Roughness.png" id="2_bkyl0"]
+
+[resource]
+albedo_texture = ExtResource("1_xc8hk")
+roughness_texture = ExtResource("2_bkyl0")

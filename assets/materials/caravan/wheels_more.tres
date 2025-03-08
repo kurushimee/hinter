@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://c7txfejptqwq6"]
+
+[ext_resource type="Texture2D" uid="uid://d4hg8e7fgn7i3" path="res://assets/textures/caravan/wheels_more/T_Wheels_more_mat_BaseColor.png" id="1_a8f7j"]
+[ext_resource type="Texture2D" uid="uid://c5f3pjgo0kdic" path="res://assets/textures/caravan/wheels_more/T_Wheels_more_mat_Emissive.png" id="2_p5kvr"]
+[ext_resource type="Texture2D" uid="uid://dogyt6k4qwrg" path="res://assets/textures/caravan/wheels_more/T_Wheels_more_mat_Metallic.png" id="3_b75se"]
+[ext_resource type="Texture2D" uid="uid://i1sauoimw12q" path="res://assets/textures/caravan/wheels_more/T_Wheels_more_mat_Normal.png" id="4_f248u"]
+[ext_resource type="Texture2D" uid="uid://dbykfxwdvt7h3" path="res://assets/textures/caravan/wheels_more/T_Wheels_more_mat_Roughness.png" id="5_chyci"]
+
+[resource]
+albedo_texture = ExtResource("1_a8f7j")
+metallic = 1.0
+metallic_texture = ExtResource("3_b75se")
+roughness_texture = ExtResource("5_chyci")
+emission_enabled = true
+emission_texture = ExtResource("2_p5kvr")
+normal_enabled = true
+normal_texture = ExtResource("4_f248u")
